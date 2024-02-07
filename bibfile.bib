@@ -1,0 +1,663 @@
+%-----------------------------------------------------------------------------------------------------------------------
+% Applicattion
+
+%%<<
+% - Using Cayley Graphs for protection routing using completely independent spanning trees (CIST)
+
+@article{Pai:2020,
+    author={Pai, Kung-Jui and Chang, Ruay-Shiung and Chang, Jou-Ming},
+    title={Constructing dual-CISTs of pancake graphs and performance assessment of protection routings on some Cayley networks},
+    journal={The Journal of Supercomputing},
+    volume={76},
+    year={2020},
+    pages={124546},
+}
+
+%%<< Put this in MISC category
+% - Uses a interesting operation called LRE, so it is a generalization?
+% - First trivial upper-bound to sort Rn with LRE
+% - Tighter upper bound for the number of moves required
+% - Newer version of a discussion on cayley graphs
+
+@article{Satwik:2020,
+    author={Kuppili, Sai Satwik and Chitturi, Bhadrachalam},
+    title={An Upper Bound for Sorting $ R\_n $ with LRE},
+    journal={arXiv},
+    volume={},
+    pages={arXiv--2002},
+    year={2020},
+}
+
+%%<<
+% - Heuristic for Token Swap as a part of other problem
+
+@inproceedings{Siraichi:2018,
+    author = {Siraichi, Marcos Yukio and Santos, Vinícius Fernandes dos and Collange, Sylvain and Pereira, Fernando Magno Quintao},
+    year = {2018},
+    title = {Qubit Allocation},
+    booktitle = {Proceedings of the 2018 International Symposium on Code Generation and Optimization},
+    pages = {113--125},
+    publisher = {ACM},
+    address = {New York, NY, USA},
+}
+
+%%<<
+% - The full paper of the techniques and full tests
+
+@article{Siraichi:2019,
+    author = {Siraichi, Marcos Yukio and Santos, Vinícius Fernandes dos and Collange, Caroline and Pereira, Fernando Magno Quint\~{a}o},
+    title = {Qubit Allocation as a Combination of Subgraph Isomorphism and Token Swapping},
+    journal = {Proc. ACM Program. Lang.},
+    volume = {3},
+    year = {2019},
+    pages = {1-29},
+}
+
+%%<<
+% - Correction of the conjecture
+
+@article{Smith:2011:Corrigendum,
+    author={Smith, John H},
+    title={Corrigendum to" Factoring, into edge transpositions of a tree, permutations fixing a terminal vertex"},
+    journal={J. Comb. Theory, Ser. A},
+    volume={118},
+    year={2011},
+    pages={726--727},
+}
+
+%%<<
+% - Efficient implementation of Cayley Graphs in Crossbow Technology Inc's sensor nodes
+% - Wireless Sensor Network (WSN)
+% * Check publisher
+
+@inproceedings{Wang:2007,  
+    author={Wang, Lei and Tang, K. W.},
+    year={2007},  
+    title={The Cayley Graph implementation in TinyOS for dense wireless sensor networks},   
+    booktitle={2007 Wireless Telecommunications Symposium},   
+    pages={1-7},
+    publisher={2007 Thyrrenian International Workshop on Digital Communication},
+    address={Italy},
+}
+
+%%<<
+% - Wrong conjecture proof
+
+@article{Smith:1999,
+    author={Smith, John H},
+    title={Factoring, into edge transpositions of a tree, permutations fixing a terminal vertex},
+    journal={Journal of Combinatorial Theory, Series A},
+    volume={85},
+    year={1999},
+    pages={92--95},
+}
+
+%%<< 
+% - Adressess the problem of genome comparison versus classical gene comparisons
+% - Give algorithm to analyze rearrangements in genomes by transpositions
+
+@article{Bafna:1998,
+    author = {Bafna, Vineet and Pevzner, Pavel A.},
+    title = {Sorting by Transpositions},
+    journal = {SIAM J. Discret. Math.},
+    volume = {11},
+    year = {1998},
+    pages = {224–240},
+}
+
+%%<<
+% - Gave a bound on a problem of gossip limited by one packet exchange in cayley graph models
+% - Conjecture a optimal gossiping protocal for classical networks (hypercubes, k-dimensional tori, star)
+
+@inproceedings{Bermond:1995,
+    author = {Bermond, Jean-Claude and Kodate, Takako and Perennes, Stephane},
+    year = {1995},
+    title = {Gossiping in Cayley Graphs by Packets},
+    booktitle = {Selected Papers from the 8th Franco-Japanese and 4th Franco-Chinese Conference on Combinatorics and Computer Science},
+    pages = {301–315},
+    publisher = {Springer-Verlag},
+    address = {Berlin, Heidelberg},
+}
+
+%%<<
+% - Gave a Algebraic framework to compare structural properties between some topologies of interconnection networks
+% - Run a simulation to check between them.
+
+@article{Annexstein:1990,
+    author = {Annexstein, Fred and Baumslag, Marc and Rosenberg, Arnold L.},
+    title = {Group Action Graphs and Parallel Architectures},
+    journal = {SIAM Journal on Computing},
+    volume = {19},
+    year = {1990},
+    pages = {544-569},
+}
+
+%%<< 
+% - Compact encoding of optimal routing
+% - Faster algorithm for generating Cayley Graphs
+% - Uses a lot of group theory
+
+@article{Cooperman:1992,
+    author = {Cooperman, Gene and Finkelstein, Larry},
+    title = {New methods for using Cayley graphs in interconnection networks},
+    journal = {Discrete Applied Mathematics},
+    volume = {37-38},
+    year = {1992},
+    pages = {95 - 118},
+}
+
+%%<<
+% - Seminal paper on using Cayley Graphs as interconnected networks
+% - Has a tight bound on stars (polynomial proof)
+% - Present a way to build interconnection networks with paths* and stars
+
+@article{Akers:1989,
+    author={Akers, S. B. and Krishnamurthy, B.},
+    title={A group-theoretic model for symmetric interconnection networks}, 
+    journal={IEEE Transactions on Computers}, 
+    volume={38},
+    year={1989},
+    pages={555-566},
+}
+
+% Check next paper for applications
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Token Swap - Distance
+
+
+%%<<
+% - Proved that trees are NP-Complete
+% - Weighted sequential token swapping is NP-Complete on trees
+% - Parallel Token swapping is NP-Complete on trees, even on subdivided stars
+% - Known techniques for approximating sequential token swapping on trees preclude approximation factors less than 2.
+
+@article{Oswin:2021,
+    author    = {Oswin Aichholzer and
+               Erik D. Demaine and
+               Matias Korman and
+               Jayson Lynch and
+               Anna Lubiw and
+               Zuzana Mas{\'{a}}rov{\'{a}} and
+               Mikhail Rudoy and
+               Virginia Vassilevska Williams and
+               Nicole Wein},
+    title     = {Hardness of Token Swapping on Trees},
+    journal   = {CoRR},
+    volume    = {abs/2103.06707},
+    year      = {2021},
+    url       = {https://arxiv.org/abs/2103.06707},
+    archivePrefix = {arXiv},
+    eprint    = {2103.06707},
+    timestamp = {Tue, 16 Mar 2021 11:26:59 +0100},
+    biburl    = {https://dblp.org/rec/journals/corr/abs-2103-06707.bib},
+    bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+%%<<
+% - Survey of swapping on trees
+% * Talk about transposition tree and interconnection networks
+% * Has a great counterexample for the Happy Leaf conjecture
+% - More simple algorithm for Token Swap on Brooms
+% - Weighted Coloured Token Swap
+
+@article{Ahmad:2019,
+    author    = {Biniaz, Ahmad and Jain, Kshitij and Lubiw, Anna and Masárová, Zuzana and Miltzow, Tillmann and Mondal, Debajyoti and Naredla, Anurag Murty and Tkadlec, Josef and  Turcotte, Alexi},
+    title     = {Token Swapping on Trees},
+    journal   = {CoRR},
+    volume    = {abs/1903.06981},
+    year      = {2019},
+    pages     = {41},
+}
+
+%%<<
+% - Insights on the optimal solution in Pr+1-free graphs
+% - Insights on the length of the optimal solution
+% - Difficulty of Subset Token Swap (parameterized, NP-hard, stars)
+% * Difficulty of Token Swap even with constant treewidth and diameter (NP-hard)
+% - Difficulty of Colored Token Swap (NP-hard, paths)
+
+@article{Bonnet:2018,
+    author = {Bonnet, {\'E}douard and Miltzow, Tillmann and Rz{\k{a}}{\.{z}}ewski, Pawe{\l}},
+    title = {Complexity of Token Swapping and Its Variants},
+    journal = {Algorithmica},
+    volume = {80},
+    year = {2018},
+    pages = {2656--2682},
+}
+
+%%<<
+% - TSP NP-Complete by the Three disjoint sets (3DM) problem
+% - Polynomial for Lollipop
+% - Polynomial for Brooms (star-path)
+
+@inproceedings{Kawahara:2017,
+    author = {Kawahara, Jun and Saitoh, Toshiki and Yoshinaka, Ryo},
+    year = {2017},
+    title = {The Time Complexity of the Token Swapping Problem and Its Parallel Variants},
+    booktitle = {WALCOM: Algorithms and Computation},
+    pages = {448--459},
+    publisher = {Springer International Publishing},
+    address = {Cham},
+}
+
+%%<<
+% - We rule out any 2o(n) algorithm under the ETH. 
+% - A simple 2O(n log n) algorithm based on a breadth-first search in an auxiliary graph
+% - General 4-approx, NP-Complete and APX-hardness
+
+@article{Miltzow:2016,
+    author    = {Tillmann Miltzow and
+               Lothar Narins and
+               Yoshio Okamoto and
+               G{\"{u}}nter Rote and
+               Antonis Thomas and
+               Takeaki Uno},
+    title     = {Tight Exact and Approximate Algorithmic Results on Token Swapping},
+    journal   = {CoRR},
+    volume    = {abs/1602.05150},
+    year      = {2016},
+    pages     = {19},
+}
+
+%%<<
+% - Use a more Permutation Group theory approach
+% - Focus on paths, starts, clique and ring topologies
+% - Uses Cayley Graphs as state diagrams
+% * Talk about the diameter of pancake sorting problem
+% - Interesting propositions in Discussion
+
+@article{Kim:2016,
+    author = {Kim, Dohan},
+    title = {Sorting on graphs by adjacent swaps using permutation groups},
+    journal = {Computer Science Review},
+    volume = {22},
+    year = {2016},
+    pages = {89-105},
+}
+
+%%<<
+% - first to propose?
+% - n^2 bound
+% - 2-approx for trees
+% - alpha*2-approx general
+
+@article{Yamanaka:2015,
+    author = {Yamanaka, Katsuhisa and Demaine, Erik D. and Ito, Takehiro and Kawahara, Jun and Kiyomi, Masashi and Okamoto, Yoshio and Saitoh, Toshiki and Suzuki, Akira and Uchizawa, Kei and Uno, Takeaki},
+    title = {Swapping labeled tokens on graphs},
+    journal = {Theoretical Computer Science},
+    volume = {586},
+    year = {2015},
+    pages = {81 - 94}
+}
+
+%%<<
+% - Proof of a polynomial time algorithm for Complete Split Graphs
+% - Basis of the proof in the cograph
+% - (コンピュテーション)
+
+@article{Yasui:2015,
+    author={Gaku Yasui and Kouta Abe and Katsuhisa Yamanaka},
+    title={Swapping Labeled Tokens on Complete Split Graphs},
+    journal={IEICE technical report. Speech},
+    volume={115},
+    year={2015},
+    pages={87-90},
+}
+
+%%<<
+% - Focused on c-Colored Token Swapping
+% - 2-Colored Token Swapping is polynomial
+% - 2-Colored Token Swapping is FPT on Complete graphs and color parameter
+% - 2-Colored Token Swapping is NP-Complete unbounded
+
+@inproceedings{Yamanaka:Colored:2015,
+    author={Yamanaka, Katsuhisa and Horiyama, Takashi and Neil, J. Mark and Kirkpatrick, David G. and Otachi, Yota and Saitoh, Toshiki and Uehara, Ryuhei and Uno, Yushi},
+    year={2015},
+    title={Swapping Colored Tokens on Graphs},
+    booktitle={Workshop on Algorithms and Data Structures},
+    pages={16},
+    publisher={Springer},
+    address={Victoria, BC, Canada},
+}
+
+%%<<
+% - Complexity of some reconfiguration problems
+% - Token jumping, sliding, addition and removal in independent sets
+    % -> Talk about token slide in introduction
+
+@article{Kaminsky:2012,
+    author = {Kamiński, Marcin and Medvedev, Paul and Milanič, Martin},
+    title = {Complexity of independent set reconfigurability problems},
+    journal = {Theoretical Computer Science},
+    volume = {439},
+    year = {2012},
+    pages = {9 - 15},
+}
+
+%%<< 
+% * 2-approx algorithm for square of paths
+% - Some type of bound
+% * Probably has some type of applications in biology
+
+@article{Lenwood:2003,
+    author = {Heath, Lenwood and Vergara, John},
+    title = {Sorting by Short Swaps},
+    journal = {Journal of computational biology : a journal of computational molecular cell biology},
+    volume = {10},
+    year = {2003},
+    pages = {775-89},
+}
+
+%%<<
+% - Original Happy Leaf Conjecture
+
+@article{Vaughan:1991,
+    author = {Vaughan, Theresa P.},
+    title = {Bounds for the rank of a permutation on a tree},
+    journal = {Journal of Combinatorial Mathematics and Combinatorial Computing},
+    volume = {30},
+    year = {1991},
+    pages = {129-148},
+}
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Token Swap - Upper Bound
+
+%%<<
+% - Two Heuristics for determining the upper bound of swaps
+% - Interesting calculation of a bound
+
+@inproceedings{Chitturi:2019,
+    author={Chitturi, B. and Indulekha, T.},
+    year={2019},
+    title={Sorting permutations with a transposition tree}, 
+    booktitle={2019 8th International Conference on Modeling Simulation and Applied Optimization (ICMSAO)}, 
+    pages={1-4},
+    publisher={IEEE},
+    address={Bahrain},
+}
+
+%%<<
+% - Comparation with 15-puzzle
+% - Inapprox for Colored Token Swap even with 2 colors
+% - Polynomials algorithms for tree, complete graphs and cycles
+
+@inproceedings{Yamanaka:2017,
+    author = {Yamanaka, Katsuhisa and Demaine, Erik and Horiyama, Takashi and Kawamura, Akitoshi and Nakano, Shin-ichi and Okamoto, Yoshio and Saitoh, Toshiki and Suzuki, Akira and Uehara, Ryuhei and Uno, Takeaki},
+    year = {2017},
+    title = {Sequentially Swapping Colored Tokens on Graphs},
+    booktitle={Lecture Notes in Computer Science},
+    pages = {435-447},
+    publisher = {Springer},
+    address = {Cham},
+}
+
+%%<< 
+% - New algorithms for calculating bound (no complexity or actual bounds)
+    % - Better bounds than ganesan
+
+@article{Kraft:2015,
+    author = {Kraft, Benjamin},
+    title = {Diameters of Cayley graphs generated by transposition trees},
+    journal = {Discrete Applied Mathematics},
+    volume = {184},
+    year = {2015},
+    pages = {178 - 188},
+}
+
+%%<<
+% - Two intuitive upper bounds in n^2 working solely on the transposition tree
+% - Tighter upper bounds than ganesan
+
+@article{Chitturi:2013,
+    author = {Chitturi, Bhadrachalam},
+    title = {Upper Bounds for Sorting Permutations with a Transposition Tree},
+    journal = {Discrete Mathematics Algorithms and Applications},
+    volume = {5},
+    year = {2013},
+    pages = {24},
+}
+
+%%<<
+% * Examples of applications in computational biology and wireless sensor networks
+% - Explain why Cayley Graphs are important in interconnection networks
+% - Algorithm O(n^2) to calculate a bound
+
+@article{Ganesan:Diameter:2012,
+    author    = {Ganesan, Ashwin},
+    title     = {Diameter of Cayley graphs generated by transposition trees},
+    journal   = {CoRR},
+    volume    = {abs/1202.5888},
+    year      = {2012},
+    pages     = {11},
+}
+
+%%<< 
+% - Check the bound cited in the abstract
+% - Talk about why Cayley Graphs
+% - Worst case performance of the bound cited
+% - Maximum possible difference between upper bound and the true diameter is at least n-4
+% - Lower bound is the best possible (probably trivial)
+
+@inproceedings{Ganesan:Strictness:2012,
+    author={Ganesan, Ashwin},
+    year={2012},
+    title={On the strictness of a bound for the diameter of Cayley graphs generated y transpositions trees}, 
+    booktitle={Proceedings of the International Conference on Mathematical Modelling \& Scientific Computation}, 
+    pages={54-61},
+    publisher={Springer},
+    address={Cham},
+}
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Minimum Generator Sequences
+
+@article{Jerrum:1985,
+    author = {Jerrum, Mark R.},
+    title = {The complexity of finding minimum-length generator sequences},
+    journal = {Theoretical Computer Science},
+    volume = {36},
+    year = {1985},
+    pages = {265 - 289},
+}
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Reconfiguration Problems (General)
+
+%%<<
+% * Survey on Reconfiguration Problems
+
+@article{Naomi:2018,
+    author = {Nishimura, Naomi},
+    title = {Introduction to Reconfiguration},
+    journal = {Algorithms},
+    volume = {11},
+    year = {2018},
+    pages = {52},
+}
+
+%%<<
+% * Proof that pancake flipping is NP-Complete
+
+@article{Bulteau:2015,
+    author = "Laurent Bulteau and Guillaume Fertin and Irena Rusu",
+    title = "Pancake Flipping is hard",
+    journal = "Journal of Computer and System Sciences",
+    volume = "81",
+    year = "2015",
+    pages = "1556 - 1574",
+}
+
+%%<<
+% - Survey on Reconfiguration Problems
+
+@phdthesis{Mouawad:2015,
+    title={On Reconfiguration Problems: Structure and Tractability},
+    author={Mouawad, Amer E},
+    school={University of Waterloo},
+    year={2015},
+}
+
+%%<<
+% - Survey on Reconfiguration Problems
+
+@inproceedings{Heuvel:2013,
+    author={Jan van den Heuvel},
+    year={2013},
+    title={The complexity of change},
+    booktitle={Surveys in Combinatorics},
+    pages={127-160},
+    publisher={Cambridge University Press},
+    address={Cambridge},
+}
+
+%%<<
+% * Reconfiguration framework
+
+@article{Ito:2011,
+    author = "Takehiro Ito and Erik D. Demaine and Nicholas J.A. Harvey and Christos H. Papadimitriou and Martha Sideri and Ryuhei Uehara and Yushi Uno",
+    title = "On the complexity of reconfiguration problems",
+    journal = "Theoretical Computer Science",
+    volume = "412",
+    year = "2011",
+    pages = "1054 - 1065",
+}
+
+@book{Knuth:1998,
+    author = {Knuth, Donald E.},
+    title = {The Art of Computer Programming,  Volume 3: (2nd Ed.) Sorting and Searching},
+    publisher = {Addison Wesley Longman Publishing Co., Inc.},
+    year = {1998},
+    address = {USA},
+}
+
+%%<<
+% - 15--puzzle dating back to 1879
+
+@article{Johnson:1879,
+    author = {Wm. Woolsey Johnson and William E. Story},
+    title = {Notes on the "15" Puzzle},
+    journal = {American Journal of Mathematics},
+    volume = {2},
+    year = {1879},
+    pages = {397--404},
+}
+
+
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Graph Classes
+
+%%<<
+% * Main Cograph paper
+
+@article{Corneil:1981,
+    author = "D.G. Corneil and H. Lerchs and L.Stewart Burlingham",
+    title = "Complement reducible graphs",
+    journal = "Discrete Applied Mathematics",
+    volume = "3",
+    year = "1981",
+    pages = "163 - 174",
+}
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Maximum Matching
+
+@article{Edmonds:1965, 
+    author={Edmonds, Jack}, 
+    title={Paths, Trees, and Flowers}, 
+    journal={Canadian Journal of Mathematics}, 
+    volume={17}, 
+    year={1965}, 
+    pages={449–467},
+}
+
+%-----------------------------------------------------------------------------------------------------------------------
+% LCA
+
+%%<<
+% Survey on LCA
+
+@article{Alstrup:2004,
+    author = {Alstrup, Stephen and Gavoille, Cyril and Kaplan, Haim and Rauhe, Theis},
+    title = {Nearest Common Ancestors: A Survey and a New Algorithm for a Distributed Environment},
+    journal = {Theory of Computing Systems},
+    volume = {37},
+    year = {2004},
+    pages = {441-456},
+}
+
+%%<<
+% Variations and a little survey
+
+@article{Harel:1984,
+    author = {Harel, Dov and Tarjan, Robert Endre},
+    title = {Fast Algorithms for Finding Nearest Common Ancestors},
+    journal = {SIAM J. Comput.},
+    volume = {13},
+    year = {1984},
+    pages = {338–355},
+}
+
+%%<<
+% Proposed the problem
+% Have some O(nlogn) algorithms
+
+@inproceedings{Aho:1973,
+    author = {Aho, A. V. and Hopcroft, J. E. and Ullman, J. D.},
+    title = {On Finding Lowest Common Ancestors in Trees},
+    year = {1973},
+    isbn = {9781450374309},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/800125.804056},
+    doi = {10.1145/800125.804056},
+    booktitle = {Proceedings of the Fifth Annual ACM Symposium on Theory of Computing},
+    pages = {253–265},
+    numpages = {13},
+    location = {Austin, Texas, USA},
+    series = {STOC ’73}
+}
+  
+
+
+%-----------------------------------------------------------------------------------------------------------------------
+% Tools
+
+@inproceedings{enfield,
+    author = {Siraichi, Marcos Yukio and Tonetti, Caio Henrique Segawa},
+    year = {2018},
+    title = {{Enfield : An OpenQASM Compiler}},
+    booktitle = {IX Brazilian Conference On Software},
+    pages={6},
+    publisher={SBC},
+    address={Campinas}
+}
+
+@inproceedings{Razborov:2002,
+    author = {Razborov, AA},
+    year = {2002},
+    month = {01},
+    pages = {100-116},
+    title = {Proof complexity of pigeonhole principles},
+    booktitle={Developments in Language Theory},
+    publisher={Springer Berlin Heidelberg},
+    address={Berlin, Heidelberg},
+    isbn = {3-540-43453-4}
+}
+
+@inbook{Erdos:1987,
+    author="Erd{\"o}s, P. and Rado, R.",
+    title="A Partition Calculus in Set Theory",
+    bookTitle="Classic Papers in Combinatorics",
+    year="1987",
+    publisher="Birkh{\"a}user Boston",
+    address="Boston, MA",
+    pages="179--241",
+    abstract="Dedekind's pigeon-hole principle, also known as the box argument or the chest of drawers argument (Schubfachprinzip) can be described, rather vaguely, as follows. If sufficiently many objects are distributed over not too many classes, then at least one class contains many of these objects. In 1930 F. P. Ramsey [12] discovered a remarkable extension of this principle which, in its simplest form, can be stated as follows. Let S be the set of all positive integers and suppose that all unordered pairs of distinct elements of S are distributed over two classes.",
+    isbn="978-0-8176-4842-8",
+    doi="10.1007/978-0-8176-4842-8_14",
+    url="https://doi.org/10.1007/978-0-8176-4842-8_14"
+}

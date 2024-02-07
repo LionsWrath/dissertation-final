@@ -1,0 +1,213 @@
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (a) edge[bend left =45, dotted, c1, postaction={decorate}, line width=0.35mm] (e)
+            (e) edge[bend left =45, dotted, c2, postaction={decorate}, line width=0.35mm] (c)
+            (c) edge[bend left =45, dotted, c3, postaction={decorate}, line width=0.35mm] (a)
+            
+            (b) edge[bend left =30, dotted, c4, postaction={decorate}, line width=0.35mm] (d)
+            (d) edge[bend left =30, dotted, c5, postaction={decorate}, line width=0.35mm] (b);
+        
+    \end{tikzpicture} 
+    
+    \caption{$f_{0}$}
+
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (a) edge[bend left =45, dotted, c2, postaction={decorate}, line width=0.35mm] (c)
+            (c) edge[bend left =45, dotted, c3, postaction={decorate}, line width=0.35mm] (a)
+            
+            (b) edge[bend left =30, dotted, c4, postaction={decorate}, line width=0.35mm] (d)
+            (d) edge[bend left =30, dotted, c5, postaction={decorate}, line width=0.35mm] (b)
+            
+            (e) edge[loop right, dotted, c1, line width=0.35mm] (e);
+        
+    \end{tikzpicture} 
+    
+    \caption{$f_{0} \groupOp f_{(a,e)} = f_{1}$}
+
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (a) edge[loop right, dotted, c3, line width=0.35mm] (a)
+            (c) edge[loop right, dotted, c2, line width=0.35mm] (c)
+            
+            (b) edge[bend left =30, dotted, c4, postaction={decorate}, line width=0.35mm] (d)
+            (d) edge[bend left =30, dotted, c5, postaction={decorate}, line width=0.35mm] (b)
+            
+            (e) edge[loop right, dotted, c1, line width=0.35mm] (e);
+        
+    \end{tikzpicture} 
+
+    \caption{$f_{1} \groupOp f_{(a,c)} = f_{2}$}
+    
+    \end{subfigure}\\ \vspace{1cm}
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (c) edge[loop right, dotted, c2, line width=0.35mm] (c)
+            (e) edge[loop right, dotted, c1, line width=0.35mm] (e)
+            
+            (d) edge[bend left =45, dotted, c3, postaction={decorate}, line width=0.35mm] (a)
+            (b) edge[bend left =45, dotted, c4, postaction={decorate}, line width=0.35mm] (d)
+            (a) edge[bend left =45, dotted, c5, postaction={decorate}, line width=0.35mm] (b);
+        
+    \end{tikzpicture} 
+
+    \caption{$f_{2} \groupOp f_{(a,d)} = f_{3}$}
+
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (c) edge[loop right, dotted, c2, line width=0.35mm] (c)
+            (e) edge[loop right, dotted, c1, line width=0.35mm] (e)
+            (b) edge[loop right, dotted, c5, line width=0.35mm] (b)
+            
+            (a) edge[bend right =45, dotted, c1, postaction={decorate}, line width=0.35mm] (d)
+            (d) edge[bend right =45, dotted, c3, postaction={decorate}, line width=0.35mm] (a);
+        
+    \end{tikzpicture} 
+
+    \caption{$f_{3} \groupOp f_{(a,b)} = f_{4}$}
+
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.33\textwidth}
+    \centering
+    \begin{tikzpicture}[main node/.style={circle,draw,inner sep=1pt, minimum size=6mm},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}]
+        % Vertexes
+        \node[main node] (a) at ( 0,  0) {a};
+        \node[main node] (b) at (-1, -1) {b};
+        \node[main node] (c) at ( 1, -1) {c};
+        \node[main node] (d) at (-1,  1) {d};
+        \node[main node] (e) at ( 1,  1) {e};
+
+        % Edges
+        \draw
+            (a) edge (b)
+            (a) edge (c)
+            (a) edge (d)
+            (a) edge (e);     
+            
+        % Conflict Graph Loops
+        \draw       
+            (c) edge[loop right, dotted, c2, line width=0.35mm] (c)
+            (e) edge[loop right, dotted, c1, line width=0.35mm] (e)
+            (b) edge[loop right, dotted, c5, line width=0.35mm] (b)
+            (a) edge[loop right, dotted, c3, line width=0.35mm] (a)
+            (d) edge[loop right, dotted, c4, line width=0.35mm] (d);
+        
+    \end{tikzpicture}
+
+    \caption{$f_{4} \groupOp f_{(a,d)} = f_{i}$}
+
+    \end{subfigure}
+
+    \caption{Example of a optimal swap sequence $S$ being applied to a token configuration
+    on a star graph with four leafs. The joint representation identifies each token and its target
+    vertice as a distinct colored arrow.}
+    \label{img:starswaps}
+\end{figure}

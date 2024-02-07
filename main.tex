@@ -1,0 +1,2246 @@
+\documentclass[msc]{ppgccufmg}    % ou [msc] para dissertações
+                                  % de mestrado. Para propostas ou
+                                  % projetos, usar [phd,project],
+                                  % [msc,proposal], etc.
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{type1ec}
+\usepackage{graphicx}
+\usepackage[%a4paper,
+  portuguese,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  linktocpage,
+  colorlinks,
+  citecolor=black,
+  urlcolor=black,
+  linkcolor=black,
+  filecolor=black,
+  ]{hyperref}
+\usepackage[square]{natbib}
+
+% Added
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usepackage{subcaption}
+
+\usepackage{multirow}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{subcaption}
+
+%% Algorithms
+\usepackage[ruled,vlined]{algorithm2e}
+\SetKwRepeat{Do}{do}{while}
+
+%% Custom packages
+\usepackage{colors}
+\usepackage{macros}
+
+\begin{document}
+
+% O comando a seguir, \ppgccufmg, provê todas as informações relevantes para a
+% classe ppgccufmg. Por favor, consulte a documentação para a descrição de
+% cada chave.
+\ppgccufmg{
+    title={The Token Swap Problem: Polynomial Time Algorithms for Graph Classes and Integer Linear Programming Formulations},
+    authorrev={Segawa Tonetti, Caio Henrique},
+    cutter={},
+    cdu={},
+    keywords={Graph Theory, Reconfiguration, Integer Programming},
+    university={Federal University of Minas Gerais},
+    course={Computer Science},
+    portuguesetitle={O Problema de Reconfiguração de Fichas: Algoritmos de Tempo Polinomial para Classes de Grafos e Formulações de Programação Linear Inteira},
+    portugueseuniversity={Universidade Federal de Minas Gerais},
+    portuguesecourse={Ciência da Computação},
+    address={Belo Horizonte},
+    date={2022-02},
+    advisor={Vinicius Fernandes dos Santos},
+    coadvisor={Sebastián Urrutia},
+    %approval={img/approvalsheet.eps},
+    abstract=[brazil]{Resumo}{resumo},
+    abstract={Abstract}{abstract},
+    dedication={dedicatoria},
+    ack={agradecimentos},
+    epigraphtext={For nothing is self-sufficient, neither in us ourselves nor in things; and if our soul has trembled with happiness and sounded like a harp string just once, all eternity was needed to produce this one event—and in this single moment of affirmation all eternity was called good, redeemed, justified, and affirmed.}{Friedrich Nietzsche},
+}
+
+\ppgccufmg{
+	autor={Segawa Tonetti, Caio Henrique},
+	titulo={The Token Swap Problem: Polynomial Time Algorithms for Graph Classes and Integer Linear Programming Formulations},
+	cidade={Belo Horizonte},
+	ano={2024},
+	versao={Final},
+	orientador={Vinicius Fernandes dos Santos}, 
+	coorientador={Sebastián Urrutia}, 
+	fichacatalografica={fichacatalografica.pdf},
+	folhadeaprovacao={folhadeaprovacao.pdf},
+	resumo={resumo.tex}, %% Resumo em português
+	abstracten={abstract.tex}, %% Abstract em inglês
+	palavraschave={Matemática. Computação.}, %% Palavras-chave do resumo
+	keywords={Graph Theory, Reconfiguration, Integer Programming}, %% Palavras-chave do abstract
+	dedicatoria={dedicatoria.tex}, %% Arquivo .tex contendo a dedicatória
+	agradecimentos={agradecimentos.tex},
+	epigrafe={For nothing is self-sufficient, neither in us ourselves nor in things; and if our soul has trembled with happiness and sounded like a harp string just once, all eternity was needed to produce this one event—and in this single moment of affirmation all eternity was called good, redeemed, justified, and affirmed},
+	epigrafeautor={Friedrich Nietzsche},
+	listadefiguras={sim}, %% Remova (ou comente) este parâmetro para remover a lista de figuras
+	listadetabelas={sim}, %% Remova (ou comente) este parâmetro para remover a lista de tabelas
+	listascustomizadas={\listadealgoritmos} %% Lista customizada (e.g., lista de algoritmos). 
+}
+
+% Os três comandos seguintes são apenas para gerar texto para ocupar espaço nas
+% páginas.
+% \newcommand{\dummytxta}{%
+% Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+% eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+% minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+% aliquip ex ea commodo consequat. Duis aute irure dolor in
+% reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+% pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+% culpa qui officia deserunt mollit anim id est laborum.\par
+% }
+
+% \newcommand{\dummytxtb}{%
+% Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+% doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+% veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+% ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+% consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
+% porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+% adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+% dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+% nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+% ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea
+% voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
+% eum fugiat quo voluptas nulla pariatur?\par
+% }
+
+% \newcommand{\dummytxtc}{%
+% At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+% praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
+% excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
+% officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum
+% quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+% nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+% facere possimus, omnis voluptas assumenda est, omnis dolor
+% repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum
+% necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non
+% recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut
+% reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus
+% asperiores repellat.\par
+% }
+
+% \newcommand{\dummytxt}{\dummytxta\dummytxtb\dummytxtc}
+
+\chapter{Introduction}
+\label{chp:intro}
+
+The reconfiguration framework~\citep{Ito:2011} brings the notion of 
+\textit{transformation} in computational problems and new questions arises 
+from the necessity of understanding these changes under various operation 
+and constraints.
+A simple version of this problem is sorting a list of numbers by adjacent swaps 
+between two elements, in which the swap number is exactly the number of 
+pairs that are out of order, being recognized as the number of \textit{
+inversions} in a list and two elements are adjacent if they are next to each 
+other in the list.
+This swap sequence can be calculated in polynomial time by a modified bubble 
+sort algorithm~\citep{Knuth:1998}.
+Under other conditions, when sorting the lists by \textit{prefix-reversals}, 
+an elementary operation that flips a prefix of the list, finding the 
+minimum number of flips is \textbf{NP-complete}~\citep{Bulteau:2015}.
+This problem is called the pancake sorting problem.
+Another reconfiguration problem is the $n$-puzzle, a sliding puzzle on a 
+grid of $n$ numbered square tiles with exactly one tile missing.
+In this problem, each step can \textit{slide} a tile to any adjacent empty tile 
+space to achieve a final sorted configuration state.
+Research of the $15$-puzzle version of the $n$-puzzle dates back to the late 
+19\textsuperscript{th} century~\citep{Johnson:1879} and is commonly used as an 
+introductory problem for modelling heuristics.
+Figure~\ref{img:npuzzle} is an example of a $15$-puzzle instance.
+
+Considering the reconfiguration problems, the interest lies in one of the three
+following parameters: connectivity, diameter or distance.
+This parameters translate, respectively, to the following questions: (a) can any
+configuration be reconfigured into another?; (b) what is the maximum number of 
+required operation steps for any reconfiguration?; and (c) what is the minimum 
+number of operations for any particular reconfiguration?
+In the examples aforementioned, the distance between two configurations (the 
+initial and the sorted) was being used.
+For the interested, more information about most of the known reconfiguration 
+problems can be found in the surveys by \citep
+{Heuvel:2013,Mouawad:2015,Naomi:2018}.
+
+\addExample{npuzzle.tex}
+
+This dissertation focus on a reconfiguration problem called the {\texttt Token
+Swap} problem (TS).
+Let $\graphG = \graphPair$ be a graph with $\vertexNumber = \sizeof{\vertexSet}$ 
+vertices and $\sizeof{\edgeSet}$ edges, with distinct tokens placed on it's 
+vertices. 
+The objective is to reconfigure this initial token placement called  
+$\defineFunc{\initMap}{\vertexSet}{\vertexSet}$ into the identity token 
+placement $\idMap$ that maps every node to itself with minimum distance. 
+The reconfiguration must consist of a token swap sequence $S$, being each 
+identified by a pair of adjacent graph vertices, meaning that the elementary
+operation will be restricted to a swap between two tokens placed on vertices 
+that share an edge in the graph.
+For the decision version of this problem, the aim is to know if it is possible 
+to have a swap sequence $\swapSeq$ that transforms $\initMap$ to $\idMap$ in $k$ 
+or less swaps, such that $k \in \mathbb{N}$.
+In Figure~\ref{img:ts-example}, a complete example of a TS instance is shown.
+The formal mathematical definitions necessary to fully understand this dissertation 
+will be given in Section~\ref{sec:intro:prelim}.
+
+\addExample{ts.tex}
+
+Every reconfiguration problem can also be formulated as a reconfiguration 
+graph where each node is a possible configuration of the combinatorial
+or geometric object and an edge exists between two vertices if and only if 
+each of the vertices can be reached in exactly one reconfiguration step from
+another~\citep{Naomi:2018}.
+In the case of the TS, the reconfiguration graph will be connected as long as
+the original graph is also connected.
+This connection guarantees that any configuration can be reconfigured to any 
+other, as it is possible to take any spanning tree of the original graph and 
+move the desired tokens to each corresponding leaf in a way that any chosen 
+final configuration is achieved.
+This process give us an upper-bound of $\worstCase{\vertexNumber^{2}}$ 
+swaps for any instance of the TS problem~\citep{Yamanaka:2015}.
+The diameter and distance of this reconfiguration graph is exactly the 
+upper-bound of the reconfiguration problem, and the distance between two 
+configurations \textemdash i.e., two vertices in the 
+reconfiguration graph \textemdash, respectively.
+Although the reconfiguration graph of a given graph $\graphG$ could be 
+theoretically built from $\graphG$, in practice this is not viable, since, in 
+general, the number of configurations is exponential in $\sizeof{\vertexSet}$.
+
+If the TS problem is brought to the realm of permutation group theory, it is
+possible to model this problem by a group $\groupPair$, in which every element 
+of $F$ is a bijective function representing a possible configuration. 
+The binary operation is function composition and every element of $\groupSet$ 
+can be represented by the product of finitely many elements of a subset 
+$\groupGen$ of $\groupSet$ and their inverses.
+The elements of $\groupGen$ are called the generators of the group $\groupPair$ 
+and they represent each possible transpositions corresponding to the edges 
+of the original graph.
+Thereupon, given a TS instance, the Cayley Graph $\cayleyGraph$ of the symmetric 
+group will correspond (under isomorphism) exactly to the reconfiguration graph 
+of the original problem, the distance between two configurations will be the 
+shortest path between those two vertices and the worst case will match the 
+diameter of this graph.
+The shortest path in a Cayley Graph, also known as the {\texttt Minimum Length
+Generator Sequence} problem, is a generalization of the TS problem, and a 
+\textbf{PSPACE-complete} problem~\citep{Jerrum:1985}.
+The diameter of the Cayley Graphs has been researched in the context of 
+transposition trees~\citep{Akers:1989, Cooperman:1992,
+Bafna:1998,Ganesan:Diameter:2012, Ganesan:Strictness:2012,Chitturi:2013,
+Kraft:2015,Chitturi:2019}\textemdash i.e., transpositions generators from the 
+edges of a tree.
+It resulted in many heuristic algorithms to calculate upper-bounds that
+do not depend on the vertex number of the Cayley Graph\footnote{In the case of
+the TS, the vertex number of a Cayley Graph is $\worstCase{\vertexNumber!}$.}.
+
+% TODO: Add one more example here
+
+% Improve this paragraph
+There is discussion about the relation of the TS problem and variants 
+to parallel sorting on a SIMD machine consisting of several processors with
+local memory connected by a network~\citep{Yamanaka:2015,Kawahara:2017}. 
+Applications of the TS problem encompass a wide range of fields and some 
+examples are: computing efficient interconnection network structures where the 
+maximum delay could be measured by calculating the diameter of the 
+network~\citep{Annexstein:1990}, computational biology~\citep
+{Bafna:1998,Lenwood:2003}, model Wireless Sensor Networks (WSS)~\citep
+{Wang:2007}, protection routing~\citep{Pai:2020} and qubit allocation for 
+quantum computers~\citep{Siraichi:2018,Siraichi:2019}.
+More examples can be found in \cite{Oswin:2021}.
+
+The reconfiguration version of TS was first introduced in 2015~\citep{
+Yamanaka:2015}, and further generalizations and variations were studied in the 
+same year~\citep{Yamanaka:Colored:2015}.
+The TS problem was first proved \textbf{NP-Complete}, and it remains 
+even when restricted to bipartite graphs with degree bounded by 3. 
+It is also \textbf{APX-complete} and \textbf{W[1]-hard} parameterized by number of swaps, 
+but fixed parameter tractable (\textbf{FPT}) for the class of nowhere dense
+graphs~\citep{Kawahara:2017,Miltzow:2016}.
+Subsequently, it was proved that the problem remains hard even when both the 
+treewidth and the diameter of the input graph are constant \citep{Bonnet:2018}.
+There are some special classes of graphs that can be solved through a
+exact polynomial time algorithm, almost all of them with good references 
+listed in historical order by a study of TS in trees performed by 
+\citep{Ahmad:2019}: cliques, paths, cycles, stars, brooms, 
+lollipop~\citep{Kawahara:2017}, complete bipartite graphs and complete split 
+graphs.
+Concerning square of paths, there is a $2$-approximation algorithm 
+\citep{Lenwood:2003}.
+For trees, two $2$-approximation algorithms \citep{Yamanaka:2015,Miltzow:2016} 
+are known and proven to be tight \citep{Ahmad:2019}.
+It was showed that these known techniques for approximating TS on trees
+prevent approximation factors less than 2~\citep{Oswin:2021}.
+Both approximation algorithms can be adapted to general graphs, providing 
+$\alpha$- and $4$-approximation algorithms, respectively, where $\alpha$ is the 
+value of an $\alpha$-spanner tree of the input graph.
+\cite{Bonnet:2018} conjectured that TS remains \textbf{NP-Complete}
+even in trees and \cite{Ahmad:2019} reinforced this conjecture by showing a 
+counterexample of the \textit{Happy Leaf Conjecture}~\citep{Vaughan:1991}.
+And finally, \cite{Oswin:2021} showed that TS and other two variations (Weighted 
+Token Swap and Parallel Token Swap) are \textbf{NP-Complete} on trees.
+
+\section{Organization of the Work}
+\label{sec:intro:organi}
+
+This chapter focuses on introducing the mathematical tools and other 
+already researched graph classes necessary for understanding the rest of this 
+dissertation.
+Chapter~\ref{chp:cographs} explains the main subject of this dissertation,
+introducing the class of cographs.
+The first section, Section~\ref{sec:solvindpermcycles}, presents the method 
+for finding an optimal swap sequence for threshold graphs and the respective proof
+of correctness, while Section~\ref{sec:deppermcycles} improves on the past 
+proof to generalize the method for cographs.
+
+The following chapter, Chapter~\ref{chp:ilp_models}, presents two initial integer 
+linear programming models for the Token Swap problem and Parallel Token
+Swap problem, being Section~\ref{sec:formulation_ts} and Section~\ref{sec:formulation_pts},
+respectively.
+Then, the subsequent sections and subsections render a discussion about each of 
+the constraints and their design.
+The dissertation is then concluded with a simple revision and exploration of 
+what can be done in the future.
+
+\section{Preliminaries}
+\label{sec:intro:prelim}
+
+For an integer $k$, the notation $\enum{k} \defeq \createSet{1, 2, 
+\ldots, k}$ is used; and for a set $\vertexSet$, a mapping function $\defineFunc
+{\mapFunc}{\vertexSet}{\vertexSet}$ is a bijective function that internally maps
+elements of the set.
+An identity map is a special mapping function $\idMap$ that maps every element
+to itself. 
+For a set $\vertexSet$, an ordering of the elements of the set is a bijective 
+function $\defineFunc{\vertexOrder}{\vertexSet}{\mathbb{N}}$ and the 
+shorthand $\vertexu \lessVOrder \vertexv$ for the comparison $\applyFunc{
+\vertexOrder}{\vertexu} < \applyFunc{\vertexOrder}{\vertexv}$ of the order of 
+two elements $\vertexu,\vertexv\in\vertexSet$ is adopted.
+A graph $\graphG \defeq (\vertexSet, \edgeSet)$ is a pair of a vertex set 
+$\vertexSet = \createSet{v_1, v_2, \ldots, 
+v_{\vertexNumber}}$ and edge set 
+$\edgeSet \subseteq {\vertexSet^2}$.
+% The graph is called \textit{undirected} if and only if each edge $\createOrd
+% {\vertexu, \vertexv} \in \edgeSet$ have the inverse $\createOrd{\vertexv, 
+% \vertexu} \in \edgeSet$ and is called \textit{directed} otherwise.
+The graph is called \textit{undirected} if and only if the set of edges 
+$\edgeSet$ have unordered tuples, while for \textit{directed} graphs the
+set of edges have ordered tuples.
+The shorthand `$\vertexuv$' is used to describe a pair $\createOrd{\vertexu,
+\vertexv}$ and the functions $\vertexFuncG$ and $\edgeFuncG$ are used to 
+respectively retrieve the sets $\vertexSet$ and $\edgeSet$ when they are
+omitted in the graph definition.
+A \textit{subgraph} $\sub{\graphG} \defeq \createOrd{\sub{\vertexSet}, 
+\sub{\edgeSet}}$ of the graph $\graphG$, denoted as $\sub{\graphG} \subgraph 
+\graphG$, is a graph such that $\sub{\vertexSet} \subseteq \vertexFuncG$ and
+$\sub{\edgeSet} \subseteq \edgeFuncG \cap \sub{\vertexSet}^{2}$ and is called 
+a \textit{induced} subgraph when $\sub{\edgeSet} = \edgeFuncG \cap \sub
+{\vertexSet}^{2}$.
+The outdegree $\odeg{\vertexv}$ and indegree $\ideg{\vertexv}$ of a vertex 
+$\vertexv \in \vertexFuncG$ is the number of edges $\createOrd{\vertexv, 
+\vertexw}$, $\forall\vertexw \in \vertexFuncG$ and $\createOrd{\vertexw, 
+\vertexv}$, $\forall\vertexw \in \vertexFuncG$ that belong to $\edgeFuncG$, 
+respectively.
+The degree $\tdeg{\vertexv}$ of a vertex is defined as the sum of 
+$\ideg{\vertexv}$ and $\odeg{\vertexv}$.
+The open neighborhood $\openNeigh{\graphG}{\vertexu}$ of a vertex is defined 
+as a set of all vertices $\vertexv$ such that $\vertexuv \in \edgeFuncG$ and
+$\vertexu$ itself is included.
+If $\vertexu$ is not included, the set is called a closed neighborhood as is
+denoted as $\closedNeigh{\graphG}{\vertexu}$.
+The complement of a graph $\graphG$ is a graph $\sub{\graphG}$ with the same
+vertice set $\vertexFuncG$ such that an edge exists between two distinct 
+vertices if and only if they were not adjacent on $\graphG$.
+
+\addExample{composition.tex}
+
+An instance of the TS problem is composed of a graph $\graphG \defeq \createOrd
+{\vertexSet,\edgeSet}$ and a mapping function $\initMap$ that denotes an initial 
+token placement on vertices of $\graphG$.
+A \textit{swap} is defined by a vertex pair $\swaps \defeq \createOrd{\vertexu,
+\vertexv}$ and it can be \textit{applied} to exchange two tokens in the current 
+mapping of an instance provided that $\createOrd{\vertexu,
+\vertexv} \in \edgeSet$.
+More formally, any swap $\swaps = \createOrd{\vertexu,\vertexv}$ can be 
+represented as a mapping function $\mapFunc_s$, such that $\applyFunc
+{\mapFunc_s}{u} = v$, $\applyFunc{\mapFunc_s}{v} = u$ and $\applyFunc
+{\mapFunc_s}{w} = w$, $\forall w \in \vertexSet\setminus \createSet{u,v}$, and 
+applied to any token placement $\mapFunc$ by the composition $\mapFunc\groupOp
+\mapFunc_s = \mapFunc_1$.
+An example on how the composition operation can swap function values is shown
+in Figure~\ref{img:applyswap}.
+
+Let $\graphG \defeq \graphPair$ be a graph.
+It can be said that two vertices $\vertexu, \vertexv \in \vertexSet$ are 
+\textit{connected} if there is at least one \textit{path of vertices} 
+$\createOrd{\vertexv_1, \vertexv_2, \ldots, \vertexv_k}$ in $\graphG$ such that 
+$\vertexv_{i}\vertexv_{i+1} \in \edgeSet, \forall_{i\in\enum{k-1}}$, 
+$\vertexv_{1} = \vertexu$ and $\vertexv_{k} = \vertexv$.
+A graph $\graphG$ is connected if all vertex pairs of $\vertexSet$ are 
+connected and disconnected otherwise.
+The function $\distG{\vertexu}{\vertexv}$ denotes the minimum number of edges in 
+any path of vertices between nodes $\vertexu$ and $\vertexv$ for a graph 
+$\graphG$.
+Note that this distance is considered infinite in the case there is no 
+path between the two vertices.
+A token placement $\mapFunc$ is considered \textit{valid} if all vertex pairs
+$\createOrd{\applyFunc{\mapFunc}{\vertexu}, \vertexu}$ are connected.
+As all token placements in this paper are assumed to be valid, every 
+disconnected graph of a TS instance can be separated into smaller connected 
+instances with restrictions to the domain of the initial placement.
+Hence, all graphs can be assumed connected without loss of generality.
+
+Let $\swapSeq \defeq \createOrd{\swaps_1, \swaps_2, \ldots, \swaps_k}$ be a 
+sequence of swaps.
+A swap sequence $\swapSeq$ \textit{solves} an instance of the TS problem if and 
+only if the identity function is resulted by applying each swap iteratively, as 
+shown in Equation~\ref{equ:seqid}. 
+Every intermediate mapping function created is represented by a $\mapFunc_p$, 
+where $p$ is the number of swaps applied from the initial configuration.
+Moreover, two placement mappings are said to be \textit{adjacent} if there is 
+exactly one swap to transform one placement into another.
+The Token Swap problem asks for a sequence of swaps that solves a given 
+instance with the minimal number of swaps $k$.
+
+\addEquation{mappings.tex}
+
+It is important to note that this version of the problem is equivalent to the
+problem of finding a swap sequence between two arbitrary mapping functions
+$\initMap$, $\mapFunc_e$ by the use of the following process of \textit{token
+renaming} from $\initMap$ to $\sub{\initMap}$: if a token $\tokeni$ has
+$\applyFunc{\initMap} {\tokeni} = \vertexu$, the $\tokeni$ is renamed to the 
+token $\applyFunc{\mapFunc_{e}}{\vertexu}$, generating an instance of the TS
+problem with the same graph and initial mapping $\sub{\initMap} = \mapFunc_{e}
+\groupOp \initMap$. 
+Given a $\swapSeq$ that solves the TS instance, the vertices can just be renamed 
+back to get a swap sequence of the initial problem.
+Any swap sequence $\swapSeq$ is also \textit{reversible}, meaning that if 
+$\swapSeq$ transforms $\mapFunc_{i}$ to $\mapFunc_{j}$, then it is possible
+to transform $\mapFunc_{j}$ to $\mapFunc_{i}$ by applying the swap 
+sequence of $\swapSeq$ in the reverse order.
+This property is specially useful in some applications like quantum computing,
+where all quantum logic operations must be reversible.
+
+% Add an LCA example
+
+Another important definition needed throughout this work is the notion of the
+\textit{Lowest Common Ancestor} ($LCA$), sometimes called nearest common 
+ancestor, for trees. 
+A \textit{tree} $\graphG$ is a undirected and connected graph that has no cycles 
+and is called \textit{rooted}, denoted as $\graphrG$, if there exists a special 
+node $r \in \vertexFuncG$ called \textit{root} that functions as a reference 
+node for heights in the graph.
+Any vertex $\vertexu$ of a tree with $\tdeg{\vertexu} = 1$ is called a leaf, 
+with the exception of the root of a rooted tree.
+A \textit{subtree} is a subgraph of a tree that is still a tree. 
+A subtree $\sub{\graphG}$ of a rooted tree $\graphrG$ can also rooted in relation 
+to the original root, as the nearest vertex from the subtree to $r$ in 
+$\graphrG$ will be the subtree's root.
+For a given rooted tree $\graphrG$, $\vertexu,\vertexv \in \vertexFuncrG$, the 
+lowest common ancestor between $\vertexu$ and $\vertexv$, denoted as $\lca
+{\vertexu, \vertexv}$, is the lowest node such that both nodes are descendants 
+of.
+In another words, it is the nearest shared ancestor of both $\vertexu$ and
+$\vertexv$.
+
+% Add an image here as a example of the process of subset LCA.
+
+This notion is extended to calculate the $LCA$ for any vertex subset of the 
+graph. 
+Let $\graphrG$ be a rooted tree and $\sub{\vertexSet} \subseteq \vertexFuncrG$ a 
+vertex subset. 
+The lowest common ancestor $\lca{\sub{\vertexSet}}$ is the nearest node from 
+the root in the set of nodes built from the lowest common ancestors between 
+every pair of nodes in $\sub{\vertexSet}$.
+% The nearest node from the set of farthest nodes given by the pairwise $LCA$ is
+% the node that is the lowest common ancestor of the set of nodes $\sub
+% {\vertexSet}$.
+
+Given the set of every pairwise $LCA$ of the subset, the $LCA$ of the entire 
+subset $\sub{\vertexSet}$ is the nearest node from the root in the set.
+The Theorem~\ref{thr:lca_subset} helps in understanding that the process indeed 
+generates the lowest common ancestor of the subset.
+
+\begin{theorem}
+\label{thr:lca_subset}
+Let $\graphrG$ be a rooted tree and a subset $\sub{\vertexSet} \subseteq 
+\vertexFuncrG$. 
+The $\lca{\sub{\vertexSet}}$ gives us the lowest common ancestor of the vertex 
+subset.
+\end{theorem}
+
+\begin{proof}
+Let $J$ be the set of all lowest common ancestors resulting from the pairwise
+node calculation, $\vertexw$ be the node of $J$ located the nearest from
+the root and $\vertexu$,$\vertexv$ the nodes of $\vertexFuncrG$ such that
+$\lca{\vertexu,\vertexv} = \vertexw$.
+To show that this node is indeed a common ancestor of all nodes in 
+$\sub{\vertexSet}$, suppose, by contradiction, that there is a node $p \in 
+\vertexFuncrG$ that $\vertexw$ is not a ancestor of.
+Then, if we form a pair from $\vertexu$ or $\vertexv$ and $p$, the distance of 
+the lowest common ancestor $\lca{\vertexu, p}$ or $\lca{\vertexv, p}$ 
+\textit{must} be lower than the distance of $\vertexw$, otherwise $\vertexw$ 
+would be a common ancestor, as this node will have to exist in the subtree where 
+$\vertexw$ is the root.
+But this create a contradiction, as $\vertexw$ were the nearer node from the 
+root from the set of pairwise lowest common ancestors.
+
+To prove that this node is the \textit{lowest} common ancestor, we assume, by
+contradiction, that there is another node from $J$ that is lower and is a common
+ancestor to all nodes in $\vertexSet'$.
+Then, $\vertexw$ is not the lowest common ancestor of nodes $\vertexu$ and 
+$\vertexv$, creating a contradiction.
+\end{proof}
+
+% Add LCA example here
+
+The problem of calculating $\lca{\vertexu, \vertexv}$ is called \textit{offline} 
+when the graph and queries are being given as input and has been first proposed 
+in \citep{Aho:1973} with an optimally efficient algorithm. 
+Other versions were studied later~\citep{Harel:1984}, with many different 
+algorithms and general improvements over the years~\citep{Alstrup:2004}.
+Some of these algorithms present a linear time pre-process stage that creates a 
+data structure that can be dynamically queried in asymptotically constant time 
+and others offers efficient algorithms that queries on trees that can be changed
+dynamically.
+The exact improvements and methods used to calculate the lowest common ancestor 
+go out of the scope of this dissertation.
+From the above, the calculation of the $\lca{\sub{\vertexSet}}$ can also be
+derived in optimally efficient time, as the number of pairs of vertex is bounded 
+by $\worstCase{\sizeof{\sub{\vertexSet}}^2}$.
+
+A Conflict Graph $\conflictGraph_{\mapFunc} \defeq \createOrd{\vertexFuncG, 
+\edgeSetConflict}$ is a directed graph that, for a token placement 
+$\mapFunc$ of a graph $\graphG$, an edge $\createOrd{\vertexu, \vertexv} \in 
+\edgeSetConflict$ if and only if $\applyFunc{\mapFunc}{\vertexu} = \vertexv$.
+Note that each node has outdegre 1, as there can be only one token per vertex, 
+and the directed graph may contain self-loops when a token is already in the
+correct vertex.
+In this graph, configurations can be characterized by a set of directed 
+cycles $\applyFunc{\cycleSet}{\conflictGraph} = \createSet{\cycle_{0}, 
+\cycle_{1}, \ldots, \cycle_{p}}$, for $p \in \mathbb{N}$, as seen in 
+Lemma~\ref{lem:dircycle}.
+
+\begin{lemma}
+\label{lem:dircycle}
+\citep{Yamanaka:2015}
+Let $\conflictGraph_{\mapFunc}$ be a conflict graph of a graph $\graphG$.
+Then, every component in $\conflictGraph$ is a directed cycle.
+\end{lemma}
+
+The \textit{joint representation} is an easy way to visually represent a Conflict 
+Graph and the original graph as one, as seen in Figure~\ref{img:ts-example}, 
+and will be used throughout this dissertation.
+Lemma~\ref{lem:cgbound} and Lemma~\ref{lem:disjcycles} underline two basic 
+properties of this set of cycles.
+The cyclic representation $\cycle = \createCyc{\vertexu_{1}, \ldots, \vertexu_
+{k}}$ denotes a cycle such that $\vertexu_{i}\vertexu_{i+1} \in \edgeFunc
+{\cycle}$, $\forall i \in \enum{k-1}$ and $\vertexu_{k}\vertexu_{1} \in 
+\edgeFunc{\cycle}$.
+
+\begin{lemma}
+\label{lem:disjcycles}
+Let $\conflictGraph_{\mapFunc}$ be a conflict graph of a graph $\graphG$.
+For each pair of cycles $\cycle_{i},\cycle_{j} \in \applyFunc{\cycleSet}
+{\conflictGraph}$, $\vertexFunc{\cycle_{i}} \cap \vertexFunc{\cycle_{j}} =
+\createSet{\emptyset}$.
+\end{lemma}
+
+\begin{proof}
+By definition, as each vertex can have only one token positioned in it and 
+each token can have only one target vertex.
+\end{proof}
+
+\begin{lemma}
+\label{lem:cgbound}
+Let $\conflictGraph_{\mapFunc}$ be a conflict graph of a graph $\graphG$.
+The number of cycles in $\conflictGraph_{\mapFunc}$ is bounded by 
+$\worstCase{\sizeof{\vertexFuncG}}$ and is exactly $\sizeof{\vertexFuncG}$ only 
+when the current configuration is the identity map $\idMap$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:disjcycles}, the maximum number of cycles happens when every 
+vertex is part of a distinct disjoint cycle, resulting in one self-loop for 
+each.
+\end{proof}
+
+Let $\mapFunc$ be a token configuration and $\conflictGraph_{
+\mapFunc_{i}}$ the related conflict graph with permutation cycle set 
+$\applyFunc{\cycleSet}{\conflictGraph_{\mapFunc_{i}}}$.
+Every swap that can applied to $\mapFunc_{i}$ transform $\cycleSet$ in some way.
+These transformation can be classified in two types: \textit{Merge} and 
+\textit{Split}.
+They are described in the following paragraph.
+
+Take two distinct permutation cycles $\cycle_{i},\cycle_{j} \in \applyFunc
+{\cycleSet}{\conflictGraph_{\mapFunc_{i}}}$ and assume, without loss of 
+generality, that $\cycle_{i} = \createCyc{\vertexu, \vertexu_{1}, \ldots, 
+\vertexu_{k}}$ and $\cycle_{j} = \createCyc{\vertexv, \vertexv_{1}, \ldots, 
+\vertexv_{p}}$, for $k,p \in  \mathbb{N}_{0}$.
+A Merge is a swap $\createOrd{\vertexu, \vertexv}$ that is applied between the
+two cycles $\cycle_{i}$ and $\cycle_{j}$ resulting in a configuration 
+$\sub{\mapFunc_{i}}$ such that $\applyFunc{\cycleSet}{\conflictGraph_{\sub{\mapFunc_{i}}
+}} = (\applyFunc{\cycleSet}{\conflictGraph_{\mapFunc_{i}}} \setminus \createSet
+{\cycle_{i}, \cycle_{j}}) \cup \createSet{\cycle_{ij}}$, where $\cycle_{ij} = \createCyc
+{\vertexv,\vertexu_{1},\ldots,\vertexu_{k}, \vertexu, \vertexv_{1}, \ldots, 
+\vertexv_{p}}$.
+Now, take a permutation cycle $\cycle \in \applyFunc{\cycleSet}{\conflictGraph_
+{\mapFunc_{i}}}$ and assume, without loss of generality, that $\cycle = 
+\createCyc{\vertexu,\vertexu_{1},\ldots,\vertexu_{k}, \vertexv, \vertexv_{k+1}, 
+\ldots, \vertexv_{k+p}}$, for $k,p \in \mathbb{N}_{0}$.
+A Split is a swap $\createOrd{\vertexu, \vertexv}$ that is applied in one cycle 
+$\cycle$ resulting in a configuration $\sub{\mapFunc_{i}}$ such that $\applyFunc
+{\cycleSet}{\conflictGraph_{\sub{\mapFunc_{i}}}} = (\applyFunc{\cycleSet}{
+\conflictGraph_{\mapFunc_{i}}} \setminus \createSet{\cycle}) \cup \createSet{\cycle_{i}, 
+\cycle_{j}}$, where $\cycle_{i} = \createCyc{\vertexv, \vertexu_{1}, \ldots, 
+\vertexu_{k}}$ and $\cycle_{j} = \createCyc{\vertexu, \vertexv_{k+1}, \ldots, 
+\vertexv_{k+p}}$.
+
+\begin{lemma}
+\label{lem:allswaps}
+Let $\graphG$ be a graph and $\mapFunc$ be a configuration of a TS problem 
+instance.
+Any possible swap $\createOrd{\vertexu, \vertexv} \in \edgeFuncG$ is either a 
+merge or a split transformation in $\applyFunc{\cycleSet}{\conflictGraph_
+{\mapFunc}}$.
+\end{lemma}
+
+\begin{proof}
+By the conflict graph definition, every vertex must have outdegree one and 
+indegree one.
+By the Lemma~\ref{lem:dircycle}, these vertices can only be arranged in loops 
+or self-loops.
+As every vertex is on a loop and vertices between cycles are disjoint, as shown
+in Lemma~\ref{lem:disjcycles}, every swap must be applied either internally on
+a cycle or between two cycles.
+A swap applied internally on a cycle is called a split swap and a swap applied
+between two cycles is called a merge swap by the above definition.
+\end{proof}
+
+From these transformations, there are two special cases that are worth 
+mentioning: Swap between a cycle of size one and any other cycle and swap on an 
+edge of the cycle.
+Figure~\ref{img:mergesplit} is an example to help visualize split and merge swaps.
+These two cases can be used as tools to add or remove, respectively, a node from 
+a cycle and will be useful in this dissertation.
+For any cycle $\cycle \in \cycleSet$ and vertex $\vertexv \in \vertexFunc{\graphG}$,
+it is said that $\vertexv$ \textit{dominates} the cycle $\cycle$ if and only if
+the vertices $\vertexFunc{\cycle}$ are a subset of the open neighborhood of 
+$\vertexv$, $\vertexFunc{\cycle} \subseteq \openNeigh{\graphG}{\vertexv}$.
+
+\addExample{mergesplit.tex}
+
+%--- ADD >
+
+Let $\mapFunc$ be a token placement map of a TS instance.
+The sum of the distances $\graphDist{\applyFunc{\mapFunc}{\vertexu}}{\vertexu}$
+is the sum of the distances between each token to its target vertex. 
+With the sum, one could test if a swap sequence $\swapSeq$ solves the instance
+by checking if is 0 for the resulting placement $\mapFunc_{\sizeof{\swapSeq}}$.
+For trees, every swap can be classified in one of three categories related to 
+the sum of distances of an instance: (a) The swap decreases the sum by two 
+through moving two tokens closer to its target vertices, also called a 
+\textit{happy swap}; (b) the swap does not change the total sum by moving one 
+token closer and one token further from their target vertices and (c) the swap 
+increases the sum by two, as it moves two tokens further from its target 
+vertices.
+
+Intuitively, one could think that any swap sequence that solves a TS instance 
+with swaps restricted to categories (a) and (b) will have less swaps than a 
+swap sequence that solves the same instance and uses swaps of category (c) 
+\textemdash as \citep{Smith:1999} tried to prove, but subsequently found an 
+error~\citep{Smith:2011:Corrigendum}.
+Then, \citep{Vaughan:1991} conjectured that any optimal swap sequence would 
+not swap already correct tokens on leafs and called them \textit{happy leafs}, 
+resulting in the so-called \textit{Happy Leaf Conjecture}\footnote{The original 
+paper actually claimed a stronger conjecture with the Happy Leaf Conjecture as 
+a special case.}.
+This conjecture was disproved by \citep{Ahmad:2019}, as they shown that there is 
+a class of infinite trees that necessarily need (c) swaps to achieve the optimal 
+number of swaps and that any algorithm that do not consider swaps on 
+happy leafs has an approximation factor of \textit{at least} $\frac{4}{3}$ for 
+general graphs and trees.
+The two approximative algorithms cited in this chapter can only generate swap 
+sequences of category (a) and (b).
+
+%--- ADD <
+
+In the realm of Group Theory, it is possible to represent each permutation cycle 
+$\cycle$ as a mapping function $\mapFunc_{\cycle}$, as seen before in Figure~\ref{img:applyswap}, 
+by a decomposition of a original configuration $\mapFunc$.
+A \textit{partition} $\partitionFunc{\setA} = \createSet{\partitionElem_{1}, 
+\ldots, \partitionElem_{k}}$ of a set $\setA$ is a grouping of its elements into 
+non-empty subsets $\partitionElem_{i} \in \enum{k}$, such that every element of 
+the set $\setA$ belong to exactly one of these subsets.
+Let $\graphG$ be a graph, $\mapFunc$ be a token configuration and 
+$\partitionFunc{\vertexFuncG}$ be a vertex partition such that every 
+configuration $\mapFunc_{\partitionElem}$, $\partitionElem \in 
+\partitionFunc{\vertexFuncG}$ is a valid token configuration on $\graphG$.
+This partitioning is called a \textit{valid} partition.
+
+\addExample{partition.tex}
+
+From the configuration $\mapFunc$ and valid element of the partition $\partitionElem 
+\in \partitionFunc{\vertexFuncG}$, a configuration $\mapFunc_{\partitionElem}$ is 
+built such that $\applyFunc{\mapFunc_{\partitionElem}}{\vertexv} = \applyFunc
+{\mapFunc}{\vertexv}$, $\forall \vertexv \in \partitionElem$ and $\applyFunc
+{\mapFunc_{\partitionElem}}{\vertexv} = \vertexv$, $\forall \vertexv \in 
+\vertexFuncG \setminus \partitionElem$.
+The $\textit{coarsest}$ valid partition is defined as the partition where for 
+each other partition of greater size there is at least one subset 
+$\partitionElem$ that the configuration $\mapFunc_{\partitionElem}$ do not 
+result in a valid token configuration.
+For any valid partition $\partitionFunc{\vertexFuncG}$ of a TS problem instance, 
+the composition of all element configurations $\mapFunc_{\partitionElem}$ 
+results in the original partition $\mapFunc$ as seen in Equation~\ref
+{equ:partcomp}, with $k = \sizeof{\partitionFunc{\vertexFuncG}}$.
+
+\addEquation{partcomp.tex}
+
+\begin{lemma}
+\label{lem:cycmap}
+Let $\partitionFunc{\vertexFuncG}$ be a coarsest valid partition of a graph 
+$\graphG$ and a configuration $\mapFunc$ of a TS instance.
+There is a partition configuration $\mapFunc_{\partitionElem}$, $\partitionElem 
+\in \partitionFunc{\vertexFuncG}$ if and only if there is a cycle $\cycle \in 
+\applyFunc{\cycleSet}{\conflictGraph_{\mapFunc}}$ such that $\vertexFunc{\cycle} 
+= \partitionElem$ and $\applyFunc{\mapFunc_{\partitionElem}}{\vertexv} = 
+\vertexu$ if and only if $\createOrd{\vertexv, \vertexu} \in \edgeFunc{\cycle}$.
+\end{lemma}
+
+\begin{proof}
+$\createOrd{\rightarrow}$ Assume any partition $\partitionElem \in 
+\partitionFunc{\vertexFuncG}$ with configuration $\mapFunc_{\partitionElem}$. 
+As this configuration is valid by the definition, there is a 
+set of cycles $\applyFunc{\cycleSet}{\conflictGraph_{\mapFunc_
+{\partitionElem}}}$ and every vertex in
+$\vertexFuncG \setminus \partitionElem$ must be in a self-loop of $\applyFunc
+{\cycleSet}{\conflictGraph_{\mapFunc_{\partitionElem}}}$.
+If the subgraph of the vertices of $\partitionElem$ on $\conflictGraph_{
+\mapFunc_{\partitionElem}}$ is disconneted, then each connected subgraph of this
+subgraph is a disjoint cycle and it is possible to create a smaller partitions 
+of $\partitionElem$ that are still valid, which is a contradiction on the 
+coarsest valid partition.
+So, there is exactly one $\cycle \in \applyFunc{\cycleSet}{\conflictGraph_
+{\mapFunc_{\partitionElem}}}$, such that $\vertexFunc{\cycle} = \partitionElem$.
+From the definition of the configuration $\mapFunc_{\partitionElem}$ and the
+original configuration $\mapFunc$, where $\applyFunc{\mapFunc}{\vertexv} = 
+\vertexu$, $\applyFunc{\mapFunc_{\partitionElem}}{\vertexv} = \applyFunc
+{\mapFunc}{\vertexv} = \vertexu$ for $\createOrd{\vertexv, \vertexu} \in 
+\edgeFunc{\conflictGraph_{\mapFunc}} \cap \partitionElem^{2} = \edgeFunc
+{\cycle}$. 
+
+$\createOrd{\leftarrow}$ Assume a cycle $\cycle \in \applyFunc{\cycleSet}
+{\conflictGraph_{\mapFunc}}$. 
+A valid partition of the vertices $\partitionElem \in \partitionFunc
+{\vertexFuncG}$ can be built from the vertices of each cycle $\vertexFunc
+{\cycle} = \partitionElem$, for each $\cycle \in \applyFunc{\cycleSet}
+{\conflictGraph_{\mapFunc}}$.
+If this created partition is not the coarsest, then there is a cycle in 
+$\applyFunc{\cycleSet}{\conflictGraph_{\mapFunc}}$ that is not a cycle, but a
+disjoint union of two or more cycles, which is absurd.
+By definition, for each $\createOrd{\vertexv, \vertexu} \in \edgeFunc{\cycle}$, 
+the related partition configuration will be $\applyFunc{\mapFunc_
+{\partitionElem}}{\vertexv} = \vertexu$ and $\applyFunc{\mapFunc_
+{\partitionElem}}{\vertexv} = \vertexv$ for $\vertexv \in \vertexFuncG \setminus 
+\vertexFunc{\cycle}$.
+\end{proof}
+
+Note that for Equation~\ref{equ:partcomp} the order of the applications
+between the functions does not matter.
+Lemma~\ref{lem:cycmap} proves that this partition representation of a 
+token configuration is equivalent to the cycle set representation.
+Partitioning swaps can be useful to determine which swaps can be run
+in parallel in variants of the token swap like Parallel Token Swap.
+The Corollary~\ref{cor:sametokens} shows an interesting interaction
+between tokens and swaps that can be used to optimize swap sequences.
+
+\begin{corollary}
+\label{cor:sametokens}
+Let $\swapSeq$ be an optimal sequence of swaps for a graph $\graphG$ and
+initial configuration $\initMap$.
+Then, for any two distinct swaps $\swaps_{1},\swaps_{2} \in \swapSeq$,
+they cannot interact with the same two tokens.
+\end{corollary}
+
+\begin{proof}
+Suppose that there is two swaps $\swaps_{1},\swaps_{2} \in \swapSeq$ that 
+exchange the same two tokens $\tokeni$ and $\tokenj$ and assume that $\swaps_{1}$
+appears before on the sequence than $\swaps_{2}$.
+Now, take every swap of $\swapSeq$ (in-order) that are in-between $\swaps_{1}$ 
+and $\swaps_{2}$ that exchange either $\tokeni$ or $\tokenj$ and call this
+new sequence $\swapSeq_{\tokeni,\tokenj}$.
+Notice that, by removing the swap $\swaps_{1}$ from $\swapSeq$, every swap
+on $\swapSeq_{\tokeni,\tokenj}$ that interacts with only $\tokeni$ will now
+be interacting with $\tokenj$ and vice-versa.
+Swaps that interact with both tokens will continue interacting with both, 
+but the position of the tokens in the vertices will be swapped.
+
+Removing this swap does not affect any other token, as it doesn't matter
+which token is paired with the other tokens in the swaps.
+As the tokens on $\swaps_{2}$ will now be already swapped, it is possible
+to just remove this swap.
+This second removal guarantees that the tokens $\tokeni$ and $\tokenj$ will
+be in the same position as the original sequence $\swapSeq$, creating a new
+$\sub{\swapSeq}$ that can solve the instance and have less swaps than
+$\swapSeq$, which is absurd, as $\swapSeq$ is optimal.
+\end{proof}
+
+\section{Graph Classes and Upper Bounds}
+\label{sec:intro:classes_uppers}
+
+This section is a summary of results regarding  Token Swapping
+on specific graph classes and upper bounds on the numbers of swaps.
+Special focus will be given to graph classes that are related to
+cographs, as this class is the main focus of this dissertation.
+
+\addExample{classes.tex}
+
+The problem of swapping tokens on paths, with an example in Figure~\ref
+{img:classes:path}, goes back to the classic problem of ordering an array of 
+integers by the exchange of adjacent numbers, which an efficient algorithm is 
+known for quite some time~\citep{Jerrum:1985,Knuth:1998}.
+This algorithm, detailed by Algorithm~\ref{alg:path}, is a variation of the 
+well known bubble-sort algorithm and the resulting number of swaps is well
+defined by the \textit{inversion number}.
+Let $\initMap$ be a mapping function for a path $\graphG$ and $\tokeni,\tokenj 
+\in \applyFunc{\vertexSet}{\graphG}$. 
+If $\tokeni \lessVOrder \tokenj$ and $\applyFunc{\initMap}{\tokeni} \moreVOrder 
+\applyFunc{\initMap}{\tokenj}$, then either the elements $(\tokeni, \tokenj)$ or 
+the places $(\applyFunc{\initMap}{\tokeni}, \applyFunc{\initMap}{\tokenj})$ are
+called an inversion of $\initMap$.
+The size of the set of all inversions of $\initMap$ is called the inversion 
+number.
+For any initial mapping function $\initMap$, the minimum number of swaps is
+upper bounded by the maximum number of inversions (and thus, the diameter
+of the corresponding Cayley Graph is also bounded by this same value), which 
+is $\worstCase{\vertexNumber^2}$.
+
+\addAlgorithm{path.tex}
+
+% Cycles
+
+For cycle graphs, shown in Figure~\ref{img:classes:cycle}, the method is an 
+extension of the inversion number method of a path because the inversion number 
+cannot be applied directly, as token can be moved either in a clockwise or 
+anticlockwise manner to its target vertice.
+The optimal algorithm, presented by \cite{Jerrum:1985}, first finds a feasible
+solution through an integer program and proves that this program can be calculated in
+polinomial time by restricting the search space to optimal solutions and then 
+applying transformations to contract the resulting swap sequence until no other 
+transformation is possible, resulting in a optimal swap sequence.
+
+% Brooms
+% Lollipops
+A broom graph is a graph such that the center of a star is connected to a path
+and a lollipop is a graph where a node from a cycle is connected to a path and
+are respectively shown in Figure~\ref{img:classes:broom} and Figure~\ref
+{img:classes:lollipop}. 
+The proofs of correctness of the polynomial algorithms for brooms and lollipop 
+graphs are similar and based on a evaluation function on the sum of the distances 
+of each token to it's target vertice.
+Each swap alter this evaluation function by adding or subtracting the distances 
+and the identity function is achieved if and only if the sum is zero.
+The polynomial algorithms are fairly simple and are presented by 
+\cite{Kawahara:2017}.
+
+\subsection{Token Swapping on Stars}
+\label{sec:intro:classes_uppers:star}
+
+A star, shown in Figure~\ref{img:classes:star}, is a tree such that every vertice
+is a leaf except by the \textit{center vertice} that is connected to every leaf 
+vertice.
+In this graph, as cycles are disjoint, there is exactly one cycle such that
+the center vertice is a member of and can be solved in exactly the number of leafs
+in the cycle.
+For every other cycle, the minimum number of swaps to solve is the number of
+leafs in the cycle plus one, as it is necessary to move the center token to
+allow other tokens to achieve their destination.
+Figure~\ref{img:starswaps} is an example of finding an optimal swap sequence on 
+a star graph instance.
+
+\addExample{starswaps.tex}
+
+Based on this, the total number of swaps is given by $y + l$, where $y$ is the
+total number of incorrect leafs and $l$ is the number of cycles in the configuration
+that have size greater than 2 and the center vertex is not a part of~\citep
+{Akers:1989,Ahmad:2019}.
+Note that, in this case, each cycle is solved separately and no interaction
+\textit{between} the initial cycles is needed to achieve the identity configuration,
+also meaning that there is no specific order of swaps between cycles, as long
+the cycle with the center vertex is solved first or the center vertex is
+assumed correct for the other cycles.
+These past results also give an upper-bound on the diameter of the corresponding 
+Cayley Graph.
+
+\subsection{Token Swapping on Cliques}
+\label{sec:intro:classes_uppers:clique}
+
+Clique graphs, also called complete graphs, are graphs such that there is an 
+edge connecting every pair of distinct vertices.
+The Figure~\ref{img:classes:clique} is an example of a complete graph with
+five nodes.
+In a clique graph with a token configuration, every token is either already 
+correct or adjacent to its target vertex.
+
+Then, for each cycle of size $k$, it is possible to solve it using exactly
+$k-1$ swaps, as every swap can move a token to its target vertex, except for
+the swap in a cycle of size 2 that solves two tokens at the same time.
+The total swaps needed for any clique is then $n - r$, where $n$ is the total of
+vertices and $r$ is the total of cycles and the upper bound $n - 1$ is given when
+there is exactly one cycle on the configuration~\citep{Kim:2016}.
+
+\subsection{Token Swapping on Complete Split}
+\label{sec:intro:classes_uppers:compsplit}
+
+A split graph is a graph such that its vertex set can be partitioned into
+a clique and an independent set, a set of vertices with no edges between any
+pair of vertices of the set.
+The Figure~\ref{img:classes:compsplit} is an example of a split graph with six
+nodes: A clique of size four and an independent set of size two.
+A complete split graph has every possible edge between the vertices of the
+clique and the independent set.
+For every cycle of a token swap instance on a complete split graph, the cycle
+must be either completely contained on the clique, the independent set or
+having vertices from both structures.
+
+Let $k$ be the size of a cycle in a Token Swap instance  on a complete split
+graph.
+If the cycle is completely contained on the clique, the cycle can be independently
+solved as a normal clique cycle with $k -1$ swaps.
+However, cycles contained in the independent set have no edges between them
+and every token must have to be moved to the clique to be solved.
+The process guarantees a $k + 1$ sequence of swaps to solve the cycle.
+For cycles contained in both structures, it is possible to use a clique vertex
+to pivot every swap through it, similarly as solving a cycle that contains the
+center vertex of a star, in $k - 1$ swaps.
+The entire process is outlined in \cite{Yasui:2015}.
+
+\subsection{Token Swapping on Complete Bipartite}
+
+A complete bipartite graph, shown in Figure~\ref{img:classes:compbip}, 
+is a graph such that its vertex set can be partitioned into two independent sets
+with all edges between them.
+Similarly to complete split graphs, for an instance of token swap on a complete
+bipartite graph with partitions $X$ and $Y$, the cycles can be divided into: 
+a) It is completely contained in partition $X$; b) It is completely contained
+in partition $Y$; c) It has vertices from partitions $X$ and $Y$; and d) Is a
+cycle of size one.
+
+Cycles of type c) can be independently solved in $k - 1$ swaps and cycles of
+type d) are already correct.
+Although cycles of type a) and b) are contained in separate independent sets
+and can be solved efficiently in the way showed by Section~\ref{sec:intro:classes_uppers:compsplit} 
+in $k + 1$ swaps each, it is possible to save swaps by \textit{merging} a cycle
+of type a) and b)~\citep{Yamanaka:2015}.
+This notion of merging cycles to save swaps will be generalized into cographs,
+which form a superclass of complete bipartite graphs, in Section~\ref{sec:deppermcycles}.
+
+\chapter{Solving Token Swap on Cographs}
+\label{chp:cographs}
+
+A cograph is defined recursively as follows:
+
+\begin{itemize}
+    \item A graph with a single vertex is a cograph;
+    \item If $\graphG_{1}, \graphG_{2}, ... ,\graphG_{k}$ are cographs, then 
+    so is their disjoint union;
+    \item if $\graphG$ is a cograph, then so is its complement $\overline{G}$.
+\end{itemize}
+
+A cotree $\cotreeOf{\graphG}$ of a cograph $\graphG = \graphPair$ is a rooted 
+tree representing its structure. 
+The leaves of $\cotreeOf{\graphG}$ are exactly $\vertexSet$ and each internal 
+node is labelled 0 or 1 and will be called 0-node and 1-node, respectively.
+The children of an 1-node are 0-nodes or leaves and the children of a 0-node 
+are 1-nodes or leaves. 
+Two vertices are adjacent in a cograph if and only if their lowest common 
+ancestor (LCA) in the cotree is an 1-node.
+The cotree of any particular cograph is unique.
+
+Note that some authors also describe another rule called the \textit{join} 
+operation to build cographs.
+Given two cographs $\graphG_{i}$ and $\graphG_{j}$, a join $join(\graphG_{i},
+\graphG_{j})$ results in a graph $\sub{\graphG}$ such that $\vertexFunc{\sub
+{\graphG}} = \vertexFunc{\graphG_{i}} \cup \vertexFunc{\graphG_{j}}$ and 
+$\edgeFunc{\sub{\graphG}} = \edgeFunc{\graphG_{i}} \cup \edgeFunc{\graphG_{j}}
+\cup ( \vertexFunc{\graphG_{i}} \times \vertexFunc{\graphG_{j}} )$.
+This operation can be described by the basic cograph operations $join(\graphG_{i},
+\graphG_{j}) = \compl{\compl{\graphG_{i}} \cup \compl{\graphG_{j}}}$, resulting 
+in a valid operation to build cographs.
+Figure~\ref{img:cograph} introduces a simple example of a cograph and its cotree
+representation.
+Note that in a cotree, 1-nodes represent joins and 0-nodes represent disjoint 
+unions between the leaves of their subtrees.
+
+By looking at most of the classes presented at Section~\ref{sec:intro:classes_uppers} 
+that have a polinomial time algorithm, it is possible to notice that most of this classes 
+(stars, cliques, complete bipartite and complete split graphs) are subclasses 
+of the cograph class.
+So, it seemed logical to begin inquiring into other subclasses of cographs for a more
+definitive pattern that could be used for the more general class.
+From this intuition, the class of threshold graphs were the first chosen as research
+subject, as it is both a superclass of complete split and a subclass of the cographs.
+From the results that were found emerged an interesting pattern that could be generalized
+for the cograph class and will be presented in this chapter.
+
+\addExample{cograph.tex}
+
+Let $\graphG$ be a cograph and $\cotreeOf{\graphG}$ the respective cotree. 
+Let $\initMap$ be a token placement on $\graphG$ and $\conflictGraph$ the related 
+conflict graph with set of permutation cycles $\applyFunc{\cycleSet}{\conflictGraph}$.
+% Let $\vertexu$ be any 0-node and $\vertexw$ be any 1-node of $\cotreeOf{\graphG}$. 
+A $\zeroCycles$ set is the set of all cycles $\cycle \in \cycleSet$ such that
+the lowest common ancestor in the cotree of $\graphG$ of the vertices of the cycle
+is $\vertexu$, $\lcaOf{\cotreeOf{\graphG}}{\vertexFunc{\cycle}} = \vertexu$, with 
+$\vertexu$ being a 0-node of the cotree.
+A $\oneCycles$ set is the set of all cycles $\cycle \in \cycleSet$ such that
+$\lcaOf{\cotreeOf{\graphG}}{\vertexFunc{\cycle}} = \vertexw$, with $\vertexw$ being any
+1-node of the cotree, or $\lcaOf{\cotreeOf{\graphG}}{\vertexFunc{\cycle}} = \vertexv$ 
+in the case that $\cycle = \createOrd{\vertexv}$.
+These two sets are disjoint, their union is exactly the cycle set $\cycleSet$ and
+will be called the zero cyles set and the one cycles set respectively.
+
+\addExample{cycle_partition.tex}
+
+\section{Solving Individual Permutation Cycles}
+\label{sec:solvindpermcycles}
+
+This division of the cycle set $\cycleSet$ is important to correctly identify which
+of the methods to be presented need to be used.
+Any cycle $\cycle$ of  $\cycleSet$ have is an element of a partition of the vertices $\partitionFunc
+{\cycle}$ created by the subtrees of the lowest common ancestor node of the cycle, 
+as seen in Figure~\ref{img:cycle_partition}. 
+Per the definition of the cotree, a partition of a cycle of $\zeroCycles$ have no 
+edges between any of these partitions in $\graphG$.
+Similarly, any cycle of the one cycles set $\oneCycles$ have a partition of the
+vertices such that all edges exists between each element of the partition in $\graphG$.
+Each partition element represents the leafs in each of the subtrees of the lowest 
+common ancestor node and the union of all partitions of $\partitionFunc{\cycle}$ is 
+exactly $\vertexFunc{\cycle}$.
+These are the fundamental properties used in Lemma~\ref{lem:s_onecycle} and 
+Lemma~\ref{lem:s_zerocycle}, in which the proofs presents a method for solving 
+each cycle type with a determined number of swaps.
+An individual permutation cycle $\cycle$ is a instance of the TS where every other
+permutation cycle is a cycle of size one in the same graph as the original
+instance.
+
+% Botar exemplo(s) de resolvendo ciclos parte of cO e c1 aqui.
+
+\begin{lemma}
+\label{lem:s_onecycle}
+Any cycle $\cycle$ of $\oneCycles$ can be solved in $\sizeof{\cycle} - 1$ swaps.
+\end{lemma}
+
+\begin{proof}
+Let $\partitionFunc{\cycle} = \createSet{\partitionElem_{1}, \partitionElem_{2}, 
+\ldots, \partitionElem_{k}}$ be the partition created by the lowest common
+ancestor node.
+Induction on the size of the cycle will be used to prove this lemma.
+Assume that all other cycles of size $m$, with $m < \sizeof{\vertexFunc{\cycle}}$ 
+can be solved with $m - 1$ swaps.
+The base is a cycle of size one that is already solved, as $1-1 = 0$.
+For the induction step, a argument on the size of the partitions will be used.
+There are two cases:
+
+Case 1: Let $\partitionElem = \createSet{\vertexv}$ be a element of size 
+one of $\partitionFunc{\cycle}$.
+Then, $\vertexv$ dominates the vertices of the $\vertexFunc{\cycle}$ that he 
+is part of, as all edges between partitions \textit{must} exist, by the cograph
+definition.
+Swap the token on $\vertexv$ to his target vertice, splitting this cycle in
+one of size one and other of size $m - 1$.
+The cycle of size one is already solved, while the cycle of size $m - 1$ can
+be solved in $m - 2$ by the induction hypothesis, resulting in $m - 1$ swaps
+to solve the original cycle;
+% Note that the resulting cycle will still have the partition of size one, as
+% vertice $\vertexv$ will be the last to be solved in the cycle;
+
+Case 2: If there is no element of size one, it is possible to create an element
+of size one while maintaining the desired number of swaps by iteratively 
+solving separated nodes and removing them from a partition to achieve a 
+partition of size one and go to case number 1.
+Choose any element of the partition $\partitionElem \in \partitionFunc{\cycle}$.
+By the definition of the cycle, there must exist at least one edge of the cycle
+that goes from $\partitionElem$ to some other element of $\partitionFunc{\cycle}$
+and at least one edge that goes to $\partitionElem$ from some other element of
+$\partitionFunc{\cycle}$.
+Let $\createOrd{\vertexu, \vertexw}$ be any of these directed edges of the permutation 
+cycle that goes \textbf{to} $\partitionElem$.
+A swap applied along this edge will create two resulting permutation cycles: One 
+of size one and one of size $\sizeof{\cycle} - 1$, effectively moving one token 
+to the correct vertex and removing this node from the original cycle $\cycle$.
+Let this new cycle be called $\sub{\cycle}$.
+The partition $\partitionFunc{\sub{\cycle}}$ is exactly the partition of the 
+original $\cycle$, with the element $\partitionElem$ with one vertice less,
+the vertice $\vertexw$.
+By the induction hypothesis, these two resulting cycles can be solved with
+the correct number of swaps, resulting in $\sizeof{\cycle} - 1$ swaps.
+Note that the resulting cycle of size $\sizeof{\cycle} - 1$ will fall into either
+Case 2 or Case 1 eventually.
+\end{proof}
+
+% \begin{proof}
+% Let $\partitionFunc{\cycle} = \createSet{\partitionElem_{1},\partitionElem_{2},
+% \ldots,\partitionElem_{k}}$ be the partition created by the lowest common ancestor
+% node.
+% There are three cases that needs to be analyzed: When $\sizeof{\partitionFunc{\cycle}} 
+% = 1$; When $\sizeof{\partitionFunc{\cycle}} > 1$ but there is at least one partition 
+% $\partitionElem \in \partitionFunc{\cycle}$ such that $\sizeof{\partitionElem} = 1$;
+% And when $\sizeof{\partitionFunc{\cycle}} > 1$ and there is no partition 
+% $\partitionElem \in \partitionFunc{\cycle}$ of size 1.
+
+% Case 1: There is no need to add a swap, as this is a cycle of size one, already correct.
+% So, $\sizeof{\cycle} - 1 = 1 - 1 = 0$.
+
+% Case 2: Let $\partitionElem = \createSet{\vertexv}$ be the partition of size 
+% one of $\partitionFunc{\cycle}$.
+% Then, $\vertexv$ dominates the vertices of the $\vertexFunc{\cycle}$ that he 
+% is part of, as all edges between partitions \textit{must} exist, by the cograph
+% definition.
+% Use the vertex $\vertexv$ as a center of a start and separate the star subgraph
+% that is embedded in his neighborhood.
+% Create a separated instance of the token swap problem where the graph is a 
+% star and there is exactly one permutation cycle that involves the center 
+% $\vertexv$.
+% Remember by Section~\ref{sec:intro:classes_uppers:star} that the minimum number
+% of swaps of a star is given by $n + l$, where $n$ is the number of unhappy 
+% leaves and $l$ is the number of cycles in the permutation with length at least 
+% 2 that does not involve the center node.
+% There is exactly $\sizeof{\cycle} - 1$ unhappy leaves and no more cycles that
+% does not involves the center node, resulting in exactly $\sizeof{\cycle} - 1$
+% swaps by using the star method in this created instance.
+% This same swaps can be used in the original token swap instance, as they are
+% independent.
+
+% Case 3: If there is no partition of size one, it is possible to create a partition
+% of size one while maintaining the desired number of swaps by iteratively 
+% solving separated nodes and removing them from a partition to achieve a 
+% partition of size one and go to case number 2.
+% Choose any partition $\partitionElem \in \partitionFunc{\cycle}$.
+% By the definition of the cycle, there must exist at least one edge of the cycle
+% that goes from $\partitionElem$ to some other partition of $\partitionFunc{\cycle}$
+% and at least one edge that goes to $\partitionElem$ from some other partition of
+% $\partitionFunc{\cycle}$.
+% Let $\createOrd{\vertexu, \vertexw}$ be this directed edge of the permutation cycle
+% that goes \textbf{to} $\partitionElem$.
+% By the split rule, a swap applied in along this edge will create two resulting
+% permutation cycles: One of size one and one of size $\sizeof{\cycle} - 1$, 
+% effectively moving one token to the correct vertice and removing this node from
+% the original cycle $\cycle$.
+% Let this new cycle be called $\sub{\cycle}$.
+% The partition $\partitionFunc{\sub{\cycle}}$ is exactly the partition of the 
+% original $\cycle$, with the partition $\partitionElem$ with one vertice less.
+% Use this process to iteratively remove a node until $\sizeof{\partitionElem} = 1$
+% and then apply the Case 2 to the resulting cycle.
+% Let $d$ be the number of swaps used to "shrink" the cycle $\cycle$ to a cycle 
+% $\sub{\cycle}$ that has a partition of size one.
+% As each swap solved exactly one vertice, the size of the new cycle is 
+% $\sizeof{\sub{\cycle}} = \sizeof{\cycle} - d$ and can be solved with $\sizeof{\cycle} 
+% - d - 1$ swaps.
+% The sum of all swaps used to solve $\cycle$ is then $\sizeof{\cycle} - d - 1 + d = 
+% \sizeof{\cycle} - 1$.
+% Note that the lowest common ancestor does not change, as not enough vertices
+% are removed from the partitions to remove an entire subtree of the cograph.
+% \end{proof}
+
+% Add one more figure here
+
+\begin{lemma}
+\label{lem:s_zerocycle}
+Any cycle $\cycle$ of $\zeroCycles$ can be solved in $\sizeof{\cycle} + 1$ swaps.
+\end{lemma}
+
+\begin{proof}
+Let $\partitionFunc{\cycle} = \createSet{\partitionElem_{1}, \partitionElem_{2}, 
+\ldots, \partitionElem_{k}}$ be the partition created by the lowest common
+ancestor node.
+By the cograph definition, each element of $\partitionFunc{\cycle}$ have no
+edges between them, resulting in no possible path to move tokens from one 
+element to another by only using the nodes $\vertexFunc{\cycle}$.
+In order to solve $\cycle$, at least one node must be \textit{merged} to cycle 
+$\cycle$ so it can be solved as a cycle of $\oneCycles$.
+
+As $\graphG$ is connected, there must exist at least one ancestor 1-node that 
+connects the graph (or more locally, the nodes of $\vertexFunc{\graphG}$).
+Let the ancestor node called $\vertexw$ and let
+$\nodePartition{\vertexw}$ be the partition of the leafs of the children 
+subtrees of $\vertexw$ in the cotree $\cotreeOf{\graphG}$.
+There must exist a $\partitionElem \in \nodePartition{\vertexw}$ such that 
+$\vertexFunc{\cycle} \subseteq \partitionElem$, as $\vertexw$ must be 
+a direct ancestor of $\lcaOf{\cotreeOf{\graphG}}{\cycle}$.
+Let $\vertexu$ be any node that is an element of any set in $\partitionFunc{\cycle} 
+\setminus \partitionElem$.
+Then, $\vertexu$ must dominate $\vertexFunc{\cycle}$.
+
+Now, \textit{assume} that $\vertexu$ already has a correct token in the current 
+mapping and merge him to the cycle $\cycle$ by using any swap $\createOrd{\vertexu,
+\vertexv}$, $\vertexv \in \vertexFunc{\cycle}$, and call this new cycle $\sub{\cycle}$.
+In this new cycle, the 1-node $\vertexw$ is the lowest common ancestor and the
+technique presented at Lemma~\ref{lem:s_onecycle} can be used to solve in 
+$\sizeof{\sub{\cycle}} - 1$ swaps, which is equivalent to $\sizeof{\cycle}$
+swaps, as there is one vertice more. 
+In total, the number of swaps is $\sizeof{\cycle} + 1$ because of the first swap 
+needed to add $\vertexu$ to the cycle.
+Note that as the token of $\vertexu$ is assumed to be correct, his token went
+back to the same place as before, not changing any other cycle of the
+configuration.
+This means that the token currently in $\vertexu$ does not need to be the correct
+token.
+\end{proof}
+
+With both of the methods presented, all permutation cycles of any TS instance
+on a cograph $\graphG$ can be solved with a value that can be easily calculated 
+and is denoted as $\sizeof{\vertexFunc{\graphG}} - \sizeof{\oneCycles} + 
+\sizeof{\zeroCycles}$.
+Now, some exploration can be done about the strength of this characterization
+and how small are these values of swaps for these cycles.
+First, it is possible to show that the methods can achieve the minimum
+number of swaps for individual cycles by Lemma~\ref{lem:m_onecycle} and
+Lemma~\ref{lem:m_zerocycle}.
+
+\begin{lemma}
+\label{lem:m_onecycle}
+Individually, any cycle $\cycle$ of $\oneCycles$ cannot be solved in less 
+than $\sizeof{\cycle} - 1$ swaps.
+\end{lemma}
+
+\begin{proof}
+Suppose that the cycle $\cycle$ can be solved in less than $\sizeof{\cycle} 
+- 1$ swaps.
+Then, suppose an instance of TS where the graph is a complete graph with
+the same number of vertices and labels of the original cograph.
+Let the permutation cycle $\cycle$ be the only cycle of size greater than 
+1 in the initial configuration of this instance.
+The optimal number of swaps in this instance is described in Section~\ref
+{sec:intro:classes_uppers:clique} and is given by $n - r$, where $n$ is the
+number of vertices and $r$ is the total number of permutation cycles.
+In our instance, it is possible to see that the minimum number of swaps
+is $n - 1$ even with a complete topology, showing that the same cycle
+on a more restricted topology cannot be possibly less than $n - 1$, as
+the original graph is a subgraph of the complete topology.
+\end{proof}
+
+\begin{lemma}
+\label{lem:lb_merge_swaps}
+Let $\graphG$ be a graph, $\initMap$ an initial configuration and $\cycle$ any
+permutation cycle on this instance.
+Let $k$ be the minimum number of merge swaps needed to solve the individual 
+instance of $\cycle$ in any swap sequence $\swapSeq$.
+Then, $\sizeof{\swapSeq} \geq \sizeof{\cycle} - 1 + 2k$.
+\end{lemma}
+
+\begin{proof}
+The reasoning is based on the number of permutation cycles on the instance.
+Let $s$ be the minimum number of split swaps necessary to solve the instance
+and $\sizeof{\vertexFuncG} - \sizeof{\cycle} + 1$ the total number of cycles
+in this instance.
+The target identity mapping must have $\sizeof{\vertexFuncG}$ cycles to be
+correct, so, it needes at least $\sizeof{\cycle} - 1$ split swaps, as
+every split swap must increase the number of cycles by one.
+However, it is known that at least $k$ merge swaps are needed to solve this
+instance, which increases the total number of cycles by $k$ at total.
+Therefore, the number of split swaps must be $s \geq \sizeof{\cycle} - 1 + k$.
+Thus, the total number of swaps is bounded by $\sizeof{\swapSeq} = s + k \geq 
+\sizeof{\cycle} - 1 + 2k$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:m_zerocycle}
+Individually, any cycle $\cycle \in \zeroCycles$ cannot be solved in less
+than $\sizeof{\cycle} + 1$ swaps.
+\end{lemma}
+
+%trash proof, revise this
+
+\begin{proof}
+% Suppose that the cycle $\cycle$ can be solved in less than $\sizeof{\cycle}
+% + 1$ swaps.
+% As the partitions of $\partitionFunc{\cycle}$ are disjoint, there is no
+% path to move tokens between partitions by only using vertices of 
+% $\vertexFunc{\cycle}$, so at least one token must be used as a auxiliary
+% to solve this cycle.
+% By Lemma~\ref{lem:s_zerocycle}, just one more vertice is enough to solve 
+% any cycle in $\zeroCycles$, which adds exactly two swaps to the final
+% swap sequence.
+% From Lemma~\ref{lem:m_onecycle}, the number of swaps in the individual 
+% instance of this cycle with one more vertice is already optimal.
+% Exactly one swap is used to merge a new vertice into the cycle, meaning
+% that there is no place where one swap could be saved.
+By Lemma~\ref{lem:s_zerocycle}, every $\cycle \in \zeroCycles$ can be solved
+by using exactly one merge swap, as every other swap given by the method
+on Lemma~\ref{lem:s_onecycle} are split swaps (swaps along an edge of the
+permutation cycle).
+Thus, by Lemma~\ref{lem:lb_merge_swaps}, as the minimum number of merge 
+swaps $k$ needed for cycles of $\zeroCycles$ is one, each cycle 
+is lower bounded by $\sizeof{\cycle} - 1 + 2\times1 = \sizeof{\cycle} + 1$, 
+which is exactly the amount of swaps given by the method shown. 
+\end{proof}
+
+This model of solving cycles can be used to prove the optimality of some
+subclasses of the cograph class.
+In complete graphs, every permutation cycle belongs to $\oneCycles$, as
+every vertice is connected to every other vertice, resulting in an empty
+$\zeroCycles$ set.
+In star graphs, the number of cycles $\cycle \in \oneCycles$ with 
+$\sizeof{\cycle} > 1$ cannot be more than 1, as all nodes are only 
+neighbors of the center node and the center node can be only part 
+of one cycle, resulting in every other non-trivial cycle belonging to 
+$\zeroCycles$.
+These two classes can be generalized to the class of threshold graphs, 
+as seen in Lemma~\ref{cor:threshold_pol}.
+There are many equivalent definitions for this class, but, for the sake
+of conciseness, a threshold graph is a graph that can be constructed from
+the empty graph by repeatedly adding either an isolated vertice or a
+dominating vertice.
+Also, a Threshold graph is a graph free of induced cycles of size four 
+($C_{4}$), induced paths of size four ($P_{4}$) and induced two disjoint 
+edges ($2K_{2}$).
+
+% Put an image of the related cotrees
+
+\begin{lemma}
+\label{lem:ub_threshold}
+Let $\graphG$ be a threshold graph with an initial token placement $\initMap$.
+Then, $\applyFunc{OPT_{\graphG}}{\initMap} \leq \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}}$.
+\end{lemma}
+
+\begin{proof}
+Directly from Lemma~\ref{lem:m_onecycle} and Lemma~\ref{lem:m_zerocycle}.
+\end{proof}
+
+\begin{lemma}
+\label{lem:lb_threshold}
+Let $\graphG$ be a threshold graph with an initial token placement $\initMap$.
+Then, $\applyFunc{OPT_{\graphG}}{\initMap} \geq \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}}$.
+\end{lemma}
+
+\begin{proof}
+Let $\applyFunc{p}{\graphG, \mapFunc} = \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}}$.
+Note that $\applyFunc{p}{\graphG, \idMap} = 0$, the number of swaps needed to
+solve the identity configuration, holds.
+First, it is going to be necessary to prove that for any swap on $\mapFunc$,
+the value of $\applyFunc{p}{\graphG, \sub{\mapFunc}}$ will be decreased
+by at most one, such that $\sub{\mapFunc}$ is a adjacent configuration
+of $\mapFunc$.
+The following cases encompass every possible split interaction between 
+cycles.
+
+\begin{itemize}
+    \item \textbf{Case SPLIT-1:} Let $\vertexu$ and $\vertexv$ belong to 
+    the same cycle $\cycle \in \oneCycles$. 
+    This token swap breaks the original cycle into two vertex disjoint cycles that
+    we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+    Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+    $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+    \begin{enumerate}
+        \item[] \textbf{Case (A):} If $\cycle_{\vertexu} \in \oneCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\oneCycles}$ 
+        is increased in 1, resulting in $\applyFunc{p}{\graphG, \sub{\mapFunc}} =
+        \applyFunc{p}{\graphG, \mapFunc} - 1$;
+        \item[] \textbf{Case (B):} If  $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\zeroCycles}$ 
+        is increased in 1, with $\sizeof{\oneCycles}$ remaining unchanged, 
+        resulting in $\applyFunc{p}{\graphG, \sub{\mapFunc}} = \applyFunc{p}
+        {\graphG, \mapFunc } + 1$;
+        \item[] \textbf{Case (C):} Assume $\cycle_{\vertexu},\cycle_{\vertexv} 
+        \in \zeroCycles$.
+        There must exist two elements of the partition $\partitionElem_{\vertexu},
+        \partitionElem_{\vertexv}$ of $\partitionFunc{\cycle}$ such that
+        $\vertexFunc{\cycle_{\vertexu}} \subseteq \partitionElem_{\vertexu}$
+        and $\vertexFunc{\cycle_{\vertexv}} \subseteq \partitionElem_{\vertexv}$.
+        Take any two disconnected vertices $x,y$ from $\vertexFunc{\cycle_{\vertexu}}$
+        and two disconnected vertices $w,z$ from $\vertexFunc{\cycle_{\vertexv}}$.
+        Note that they must exist on each cycle as they are a zero cycle. 
+        Then, the induced subgraph $\inducedSubgraph{\graphG}{\createSet{x,y,w,z}}$ on
+        the original graph is a cycle of size 4.
+        This is a contradiction on the definition of the Threshold graph. 
+    \end{enumerate}
+    
+    \item \textbf{Case SPLIT-0:} Let $\vertexu$ and $\vertexv$ belong to 
+    the same cycle $\cycle \in \zeroCycles$. 
+    This token swap breaks the original cycle into two vertex disjoint cycles that
+    we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+    Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+    $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+    \begin{enumerate}
+        \item[] \textbf{Case (A):} Let $\cycle_{\vertexu},\cycle_{\vertexv} \in \oneCycles$.
+        Then, the total number of swaps given by our model is $\sizeof{\cycle_{\vertexu}} - 1 + 
+        \sizeof{\cycle_{\vertexv}} - 1 + 1 = \sizeof{\cycle_{\vertexu}} + 
+        \sizeof{\cycle_{\vertexv}} - 1 = \sizeof{\cycle} - 1$.
+        This result is a contradiction on Lemma~\ref{lem:m_zerocycle}, as this cycle
+        cannot be solved individually in less than $\sizeof{\cycle} + 1$ swaps;
+        \item[] \textbf{Case (B):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\oneCycles}$ 
+        is increased by 1 and $\sizeof{\zeroCycles}$ continues the same, 
+        resulting in $\applyFunc{p}{\graphG, \sub{\mapFunc}} = \applyFunc{p}
+        {\graphG, \mapFunc} - 1$;
+        \item[] \textbf{Case (C):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \zeroCycles$, the value of $\sizeof{\zeroCycles}$ 
+        is increased by 1, resulting in $\applyFunc{p}{\graphG, \sub{\mapFunc}} 
+        = \applyFunc{p}{\graphG, \mapFunc} + 1$;
+    \end{enumerate}
+    
+    \end{itemize}
+    
+    It is not needed to check the merge swaps in this case, as they are just the inverse
+    of a split.
+    This means that the equations have inverted plus and minus signals, and, as no equation
+    has other value greater than one, the proof that $\applyFunc{p}{\graphG, \mapFunc}$
+    decreases by at maximum one for every possible swap holds.
+    By the above analysis, it is possible to conclude that any token swap decreases
+    $\applyFunc{p}{\graphG, \mapFunc}$ by at most one for any token placement $\mapFunc$ and
+    obtain the Inequation~\ref{equ:decrease_by_one}.
+    
+    \begin{equation}
+        \centering
+        \label{equ:decrease_by_one}
+        \applyFunc{p}{\graphG, \sub{\mapFunc}} \geq \applyFunc{p}{\graphG, \mapFunc} - 1
+    \end{equation}
+    
+    Thus, for any swapping sequence $\swapSeq = \createOrd{\swaps_1, \swaps_2, \ldots, 
+    \swaps_k}$ that transforms the initial configuration $\initMap$ to the identity
+    configuration $\idMap$ through adjacent configurations $\mapFunc_{1}, \mapFunc_2,
+    \ldots, \mapFunc_{k} = \idMap$, each pair of configurations $\applyFunc{p}{\graphG, 
+    \mapFunc_{j+1}} \geq \applyFunc{p}{\graphG, \mapFunc_{j}} -1$ holds from 
+    Inequation~\ref{equ:decrease_by_one} for $j = 1,2,\ldots,k-1$.
+    Take the sum of these inequations $\sum_{j} \applyFunc{p}{\graphG, \mapFunc_{j+1}} \geq \applyFunc{p}{\graphG, \mapFunc_{j}} -1$ shown in Inequation~\ref{equ:equation_sum}.
+    
+    \begin{alignat}{2}
+    \centering
+    \label{equ:equation_sum}
+    & \applyFunc{p}{\graphG, \mapFunc_{1}}  \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} -1 \nonumber \\
+    & \applyFunc{p}{\graphG, \mapFunc_{2}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{1}} -1 \nonumber \\
+    & \ldots \nonumber \\
+    & \applyFunc{p}{\graphG, \mapFunc_{k-1}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{k}} -1 \nonumber \\
+    \cline{1-4}
+    & \applyFunc{p}{\graphG, \mapFunc_{k}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \sizeof{\swapSeq}
+    \end{alignat}
+    
+    By organizing Inequation~\ref{equ:equation_sum}, substituting $\applyFunc{p}{\graphG, 
+    \mapFunc_{k}}$ for a $0$, as it is the last configuration and this swap sequence solve the
+    instance, and substituting $\applyFunc{p}{\graphG, \mapFunc_{0}}$ by the original assumption,
+    the Inequation~\ref{equ:lower_bound} is found.
+    
+    \begin{alignat}{2}
+    \centering
+    \label{equ:lower_bound}
+    & \applyFunc{p}{\graphG, \mapFunc_{k}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \sizeof{\swapSeq} \nonumber \\
+    & \sizeof{\swapSeq} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \applyFunc{p}{\graphG, \mapFunc_{k}} \nonumber \\
+    & \sizeof{\swapSeq} \quad && \geq \quad \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}}
+    \end{alignat}
+    
+\end{proof}
+
+\begin{theorem}
+\label{cor:threshold_pol}
+Let $\graphG$ be a threshold graph with an initial token placement $\initMap$.
+The minimum number of required swaps is given by $\sizeof{\vertexFunc
+{\graphG}} - \sizeof{\oneCycles} + \sizeof{\zeroCycles}$.
+\end{theorem}
+
+\begin{proof}
+Directly from Lemma~\ref{lem:ub_threshold} and Lemma~\ref{lem:lb_threshold}.
+\end{proof}
+
+\section{Dependencies Betweeen Permutation Cycles}
+\label{sec:deppermcycles}
+
+Section~\ref{sec:solvindpermcycles} gave techniques for solving the two types of 
+cycles individually without changing the configurations of other cycles and proved 
+the optimality of this method for Threshold graphs.
+The proof for the Cographs is constructed from the Treshold graphs, based on the 
+observation that Cographs allow cycles of size 4.
+When true, a merge of two zero-cycles to a one-cycle can save exactly two swaps
+in the final configuration.
+Let this swap be called a \textit{cutback} swap.
+
+\begin{lemma}
+\label{lem:zero_split}
+Let $\graphG$ be a cograph with an  token placement $\mapFunc$.
+Let $\cycle_{1}$ and $\cycle_{2}$ be the two cycles resulting from any split swap 
+on a cycle $\cycle$ member of $\zeroCycles$. 
+Either $\cycle_{1}$ or $\cycle_{2}$ must be a cycle with exactly the same lowest 
+common ancestor as the original cycle $\cycle$.
+\end{lemma}
+
+\begin{proof}
+Let $\vertexSet_{1}, \ldots, \vertexSet_{k}$ be elements of a partition 
+$\partitionFunc{\vertexFunc{\cycle}}$ where $k$ is the number of children 
+of the node $\lcaOf{\applyFunc{\conflictGraph}{\graphG}}{\vertexFunc{\cycle}}$
+in the cotree of $\graphG$ and each element corresponds to the the set of
+all graph $\graphG$ nodes present in the children subtree.
+Assume that neither $\cycle_{1}$ or $\cycle_{2}$ have the same lowest common
+ancestor as $\cycle$.
+Note that by the definition of a 0-cycle this swap must happen between two
+nodes that are member of the same element of the partition $\partitionFunc
+{\vertexFunc{\cycle}}$, as there is no edges between each element of the 
+partition, $\vertexFunc{\cycle_{1}} \cup \vertexFunc{\cycle_{2}} = 
+\vertexFunc{\cycle}$ and each partition element of must have \textit{at least 
+one} token positioned at a vertice that needs to be moved to another partition 
+element, as these vertices forms a cycle.
+
+If $k > 2$, then by the pigeon-hole principle~\citep{Erdos:1987,Razborov:2002}, 
+either $\cycle_{1}$ or $\cycle_{2}$ (or both) have vertices from more than 
+one element of the partition, resulting in the same lowest common ancestor 
+as $\cycle$.
+If $k = 2$, then $\cycle_{1},\cycle_{2}$ must be each an element of 
+$\partitionFunc{\vertexFunc{\cycle}}$.
+Therefore, there must exist at least one swap between the two elements that
+perfectly split the two elements to two disjoint cycles.
+But, as this is a 0-cycle, no such swap can exist.
+If $k = 1$, then there is a contradiction on the common ancestor, because
+there is a lower common ancestor to be found.
+\end{proof}
+
+A \textit{Cycle Matching Graph} $\cycleMatchingGraph = \createOrd{\zeroCycles, 
+\edgeSet_{\cycleMatchingGraph}}$ of a cograph $\graphG$ and initial token 
+configuration $\initMap$ is a graph where each node represents an individual zero
+cycle of the current configuration. 
+Let $\vertexu, \vertexv \in \vertexFunc{\cycleMatchingGraph}$ and $\cycle_{\vertexu}, 
+\cycle_{\vertexv}$ be the two related cycles from $\zeroCycles$.
+An edge will exist between two nodes $\vertexu,\vertexv$ if and only if the lowest 
+common ancestor of the union of the vertices $\vertexFunc{\cycle_{\vertexu}} \cup
+\vertexFunc{\cycle_{\vertexv}}$ is a one-node.
+This graph will be used to identify these cases where two swaps can be saved.
+
+\begin{lemma}
+\label{lem:matching_inc_one}
+Let $\graphG$ be a graph and $\matchingOf{\graphG}$ a maximum edge matching.
+\begin{enumerate}
+    \item Adding a vertice connected by edges to the graph $\graphG$ can increase the size of the matching 
+$\sizeof{\matchingOf{\graphG}}$ in at most one; %\label{lem:matching_inc_one:1}
+    \item Adding non-existing undirected edges to a vertice can increase the size of the matching 
+$\sizeof{\matchingOf{\graphG}}$ in at most one; %\label{lem:matching_inc_one:2}
+    \item Let $\sub{\graphG}$ and $\ssub{\graphG}$ be graphs such that $\graphG \subseteq \sub{\graphG}
+    \subseteq \ssub{\graphG}$, $\sizeof{\vertexFunc{\sub{\graphG}} \setminus \vertexFunc{\graphG}} = 1$
+    and $\sizeof{\vertexFunc{\ssub{\graphG}} \setminus \vertexFunc{\sub{\graphG}} } = 1$.
+    Then, $\sizeof{\matchingOf{\ssub{\graphG}}} \leq \sizeof{\matchingOf{\graphG}} + 2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The proofs are respectively enumerated below.
+    \begin{enumerate}
+        \item Let $\sub{\graphG}$ be the graph resulted by adding a vertice $x$ with any 
+adjacency and let $\matchingOf{\sub{\graphG}}$ be its maximum edge matching.
+Suppose $x$ is saturated in $\matchingOf{\sub{\graphG}}$ and $\sizeof{\matchingOf
+{\sub{\graphG}}} > \sizeof{\matchingOf{\graphG}}$. 
+In special, $\sizeof{\matchingOf{\sub{\graphG}}}$ must be $\sizeof{\matchingOf
+{\graphG}} + 1$, otherwise the size of the maximum matching $\sizeof{\matchingOf
+{\graphG}}$ results in a contradiction, as it is possible to use the matching 
+$\sizeof{\matchingOf{\sub{\graphG}}}$ minus the edge that $x$ participates as a 
+new bigger matching.
+If $x$ is not saturated, then $\sizeof{\matchingOf{\sub{\graphG}}} = \sizeof
+{\matchingOf{\graphG}}$ by the same reason as above;
+        \item Let $\sub{\graphG}$ be the graph resulted by adding any amount of non-existing 
+edges to a vertice $\vertexv \in \vertexFuncG$ and let $\matchingOf{\sub{\graphG}}$ be it's 
+maximum edge matching.
+Let $\matchingOf{\sub{\graphG}}$ be matching of size greater than $\matchingOf{\graphG} + 1$.
+the resulting matching created by removing the edge matching related to $\vertexv$ in 
+$\matchingOf{\sub{\graphG}}$ is a valid matching on the original graph $\graphG$ and has
+size at least $\matchingOf{\graphG} + 1$, creating a contradiction on the size of the maximum
+matching of $\graphG$.
+        \item By Lemma~\ref{lem:matching_inc_one}, the size of the matching 
+        $\matchingOf{\sub{\graphG}}$ can increase in at most 1 from $\matchingOf{\graphG}$,
+        as in Inequation~\ref{equ:matching_sum:1}, and the size of the matching $\matchingOf
+        {\ssub{\graphG}}$ can increase in at most 1 from $\matchingOf{\sub{\graphG}}$, as in
+        Inequation~\ref{equ:matching_sum:2}.
+        By summing these two inequations, the Inequation~\ref{equ:matching_sum:3} is achieved.
+        
+            \begin{alignat}{2}
+            \centering
+            &\matchingOf{\sub {\graphG}} \leq \matchingOf{\graphG} + 1 \label{equ:matching_sum:1}\\
+            &\matchingOf{\ssub{\graphG}} \leq \matchingOf{\sub{\graphG}} + 1 \label{equ:matching_sum:2}\\ 
+            \cline{1-2}
+            &\matchingOf{\ssub{\graphG}} \leq \matchingOf{\graphG} + 2 \label{equ:matching_sum:3}
+            \end{alignat}
+    \end{enumerate}
+\end{proof}
+
+Let $\matchingOf{\cycleMatchingGraph}$ be a maximum edge matching on the graph 
+$\cycleMatchingGraph$.
+Each element of this matching represents a possible merge swap that can save two 
+swaps in the final swap sequence, saving in total $2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}$ swaps.
+Note that after applying these swaps, the resulting configuration will have a
+totally disconnected Cycle Matching Graph, as only cycles unsaturated by the 
+matching $\matchingOf{\cycleMatchingGraph}$ will stay.
+
+% \begin{lemma}
+% Let $\graphG$ be a cograph with an initial token placement $\initMap$ and cycle matching 
+% graph $\cycleMatchingGraph$.
+% It is possible to save at maximum $2\times\sizeof{\matchingOf
+% {\cycleMatchingGraph}}$ swaps by using cutback swaps.
+% \end{lemma}
+
+% \begin{proof}
+% Assume a way to save more than $2\times\sizeof{\matchingOf{\cycleMatchingGraph}}$ swaps.
+% First, consider the initial token placement $\initMap$ and each possible cutback swap is 
+% identified by a cycle matching graph $\cycleMatchingGraph$.
+% If there is more than $\sizeof{\matchingOf{\cycleMatchingGraph}}$ cutback swaps on
+% $\initMap$ and they do not share a vertice, then there is a contradiction on size of
+% the maximum matching $\matchingOf{\cycleMatchingGraph}$.
+% Otherwise, if they share a vertice, the new set of cutback swaps are invalid as for each 
+% swap the related vertices on $\cycleMatchingGraph$ are removed when applied, making the swap
+% not a cutback swap.
+
+% Now, there is an achievable configuration $\mapFunc$ with cycle matching graph 
+% $\sub{\cycleMatchingGraph}$ to our current configuration such that $\sizeof{\matchingOf
+% {\sub{\cycleMatchingGraph}}} - A > \sizeof{\matchingOf{\cycleMatchingGraph}}$? The value
+% $A$ is the number of additional swap necessary to move to configuration $\mapFunc$.
+% \end{proof}
+
+% \begin{lemma}
+% Let $\graphG$ be a cograph with an initial token placement $\initMap$ and cycle matching 
+% graph $\cycleMatchingGraph$.
+% Any optimal swap sequence $\swapSeq$ that solves this instance will have at maximum
+% $\sizeof{\matchingOf{\cycleMatchingGraph}}$ cutback swaps.
+% \end{lemma}
+
+% \begin{proof}
+% Let $\applyFunc{p}{\graphG, \mapFunc} = \sizeof{\matchingOf{\cycleMatchingGraph}}$.
+% Note that $\applyFunc{p}{\graphG, \idMap} = 0$ holds.
+% First, it is going to be necessary to prove that for any swap on $\mapFunc$,
+% the value of $\applyFunc{p}{\graphG, \sub{\mapFunc}}$ will be decreased
+% by at maximum one, such that $\sub{\mapFunc}$ is a adjacent configuration
+% of $\mapFunc$.
+% The following cases encompass every possible split interaction between 
+% cycles.
+
+% \begin{itemize}
+%     \item \textbf{Case SPLIT-1:} Let $\vertexu$ and $\vertexv$ belong to 
+%     the same cycle $\cycle \in \oneCycles$. 
+%     This token swap breaks the original cycle into two vertex disjoint cycles that
+%     we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+%     Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+%     $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+%     \begin{enumerate}
+%         \item[] \textbf{Case (A):} If $\cycle_{\vertexu} \in \oneCycles$ and 
+%         $\cycle_{\vertexv} \in \oneCycles$, the graph $\cycleMatchingGraph$
+%         cannot change as no cycle of $\oneCycles$ has been modified, resulting
+%         in $\applyFunc{p}{\graphG, \sub{\mapFunc}} = \applyFunc{p}{\graphG, \mapFunc}$;
+%         \item[] \textbf{Case (B):} If  $\cycle_{\vertexu} \in \zeroCycles$ and 
+%         $\cycle_{\vertexv} \in \oneCycles$, then exactly one vertice can be added
+%         to $\vertexFunc{\cycleMatchingGraph}$, which, by Lemma~\ref{lem:matching_inc_one},
+%         can add at maximum one edge to the matching;
+%         \item[] \textbf{Case (C):} Assume $\cycle_{\vertexu},\cycle_{\vertexv} 
+%         \in \zeroCycles$. 
+%     \end{enumerate}
+    
+%     \item \textbf{Case SPLIT-0:} Let $\vertexu$ and $\vertexv$ belong to 
+%     the same cycle $\cycle \in \zeroCycles$. 
+%     This token swap breaks the original cycle into two vertex disjoint cycles that
+%     we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+%     Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+%     $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+%     \begin{enumerate}
+%         \item[] \textbf{Case (A):} Let $\cycle_{\vertexu},\cycle_{\vertexv} \in \oneCycles$.
+%         Then, the total number of swaps is $\sizeof{\cycle_{\vertexu}} - 1 + 
+%         \sizeof{\cycle_{\vertexv}} - 1 + 1 = \sizeof{\cycle_{\vertexu}} + 
+%         \sizeof{\cycle_{\vertexv}} - 1 = \sizeof{\cycle} - 1$.
+%         This result is a contradiction on Lemma~\ref{lem:m_onecycle}, as this cycle
+%         can be solved individually in less than $\sizeof{\cycle} + 1$ swaps;
+%         \item[] \textbf{Case (B):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+%         $\cycle_{\vertexv} \in \oneCycles$, ;
+%         \item[] \textbf{Case (C):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+%         $\cycle_{\vertexv} \in \zeroCycles$, ;
+%     \end{enumerate}
+    
+%     \end{itemize}
+% \end{proof}
+
+% The Lemma~\ref{lem:matching_inc_one} is going to help understand how the maximum
+% matching behaves between each configuration when a swap is applied.
+% In special, it will be used to show that the maximum number of swaps that can be saved
+% from a cycle matching graph is exactly $2\times\sizeof{\matchingOf{\cycleMatchingGraph}}$.
+
+\begin{lemma}
+\label{lem:ub_cograph}
+Let $\graphG$ be a cograph with an initial token placement $\initMap$.
+Then, $\applyFunc{OPT_{\graphG}}{\initMap} \leq \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}} - 2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}$.
+\end{lemma}
+
+\begin{proof}
+Directly from Lemma~\ref{lem:m_onecycle}, Lemma~\ref{lem:m_zerocycle} and the previous discussion.
+\end{proof}
+
+\begin{lemma}
+\label{lem:lb_cograph}
+Let $\graphG$ be a cograph with an initial token placement $\initMap$.
+Then, $\applyFunc{OPT_{\graphG}}{\initMap} \geq \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}} - 2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}$.
+\end{lemma}
+
+\begin{proof}
+Let $\applyFunc{p}{\graphG, \mapFunc} = \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}} - 2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}$.
+Note that $\applyFunc{p}{\graphG, \idMap} = 0$ holds.
+First, it is going to be necessary to prove that for any swap on $\mapFunc$,
+the value of $\applyFunc{p}{\graphG, \sub{\mapFunc}}$ will be decreased
+by at maximum one, such that $\sub{\mapFunc}$ is a adjacent configuration
+of $\mapFunc$.
+The following cases encompass every possible split interaction between 
+cycles.
+
+\begin{itemize}
+    \item \textbf{Case SPLIT-1:} Let $\vertexu$ and $\vertexv$ belong to 
+    the same cycle $\cycle \in \oneCycles$. 
+    This token swap breaks the original cycle into two vertex disjoint cycles that
+    we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+    Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+    $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+    \begin{enumerate}
+        \item[] \textbf{Case (A):} If $\cycle_{\vertexu} \in \oneCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\oneCycles}$ is
+        increased in 1 and the size of the matching $\matchingOf{\cycleMatchingGraph}$
+        does not change, as graph $\cycleMatchingGraph$ is not modified, resulting in
+        $\applyFunc{p}{\graphG, \sub{\mapFunc}} = \applyFunc{p}{\graphG, \mapFunc} - 1$;
+        \item[] \textbf{Case (B):} If  $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\zeroCycles}$ is
+        increased by 1, increasing the number of vertices in $\cycleMatchingGraph$ by
+        one.
+        By Lemma~\ref{lem:matching_inc_one}, the matching can increase in at most
+        one, resulting in $\applyFunc{p}{\graphG, \mapFunc} - 1 \leq \applyFunc{p}
+        {\graphG, \sub{\mapFunc}} \leq \applyFunc{p}{\graphG, \mapFunc} + 1$;
+        \item[] \textbf{Case (C):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \zeroCycles$, the value of $\sizeof{\zeroCycles}$
+        is increased by 2 and $\sizeof{\oneCycles}$ is decreased by 1, increasing
+        the number of vertices in $\cycleMatchingGraph$ in two with a guaranteed additional
+        edge between $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+        By Lemma~\ref{lem:matching_inc_one}, this matching can increase in at most
+        two, resulting in $\applyFunc{p}{\graphG, \mapFunc} - 1 \leq \applyFunc{p}
+        {\graphG, \sub{\mapFunc}} \leq \applyFunc{p}{\graphG, \mapFunc} + 1$.
+    \end{enumerate}
+    
+    \item \textbf{Case SPLIT-0:} Let $\vertexu$ and $\vertexv$ belong to 
+    the same cycle $\cycle \in \zeroCycles$. 
+    This token swap breaks the original cycle into two vertex disjoint cycles that
+    we will call $\cycle_{\vertexu}$ and $\cycle_{\vertexv}$.
+    Assume that $\vertexu \in \vertexFunc{\cycle_{\vertexu}}$ and 
+    $\vertexv \in \vertexFunc{\cycle_{\vertexv}}$.
+    
+    \begin{enumerate}
+        \item[] \textbf{Case (A):} Let $\cycle_{\vertexu},\cycle_{\vertexv} \in \oneCycles$.
+        Then, the total number of swaps given by our model is $\sizeof{\cycle_{\vertexu}} - 1 + 
+        \sizeof{\cycle_{\vertexv}} - 1 + 1 = \sizeof{\cycle_{\vertexu}} + 
+        \sizeof{\cycle_{\vertexv}} - 1 = \sizeof{\cycle} - 1$.
+        This result is a contradiction on Lemma~\ref{lem:m_onecycle}, as this cycle
+        can be solved individually in less than $\sizeof{\cycle} + 1$ swaps;
+        \item[] \textbf{Case (B):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \oneCycles$, the value of $\sizeof{\oneCycles}$
+        is increased by one and $\sizeof{\zeroCycles}$ does not change.
+        By Lemma~\ref{lem:zero_split}, $\lcaOf{\applyFunc{\conflictGraph}{\graphG}}
+        {\vertexFunc{\cycle_{\vertexu} }} = \lcaOf{\applyFunc{\conflictGraph}{\graphG}}
+        {\vertexFunc{\cycle}}$, not changing the graph $\cycleMatchingGraph$, resulting
+        in $\applyFunc{p}{\graphG, \sub{\mapFunc}} = \applyFunc{p}{\graphG, \mapFunc} - 1$;
+        \item[] \textbf{Case (C):} If $\cycle_{\vertexu} \in \zeroCycles$ and 
+        $\cycle_{\vertexv} \in \zeroCycles$, the value of $\sizeof{\zeroCycles}$
+        is increased by 1 and $\sizeof{\oneCycles}$ does not change.
+        By Lemma~\ref{lem:zero_split}, either $\cycle_{\vertexu}$ or $\cycle_{\vertexv}$
+        have the same lowest common ancestor as the cycle $\cycle$, not changing 
+        the original related vertice on $\cycleMatchingGraph$ and adding exactly one
+        additional vertice.
+        Lemma~\ref{lem:matching_inc_one} show that the matching can increase in 
+        at most one in this case, resulting in $\applyFunc{p}{\graphG, \mapFunc} - 1 
+        \leq \applyFunc{p}{\graphG, \sub{\mapFunc}} \leq \applyFunc{p}{\graphG, 
+        \mapFunc} + 1$.
+    \end{enumerate}
+    
+\end{itemize}
+
+It is also not needed to check the merge swaps in this case, as they are just the inverse
+of a split.
+This means that the equations have inverted plus and minus signals, and, as no equation
+has other value greater than one, the proof that $\applyFunc{p}{\graphG, \mapFunc}$
+decreases by at maximum one for every possible swap holds.
+By the above analysis, it is possible to conclude that any token swap decreases
+$\applyFunc{p}{\graphG, \mapFunc}$ by at most one for any token placement $\mapFunc$ and
+obtain the Inequation~\ref{equ:decrease_by_one}.
+    
+\begin{equation}
+    \centering
+    \label{equ:decrease_by_one:cograph}
+    \applyFunc{p}{\graphG, \sub{\mapFunc}} \geq \applyFunc{p}{\graphG, \mapFunc} - 1
+\end{equation}
+
+Thus, for any swapping sequence $\swapSeq = \createOrd{\swaps_1, \swaps_2, \ldots, 
+\swaps_k}$ that transforms the initial configuration $\initMap$ to the identity
+configuration $\idMap$ through adjacent configurations $\mapFunc_{1}, \mapFunc_2,
+\ldots, \mapFunc_{k} = \idMap$, each pair of configurations $\applyFunc{p}{\graphG, 
+\mapFunc_{j+1}} \geq \applyFunc{p}{\graphG, \mapFunc_{j}} -1$ holds from 
+Inequation~\ref{equ:decrease_by_one:cograph} for $j = 1,2,\ldots,k-1$.
+Take the sum of these inequations $\sum_{j} \applyFunc{p}{\graphG, \mapFunc_{j+1}} \geq \applyFunc{p}{\graphG, \mapFunc_{j}} -1$ shown in Inequation~\ref{equ:equation_sum:cograph}.
+    
+\begin{alignat}{2}
+\centering
+\label{equ:equation_sum:cograph}
+&\applyFunc{p}{\graphG, \mapFunc_{1}}  \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} -1 \nonumber \\
+&\applyFunc{p}{\graphG, \mapFunc_{2}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{1}} -1 \nonumber \\
+&\ldots \nonumber \\
+&\applyFunc{p}{\graphG, \mapFunc_{k-1}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{k}} -1 \nonumber \\
+ \cline{1-4}
+&\applyFunc{p}{\graphG, \mapFunc_{k}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \sizeof{\swapSeq}
+\end{alignat}
+    
+By organizing Inequation~\ref{equ:equation_sum:cograph}, substituting $\applyFunc{p}{\graphG, 
+\mapFunc_{k}}$ for a $0$, as it is the last configuration and this swap sequence solve the
+instance, and substituting $\applyFunc{p}{\graphG, \mapFunc_{0}}$ by the original assumption,
+the Inequation~\ref{equ:lower_bound:cograph} is found.
+    
+\begin{alignat}{2}
+\centering
+\label{equ:lower_bound:cograph}
+& \applyFunc{p}{\graphG, \mapFunc_{k}} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \sizeof{\swapSeq} \nonumber \\
+&\sizeof{\swapSeq} \quad && \geq \quad \applyFunc{p}{\graphG, \mapFunc_{0}} - \applyFunc{p}{\graphG, \mapFunc_{k}} \nonumber \\
+&\sizeof{\swapSeq} \quad && \geq \quad \sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}} - 2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}
+\end{alignat}
+
+\end{proof}
+
+\begin{theorem}
+\label{cor:cograph_pol}
+Let $\graphG$ be a cograph with an initial token placement $\initMap$.
+The minimum number of required swaps is given by $\sizeof{\vertexFunc{\graphG}} - 
+\sizeof{\applyFunc{\oneCycles}{\conflictGraph_{\mapFunc}}} +
+\sizeof{\applyFunc{\zeroCycles}{\conflictGraph_{\mapFunc}}} - 2\times\sizeof{\matchingOf
+{\cycleMatchingGraph}}$.
+\end{theorem}
+
+\begin{proof}
+Directly from Lemma~\ref{lem:ub_cograph} and Lemma~\ref{lem:lb_cograph}.
+\end{proof}
+
+\begin{corollary}
+Token Swap can be solved in polynomial time in cographs.
+\end{corollary}
+
+\begin{proof}
+Directly from Theorem~\ref{cor:cograph_pol}.
+\end{proof}
+
+% Adicionar uma imagem aqui para representar a estrutura das classes que sobraram
+% Complete Split
+% Complete Bipartite
+
+
+% \chapter{Calculating Upper-Bounds on the number of swaps in Cographs}
+
+% \chapter{Algorithms for Minor Graph Classes}
+
+\chapter{Integer Linear Programming Models}
+\label{chp:ilp_models}
+
+This chapter presents two integer linear programming models for the Token Swap
+problem and the Parallel Token Swap problem, respectively, along with an 
+explanation of each variable and constraint for each model.
+% The chapter ends with an discussion on what is known about realizing token placement
+% checks on a integer linear programming model.
+
+\section{The TS Problem Formulation as an Integer Programming Problem}
+\label{sec:formulation_ts}
+
+The binary variables $\posVar$ determine if a token $\tokeni$ is at node $\vertexu$ 
+in step $\stept$.
+To correct model the bijections between tokens and vertices, Equation~\ref
+{equ:model-ts:1} enforces that any token can be at most in one vertex and
+Equation~\ref{equ:model-ts:2} that a vertex can have at most one token.
+The binary variables $\swapVar$ flags if a swap happened between nodes
+$\vertexu$ and $\vertexv$ in step $\stept$.
+It is important to note that swaps are symmetric \textemdash i.e., a swap
+$\createOrd{\vertexu, \vertexv}$ for $\vertexu, \vertexv \in \vertexSet$ is exactly 
+the same as swap $\createOrd{\vertexv, \vertexu}$ \textemdash,
+so variables $\swapVar$ and $\baseSwapVar{\vertexv}{\vertexu}{\stept}$ means 
+the same swap.
+On those grounds, and the fact that our graph is undirected, a technique that 
+creates an ordering $\defineFunc{\vertexOrder}{\vertexSet}{\enum{\vertexNumber}}$ 
+of the vertices of the graph and use the variables $\swapVar$ such that 
+$\vertexu \lessVOrder \vertexv$ can be adopted, halving the number of variables 
+needed to represent a swap.
+The ordering $\vertexOrder$ is assumed to exist throughout the dissertation for any
+graph.
+
+\addExample{representation.tex}
+
+The Figure~\ref{img:form1-example} is an example of a TS instance and a complete 
+representation of an optimal swap sequence using $\swapVar$.
+To retrieve the final sequence, it is necessary to traverse each matrix in step 
+order and check each $\swapVar$, appending $\createOrd{\vertexu,\vertexv}$ to 
+the swap sequence whenever $\swapVar = 1$.
+Steps with no $\swapVar = 1$ can be ignored.
+The total number of variables is given by Equation~\ref{equ:vars}.
+
+\addEquation{ts-vars.tex}
+
+The TS problem model given by Formulation~\groupRef{equ:model-ts:m}
+{equ:model-ts:9} search viable solutions of the problem with a given 
+upper-bound in the number of swaps $\swapBound$, allowing at most one swap 
+per step $\stept \in \enum{\swapBound}$.
+Each step is composed of a set of variables that describe the current 
+configuration, which swap is being selected and Equation~\ref{equ:model-ts:7}
+checks if a swap sequence solves the current instance.
+The constant $\swapBound$ can be calculated by using any of the best 
+approximation algorithms, or by using the trivial upper-bound $\worstCase{
+\vertexNumber^{2}}$ on the size of an optimal swap sequence mentioned in Chapter
+\ref{chp:intro}.
+
+\addEquation{model-ts-cor.tex}
+
+These approximation algorithms use the same intuitive lower-bound given by
+$$\sum_{\vertexv \in \vertexSet} \frac{\graphDist{\initMap(\vertexv)}{\vertexv}}
+{2}$$ where $\graphDist{\vertexu}{\vertexv}$ is the distance from vertex 
+$\vertexu$ to vertex $\vertexv$ in the graph $\graphG$ and the division by $2$ 
+happens since every swap can decrease the distance between tokens by at maximum 
+two in the sum.
+This bound is tight for instances of TS that can be solved with only swaps
+that decrease the distance sum by two~\citep{Bonnet:2018}.
+These values give us a good notion of the range of values that $\swapBound$ can
+assume.
+More detailed explanations of each constraint are presented in the subsequent  
+Section~\ref{sec:formulation_ts:swaps}.
+
+% \subsection{Modelling the Variables}
+% \label{sec:formulation_ts:var}
+
+% Binary variables $\posVar$ determine if a token $\tokeni$ is at node $\vertexu$ 
+% in step $\stept$.
+% To correct model the bijections between tokens and vertices, Equation~\ref
+% {equ:model-ts:1} enforces that any token can be at most in one vertex and
+% Equation~\ref{equ:model-ts:2} that a vertex can have at most one token.
+% The binary variables $\swapVar$ flags if a swap happened between nodes
+% $\vertexu$ and $\vertexv$ in step $\stept$.
+% It is important to note that swaps are symmetric \textemdash i.e., a swap
+% $\createOrd{\vertexu, \vertexv}$ for $\vertexu, \vertexv \in \vertexSet$ is exactly 
+% the same as swap $\createOrd{\vertexv, \vertexu}$ \textemdash,
+% so variables $\swapVar$ and $\baseSwapVar{\vertexv}{\vertexu}{\stept}$ means 
+% the same swap.
+% On those grounds, and the fact that our graph is undirected, a technique that 
+% creates an ordering $\defineFunc{\vertexOrder}{\vertexSet}{\enum{\vertexNumber}}$ 
+% of the vertices of the graph and use the variables $\swapVar$ such that 
+% $\vertexu \lessVOrder \vertexv$ can be adopted, halving the number of variables 
+% needed to represent a swap.
+% The ordering $\vertexOrder$ is assumed to exist throughout the dissertation for any
+% graph.
+
+% \addExample{representation.tex}
+
+% The Figure~\ref{img:form1-example} is an example of a TS instance and a complete 
+% representation of an optimal swap sequence using $\swapVar$.
+% To retrieve the final sequence, it is necessary to traverse each matrix in step 
+% order and check each $\swapVar$, appending $\createOrd{\vertexu,\vertexv}$ to 
+% the swap sequence whenever $\swapVar = 1$.
+% Steps with no $\swapVar = 1$ can be ignored.
+% The total number of variables is given by Equation~\ref{equ:vars}.
+
+% \addEquation{ts-vars.tex}
+
+\subsection{Modelling Swaps and Initial Token Configuration}
+\label{sec:formulation_ts:swaps}
+
+The constraints~\groupRef{equ:model-ts:3}{equ:model-ts:6} are being used to 
+model the behavior of swaps.
+For a swap $\swapVar$ to be possible, it is required that in step $\stept$ 
+the token on vertex $\vertexu$ is on vertex $\vertexv$ on step $\stept+1$, 
+given by Inequality~\ref{equ:model-ts:3}.
+Similarly, on Inequality~\ref{equ:model-ts:4}, it was guaranteed that the second 
+token that is on vertex $\vertexv$ on step $\stept$ must be on vertex 
+$\vertexu$ on step $\stept+1$.
+Note that each pair of vertices $\vertexu,\vertexv \in \vertexSet$ were 
+directly chosen from the edge set $\edgeSet$, ensuring that an edge must exist.
+Inequality~\ref{equ:model-ts:5} is there to keep the consistency between each 
+pair of vertices that do not have an edge in between, as it is impossible to have 
+a token traverse both in one step.
+Inequality~\ref{equ:model-ts:sym} restrict the symmetry of the model, eliminating
+steps with no swaps followed by a step with a swap.
+Inequality~\ref{equ:model-ts:6} force each step to have at maximum one swap, 
+while also permitting steps with no swaps.
+
+The Inequality~\ref{equ:model-ts:ini} creates the necessary constraints
+to represent the initial configuration, setting the necessary variables
+to one.
+The step $\stept = 0$ is fixed on the model for any given configuration
+$\initMap$, as there must exist one token on each vertice initially.
+In Section~\ref{sec:formulation_pts} a more in-depth discussion about a 
+parallel variant of the TS problem that do not need to guarantee one 
+swap per step will be presented.
+
+\section{The Parallel TS Problem Formulation as an Integer Programming Problem}
+\label{sec:formulation_pts}
+
+The {\texttt Parallel Token Swap} (PTS) problem is a version of TS where swaps can 
+be applied in parallel.
+For a graph $\graphG \defeq (\vertexSet, \edgeSet)$, a \textit{parallel swap} of 
+a set of parallel swaps $\swapPSeq = \createSet{\swaps_1, \swaps_2, \ldots, 
+\swaps_k}$ is a swap $\swaps$ such that no other swap in $\swapPSeq$ shares a 
+vertex with $s$.
+Any swap sequence $\swapSeq$ that solves an instance of PTS or TS can be 
+partitioned into sequences of parallel swaps $\applyFunc{\pazocal{\swapPSeq}}{S} 
+= (\swapPSeq^{0}, \swapPSeq^{1}, \ldots, \swapPSeq^{b})$.
+The swaps of each partition can be applied to a token placement in any order 
+without changing any intermediate step in $\swapSeq$ (hence the use of set) or 
+it can be applied by just one representation function $\mapFunc_{\swapPSeq}$, as 
+all swaps in a partition have disjoint vertices.
+Equation~\ref{equ:parswaps} shows how this representation function can be built.
+A partitioned sequence of parallel swaps solves an instance of TS or TSP if and 
+only if the identity function is resulted by applying each partition 
+iteratively, while the swap application order of each partition does not matter.
+
+\addEquation{partition.tex}
+
+It is important to note that the size of any partition has a natural upper-bound 
+on the size of the {\texttt Maximum Matching} of the graph $\graphG$, as it is the
+maximum number of edges that can be swapped in the graph and still be disjoint.
+Calculating the maximum matching size in general graphs can be done in 
+polynomial time~\citep{Edmonds:1965}.
+Therefore, for graphs with maximum matching size of 1, an instance of PTS has the
+same set of optimal swap sequences of the equivalent TS instance.
+For the general case, the size of a swap sequence that solves a TS instance can be
+used as an upper-bound for an equivalent PTS instance.
+This variant of the TS problem has a deeper relation to parallel sorting on SIMD
+machines consisting of several processors with local memory connected by a 
+network~\citep{Yamanaka:2015,Kawahara:2017} and is better suited for some 
+reconfiguration problems, like Qubit Allocation~\citep
+{Siraichi:2018,Siraichi:2019}.
+
+One interesting question that naturally arises from this definition is: "what 
+is the swap sequence that solves a given PTS instance and minimizes the number 
+of partitions in $\sizeof{\applyFunc{\pazocal{\swapPSeq}}{\swapSeq}}$?".
+In the decision version, the existence of at least one swap sequence that solves 
+a PTS instance with $k$ or less partitions is wanted.
+This version of the problem has already been proven to be \textbf{NP-Complete}
+for general $k$, but can be calculated in polynomial time if $k \leq 2$ and
+have an approximation algorithm for paths~\citep{Kawahara:2017}.
+
+Each step is now related to a partition and a new binary variable for each step 
+called $\stepVar$ were added to keep track of which steps have \textit{at least} 
+one $\swapVar = 1$ by using Inequality~\ref{equ:model-pts:7}.
+Note that the number of checks is improved by only verifying variables $\swapVar$
+such that $\createSet{\vertexu,\vertexv} \in \edgeSet$, as swaps can only exist on the 
+edges.
+These flags help counting how many steps are using at least one swap, while any 
+step that do not need to be used to achieve a minimal swap sequence will not be 
+counted, as $\stepVar = 0$.
+This variable and the fact that each step is now allowed to have any number of
+parallel swaps allows for the minimization of $\stepVar$ in the minimization 
+rule given by Equation~\ref{equ:model-pts:m}, which is equivalent to minimizing 
+the number of partitions.
+The total number of variables is increased by $\swapBound$ from Equation
+\ref{equ:vars}.
+
+\addEquation{model-pts.tex}
+
+The model presented by Formulation~\groupRef{equ:model-pts:m}{equ:model-pts:11} 
+is an adaptation of the TS model for the PTS problem. 
+The variables $\swapVar$ and $\posVar$ are used in exactly the same way as the 
+TS model with constraints~\groupRef{equ:model-pts:1}{equ:model-pts:5} being 
+exactly the same as constraints~\groupRef{equ:model-ts:1}{equ:model-ts:5}.
+Inequalities~\ref{equ:model-pts:sym} and \ref{equ:model-pts:ini} are respectively 
+equivalent to the Inequalities~\ref{equ:model-ts:sym} and \ref{equ:model-ts:ini}.
+Each new constraint will be explained in detail in Section \ref{sec:formulation_pts:par}.
+
+% \subsection{Minimizing the Number of Steps}
+% \label{sec:formulation_pts:min}
+
+% Each step is now related to a partition and a new binary variable for each step 
+% called $\stepVar$ were added to keep track of which steps have \textit{at least} 
+% one $\swapVar = 1$ by using Inequality~\ref{equ:model-pts:7}.
+% Note that the number of checks is improved by only verifying variables $\swapVar$
+% such that $\createSet{\vertexu,\vertexv} \in \edgeSet$, as swaps can only exist on the 
+% edges.
+% These flags help counting how many steps are using at least one swap, while any 
+% step that do not need to be used to achieve a minimal swap sequence will not be 
+% counted, as $\stepVar = 0$.
+% This variable and the fact that each step is now allowed to have any number of
+% parallel swaps allows for the minimization of $\stepVar$ in the minimization 
+% rule given by Equation~\ref{equ:model-pts:m}, which is equivalent to minimizing 
+% the number of partitions.
+% The total number of variables is increased by $\swapBound$ from Equation
+% \ref{equ:vars}.
+
+\subsection{Modelling Parallel Swaps}
+\label{sec:formulation_pts:par}
+
+To allow parallel swaps in the model, an efficient way to check if two swaps
+are disjoint must be used.
+If two swaps are not disjoint, then they have exactly one vertex in common, as 
+it is impossible to have repeated swaps in the same step due to how the variables 
+$\swapVar$ are modeled.
+Thus, for any two conflicting swaps, a combination of three nodes $\vertexu, 
+\vertexv, \vertexw$ could be taken and assumed, without loss of generality, that
+$\vertexw$ is part of these two swaps $\createOrd{\vertexu, \vertexw}$, 
+$\createOrd{\vertexw, \vertexv}$.
+Consequently, the variables $\baseSwapVar{\vertexu}{\vertexw}{\stept}$ and 
+$\baseSwapVar{\vertexw}{\vertexv}{\stept}$ can not be $1$ at the same time
+in the model, as given by Inequality~\ref{equ:model-pts:6}.
+In the case that both edges exist in the graph of an instance, these swaps would 
+share a vertex and could not be used in the same swap.
+On the cases that these vertices have only one edge or no edge, there is no
+way two swaps can be used between these three vertices, as Inequalities~\groupRef
+{equ:model-pts:3}{equ:model-pts:5} prohibit them.
+
+\addExample{pairings.tex}
+
+The concept was improved by the use of the inherent vertex ordering 
+$\vertexOrder$ of the graph to remove repeated vertex checks from the model.
+For any vertex triple $\vertexu$, $\vertexv$, $\vertexw$ with a "center"
+vertex fixed as $\vertexw$, checking variables $\baseSwapVar{\vertexu}
+{\vertexw}{\stept}$ and $\baseSwapVar{\vertexw}{\vertexv}{\stept}$ are 
+equivalent to checking variables $\baseSwapVar{\vertexv}{\vertexw}{\stept}$ and 
+$\baseSwapVar{\vertexw}{\vertexv}{\stept}$.
+Therefore, checking variables for triples $\vertexu$, $\vertexw$, $\vertexv$ 
+such that $\uvComp$ is enough and remove useless checkings.
+Figure~\ref{img:form2-example} give us an example to compare swap sequence 
+representations between TS and PTS models.
+
+% \section{Observations on Realizing Token Placements Checks}
+% \label{sec:obs}
+
+% Let $\mapFunc$ be a token placement map of a TS instance.
+% The sum of the distances $\graphDist{\applyFunc{\mapFunc}{\vertexu}}{\vertexu}$
+% is the sum of the distances between each token to its target vertex. 
+% With the sum, one could test if a swap sequence $\swapSeq$ solves the instance
+% by checking if is 0 for the resulting placement $\mapFunc_{\sizeof{\swapSeq}}$.
+% For trees, every swap can be classified in one of three categories related to 
+% the sum of distances of an instance: (a) The swap decreases the sum by two 
+% through moving two tokens closer to its target vertices, also called a 
+% \textit{happy swap}; (b) the swap does not change the total sum by moving one 
+% token closer and one token further from their target vertices and (c) the swap 
+% increases the sum by two, as it moves two tokens further from its target 
+% vertices.
+
+% Intuitively, one could think that any swap sequence that solves a TS instance 
+% with swaps restricted to categories (a) and (b) will have less swaps than a 
+% swap sequence that solves the same instance and uses swaps of category (c) 
+% \textemdash as \citep{Smith:1999} tried to prove, but subsequently found an 
+% error~\citep{Smith:2011:Corrigendum}.
+% Then, \citep{Vaughan:1991} conjectured that any optimal swap sequence would 
+% not swap already correct tokens on leafs and called them \textit{happy leafs}, 
+% resulting in the so-called \textit{Happy Leaf Conjecture}\footnote{The original 
+% paper actually claimed a stronger conjecture with the Happy Leaf Conjecture as 
+% a special case.}.
+% This conjecture was disproved by \citep{Ahmad:2019}, as they shown that there is 
+% a class of infinite trees that necessarily need (c) swaps to achieve the optimal 
+% number of swaps and that any algorithm that do not consider swaps on 
+% happy leafs has an approximation factor of \textit{at least} $\frac{4}{3}$ for 
+% general graphs and trees.
+% The two approximative algorithms cited in Section~\ref{chp:intro} can only 
+% generate swap sequences of category (a) and (b).
+
+% \addEquation{dist-sum.tex}
+
+% For a given step $\stept$, it was presumed that there is no guarantee that an 
+% adjacent placement will increase or decrease the sum in step $\stept+1$.
+% In such manner, constraints that keeps track of this sum in every intermediate 
+% placement do not look viable for general graphs and trees.
+% Equation~\ref{equ:model-ts:8} and Equation~\ref{equ:model-pts:8} were chosen due
+% to the simplicity of pushing the placement verification to the furthest step 
+% possible, when $\stept = \swapBound$, and allowing the existence of steps of any 
+% swap category.
+% Let $d_{\vertexu\vertexv} \in \mathbb{N}_0$ be a constant that represents the 
+% distance between any two vertices $\vertexu,\vertexv \in \vertexSet$. 
+% If there is a class of instances that can be proved to not have swaps of 
+% category (c), the Inequality~\ref{equ:plc-sum} could be added to the model to 
+% cut off token placements that increase the sum of the distances, but the 
+% tradeoff of pre-calculating this distance would have to be considered.
+
+\chapter{Conclusion}
+
+This dissertation presented the Token Swap problem and one parallel variant, 
+the Parallel Token Swap problem.
+Initially, the work is focused on introducing the necessary mathematical tools
+for constructing the subsequent proofs, with special emphasis on the crucial 
+notion of \textit{merge} and \textit{split} swaps.
+Then, these tools are used to build a method for finding an optimal
+swap sequence for the class of threshold graphs.
+From this method, a new method is derived to also find an optimal swap sequence
+for the class of cographs.
+
+Then, to go along with these results, an initial integer linear model for each
+of the problems is presented together with a detailed discussion about the 
+constraints.
+The next step would be the coding and solving each of these models to 
+check their viability and compare with other approaches.
+Moreover, these models could be adapted to other TS variations, such as the 
+Colored Token Swap problem and the Parallel Colored Token Swap
+Generalizations of the TS problem and PTS problem, respectively, where tokens
+can have more than one target vertex.
+
+% The presented models could still be improved with testing.
+% More constraints would focus on the development of more valid inequalities, like 
+% checking steps with repeated configurations or constraints to eliminate the 
+% token symmetry of the model, pushing steps with no swaps to the rightmost step
+% possible. Some of those were already achieved, but omitted for the sake of 
+% conciseness. 
+% On future works, with experimental results, we will evaluate whether they 
+% provide improvements in running time.
+% Another route would be the creation of specialty models focused in some useful 
+% and hard classes of graphs like trees, as more specific constraints could be 
+% helpful in getting faster answers.
+
+On future works the mathematical notions presented in this dissertation could 
+be used to understand and build different methods for other graph classes.
+Moreover, the presented integer linear models could still be improved with 
+implementation and testing, as they are an initial model.
+More constraints would focus on the development of more valid inequalities to
+optimize the model.
+Another route would be the creation of specialty models focused in some useful 
+and hard classes of graphs like trees, as more specific constraints could be 
+helpful in getting faster answers.
+
+% Aqui vem a parte da bibliografia: use o comando \ppgccbibliography indicando
+% apenas o nome do arquivo .bib (sem a extensão).
+\ppgccbibliography{bibfile}
+
+
+% Este comando encapsula o conjunto de apêndices. A sua função é fazer com que
+% a numeração dos apêndices seja feita com letras maiúsculas (A, B, C, etc.) e
+% a palavra "Apêndice" anteceda as entradas no Sumário.
+\begin{appendices}
+\end{appendices}
+
+
+% Este comando encapsula o conjunto de anexos. A sua função é fazer com que a
+% numeração dos anexos seja feita com letras maiúsculas (A, B, C, etc.) e a
+% palavra "Anexo" anteceda as entradas no Sumário.
+\begin{attachments}
+\end{attachments}
+
+
+\end{document}

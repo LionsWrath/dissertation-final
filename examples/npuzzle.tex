@@ -1,0 +1,58 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm, 
+        outer/.style={circle,draw,inner sep=1pt, minimum size=6mm, font=\small},
+        inner/.style={rectangle,draw, minimum height=3.5mm,
+        minimum width=6mm, font=\tiny}
+    ]
+
+    \def\wi{3}      % Width  - 1
+    \def\he{3}      % Height - 1
+    \def\hi{2}      % Edge Height - 2
+    \def\spx{1.2}   % Spacing of x axis
+    \def\spy{1.2}   % Spacing of y axis
+    \def\skx{0.4}
+    \def\sky{0.35}
+
+    % create token list
+    \def\tokens{1,2,3,5,6,8,9,4,15,-1,12,13,7,10,14,11}
+    \def\mcolors{white,white,white,white,white,c7,white,white,c7,white,c7,white,white,c7,white,white}
+
+    % function to access list by index
+    \newcommand*{\GetListMember}[2]{%
+	\edef\dotheloop{%
+	\noexpand\foreach \noexpand\a [count=\noexpand\i] in {#1} {%
+	    \noexpand\IfEq{\noexpand\i}{#2}{\noexpand\a\noexpand\breakforeach}{}%
+	}}%
+	\dotheloop
+	\par%
+    }%
+
+    % Add nodes
+    \foreach \x in {0,...,\wi}
+        \foreach \y in {0,...,\he} 
+            \foreach \c [count=\ci] in \mcolors {
+                \pgfmathtruncatemacro{\nodeName}
+                    {(\wi + 1) * (\he + 1) - (\wi + 1 - \x + (\wi + 1) * \y)}
+                    \pgfmathparse{int(round(\nodeName + 1))}
+                    \edef\mya{\pgfmathresult}
+                \ifthenelse{\equal{\mya}{\ci}}{
+                   \node[outer] (\x\y) at (\spx*\x,\spy*\y) {\mya};
+                   \node[inner, fill=\c] (s\x\y) at (\spx*\x+\skx,\spy*\y+\sky) {\GetListMember{\tokens}{\mya}};
+                }{}
+            }
+
+    % Add edges
+    \foreach \x in {0,...,\wi}
+        \foreach \y [count=\yi] in {0,...,\hi}  
+            \draw (\x\y)--(\x\yi) (\y\x)--(\yi\x);
+
+    \end{tikzpicture}
+    \caption{Instance of the $15$-puzzle problem in a grid graph. Each vertex is 
+    represented by a circle and the rectangle is the tile currently positioned 
+    in the vertex.
+    The $-1$ rectangle represents the empty tile. Each light blue colored 
+    rectangle is a possible swap operation with the empty tile in the current 
+    configuration. }
+    \label{img:npuzzle}
+\end{figure}

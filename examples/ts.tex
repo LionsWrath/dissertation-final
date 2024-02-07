@@ -1,0 +1,42 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm, 
+        outer/.style={circle,draw,inner sep=1pt, minimum size=5mm}, 
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}
+    ]
+        \node[outer] (a) at ( -1.5, 3) [] {$a$};
+        \node[outer] (b) at ( -1.5, 2) [] {$b$};
+        \node[outer] (c) at ( -0.5, 2.5) [] {$c$};
+        \node[outer] (d) at (  0.5, 2.5) [] {$d$};
+        \node[outer] (e) at (  1.5, 2) [] {$e$};
+        \node[outer] (f) at (  1.5, 3) [] {$f$};
+        
+        % Edges
+        \draw
+            % Inner Edges
+            (a) edge (b)
+            (a) edge (c)
+            (b) edge (c)
+            (c) edge (d)
+            (d) edge (f)
+            (d) edge (e)
+            (f) edge (e)
+            
+            
+            % Conflict Graph Loops
+            (d) edge[bend right =45, dotted, c1, postaction={decorate}, line width=0.35mm] (a)
+            (a) edge[bend right =45, dotted, c2, postaction={decorate}, line width=0.35mm] (b)
+            (b) edge[bend right =45, dotted, c3, postaction={decorate}, line width=0.35mm] (d)
+
+            (c) edge[bend right =45, dotted, c4, postaction={decorate}, line width=0.35mm] (e)
+            (e) edge[bend right =60, dotted, c5, postaction={decorate}, line width=0.35mm] (c)
+
+            (f) edge[loop above, c6,  dotted, line width=0.35mm] (f);
+    \end{tikzpicture}
+    \caption{Example of a instance of the {\texttt Token Swap} problem with $\vertexSet = \{a,b,c,d,e,f\}$ and
+    tokens represented by colored dotted arrows to differentiate. The arrows point from the vertice
+    that is originally positioned in mapping $\initMap$ to the target vertice in the identity map $\idMap$.}
+    \label{img:ts-example}
+\end{figure}

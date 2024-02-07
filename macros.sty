@@ -1,0 +1,138 @@
+%!TEX root=main.tex
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{calrsfs}
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+
+% Theorems, lemmas, corolaries...
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+% Ref
+\newcommand{\addExample}[1]{\input{./examples/#1}}
+\newcommand{\addEquation}[1]{\input{./equations/#1}}
+\newcommand{\addAlgorithm}[1]{\input{./algorithms/#1}}
+\newcommand{\groupRef}[2]{(\ref{#1})-(\ref{#2})}
+
+% Math
+\newcommand{\sizeof}[1]{|#1|}
+\newcommand{\defineFunc}[3]{#1 : #2 \mapsto #3}
+\newcommand{\applyFunc}[2]{#1(#2)}
+\newcommand{\asympWorstCase}{O}
+\newcommand{\worstCase}[1]{\applyFunc{\asympWorstCase}{#1}}
+\newcommand{\enum}[1]{[#1]}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\partition}{\pazocal{P}}
+\newcommand{\partitionFunc}[1]{\applyFunc{\partition}{#1}}
+\newcommand{\partitionElem}{P}
+\newcommand{\createSet}[1]{\{#1\}}
+\newcommand{\createOrd}[1]{(#1)}
+\newcommand{\createCyc}[1]{\createOrd{#1}}
+\newcommand{\nodePartition}[1]{\applyFunc{NodePartition}{#1}}
+
+% Graph related
+\newcommand{\graphG}{G}
+\newcommand{\graphrG}{\graphG^{r}}
+\newcommand{\vertexSet}{V}
+\newcommand{\vertexNumber}{n}
+\newcommand{\edgeSet}{E}
+\newcommand{\edgeNumber}{m}
+\newcommand{\graphPair}{(\vertexSet,\edgeSet)}
+\newcommand{\vertexOrder}{M}
+\newcommand{\lessVOrder}{<_{\vertexOrder}}
+\newcommand{\moreVOrder}{>_{\vertexOrder}}
+\newcommand{\graphDist}[2]{\delta(#1, #2)}
+\newcommand{\lca}[1]{\applyFunc{LCA_{\graphrG}}{#1}}
+\newcommand{\lcaOf}[2]{\applyFunc{LCA_{#1}}{#2}}
+\newcommand{\dist}[3]{\applyFunc{dist_{#1}}{#2, #3}}
+\newcommand{\distG}[2]{\dist{\graphG}{#1}{#2}}
+\newcommand{\distrG}[2]{\dist{\graphrG}{#1}{#2}}
+\newcommand{\vertexFunc}[1]{\applyFunc{\vertexSet}{#1}}
+\newcommand{\vertexFuncG}{\vertexFunc{\graphG}}
+\newcommand{\vertexFuncrG}{\vertexFunc{\graphrG}}
+\newcommand{\edgeFunc}[1]{\applyFunc{\edgeSet}{#1}}
+\newcommand{\edgeFuncG}{\edgeFunc{\graphG}}
+\newcommand{\sub}[1]{\dot{#1}}
+\newcommand{\ssub}[1]{\ddot{#1}}
+\newcommand{\sssub}[1]{\dddot{#1\hspace{0pt}}}
+\newcommand{\ssssub}[1]{\ddddot{#1\hspace{0pt}}}
+\newcommand{\odeg}[1]{\applyFunc{\delta_{out}}{#1}}
+\newcommand{\ideg}[1]{\applyFunc{\delta_{in}}{#1}}
+\newcommand{\tdeg}[1]{\applyFunc{\delta}{#1}}
+\newcommand{\compl}[1]{\overline{#1}}
+\newcommand{\openNeigh}[2]{N_{#1}(#2)}
+\newcommand{\closedNeigh}[2]{N_{#1}[#2]}
+\newcommand{\inducedSubgraph}[2]{#1[#2]}
+\newcommand{\matching}{\mu}
+\newcommand{\matchingOf}[1]{\applyFunc{\matching}{#1}}
+\newcommand{\subgraph}{\subseteq}
+
+%\ Group related
+\newcommand{\groupSet}{F}
+\newcommand{\groupOp}{\circ}
+\newcommand{\groupGen}{C}
+\newcommand{\groupPair}{(\groupSet,\groupOp)}
+\newcommand{\cayleyGraph}{\applyFunc{\Gamma}{\groupSet,\groupGen}}
+
+% Token Swap related
+\newcommand{\swapBound}{T}
+\newcommand{\swapSeq}{S}
+\newcommand{\mapFunc}{f}
+\newcommand{\idMap}{\mapFunc_{i}}
+\newcommand{\initMap}{\mapFunc_{0}}
+\newcommand{\conflictGraph}{CG}
+\newcommand{\edgeSetConflict}{\edgeSet_{\conflictGraph}}
+\newcommand{\cycleSet}{CS}
+\newcommand{\cycle}{C}
+\newcommand{\subSeq}[2]{#1|#2}
+\newcommand{\subTSeq}[3]{#1|_{#3}#2}
+\newcommand{\subISeq}[4]{#1|_{#3}^{#4}#2}
+\newcommand{\zeroCycles}{\cycleSet^{0}}
+\newcommand{\oneCycles}{\cycleSet^{1}}
+\newcommand{\cycleMatchingGraph}{H}
+
+% Parallel Token Swap related
+\newcommand{\swapPSeq}{P}
+
+% Cotree related
+\newcommand{\cotree}{CT}
+\newcommand{\cotreeOf}[1]{\applyFunc{\cotree}{#1}}
+
+% Examples
+\newcommand{\vertexu}{u}
+\newcommand{\vertexv}{v}
+\newcommand{\vertexuv}{uv}
+\newcommand{\vertexw}{w}
+\newcommand{\tokeni}{i}
+\newcommand{\tokenj}{j}
+\newcommand{\tokenq}{q}
+\newcommand{\stept}{t}
+\newcommand{\swaps}{s}
+\newcommand{\setA}{A}
+\newcommand{\setB}{B}
+\newcommand{\setD}{D}
+\newcommand{\intk}{k}
+
+% Model variables
+\newcommand{\baseSwapVar}[3]{y_{#1#2#3}}
+\newcommand{\swapVar}{\baseSwapVar{\vertexu}{\vertexv}{\stept}}
+\newcommand{\swapVarPlus}{\baseSwapVar{\vertexv}{\vertexw}{\stept+1}}
+\newcommand{\basePosVar}[3]{x_{#1#2#3}}
+\newcommand{\posVar}{\basePosVar{\tokeni}{\vertexu}{\stept}}
+\newcommand{\posVarPlus}[1]{\basePosVar{\tokeni}{#1}{\stept+1}}
+\newcommand{\baseStepVar}[1]{s_{#1}}
+\newcommand{\stepVar}{\baseStepVar{\stept}}
+\newcommand{\stepVarPlus}{\baseStepVar{\stept+1}}
+
+% Simplification
+\newcommand{\uvComp}{\vertexu\lessVOrder\vertexv}
+\newcommand{\uvwComp}{\vertexu\lessVOrder\vertexv\lessVOrder\vertexw}
+\newcommand{\forallt}{\forall t\in\enum{\swapBound} }
+\newcommand{\foralltm}{\forall t\in\enum{\swapBound-1}}
+\newcommand{\foralli}{\forall i\in\vertexSet}
+\newcommand{\forallu}{\forall u\in\vertexSet}
+\newcommand{\forallv}{\forall v\in\vertexSet}

@@ -1,0 +1,20 @@
+\begin{align}
+\text{minimize}   \qquad & \sum\nolimits_{\forallt} \stepVar \label{equ:model-pts:m}\\
+\text{subject to} \qquad & \sum\nolimits_{\forallu} \posVar = 1 & &\forallt, \foralli \label{equ:model-pts:1} \\
+                 & \sum\nolimits_{\foralli} \posVar = 1 & &\forallt, \forallu \label{equ:model-pts:2}\\
+                 & \posVar + \posVarPlus{\vertexv} \leq \swapVar + 1 & &\foralli, \foralltm, \nonumber\\ 
+                 & & &\forall \vertexuv \in \edgeSet, \uvComp \label{equ:model-pts:3}\\
+                 & \basePosVar{\tokeni}{\vertexv}{\stept} + \posVarPlus{\vertexu} \leq \swapVar + 1 \qquad & &\foralli, \foralltm, \nonumber\\
+                 & & &\forall \vertexuv \in \edgeSet, \uvComp \label{equ:model-pts:4}\\
+                 & \posVar + \posVarPlus{\vertexv} \leq 1 & &\foralli, \foralltm, \nonumber\\
+                 & & &\forall \vertexuv \notin \edgeSet \label{equ:model-pts:5}\\
+                 & \sum\nolimits_{\forall \vertexu,\vertexv,\vertexw \in \vertexSet, \uvComp} \baseSwapVar{\vertexu}{\vertexw}{\stept} + \baseSwapVar{\vertexw}{\vertexv}{\stept} \leq 1 \qquad & &\forallt \label{equ:model-pts:6}\\
+                 & \swapVar \leq \stepVar & &\forallt, \forall \vertexuv \in \edgeSet, \nonumber\\
+                 & & &\uvComp \label{equ:model-pts:7}\\
+                 & x_{i, \applyFunc{\initMap}{i}, 0} = 1 & & \foralli \label{equ:model-pts:ini}\\
+                 & \basePosVar{\tokeni}{\tokeni}{\swapBound} = 1 & &\foralli \label{equ:model-pts:8}\\
+                 & \stepVar \leq \stepVar & & \foralltm \label{equ:model-pts:sym}\\
+                 & \swapVar \in \{0,1\} & &\forallt, \forall \vertexuv \in \edgeSet \label{equ:model-pts:9}\\
+                 & \posVar  \in \{0,1\} & &\foralli, \forallu, \forallt \label{equ:model-pts:10}\\
+                 & \stepVar \in \{0,1\} & &\forallt \label{equ:model-pts:11}
+\end{align}

@@ -1,0 +1,111 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance=2cm, 
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}
+    ]
+        % f
+        \node[] (af1) at (-1.5, 3) [] {$a$};
+        \node[] (bf1) at (-1.5, 2.5) [] {$b$};
+        \node[] (cf1) at (-1.5, 2) [] {$c$};
+        \node[] (df1) at (-1.5, 1.5) [] {$d$};
+        \node[] (ef1) at (-1.5, 1) [] {$e$};
+        \node[] (ff1) at (-1.5, 0.5) [] {$f$};
+
+        \node[] (af2) at (-.5, 3) [] {$a$};
+        \node[] (bf2) at (-.5, 2.5) [] {$b$};
+        \node[] (cf2) at (-.5, 2) [] {$c$};
+        \node[] (df2) at (-.5, 1.5) [] {$d$};
+        \node[] (ef2) at (-.5, 1) [] {$e$};
+        \node[] (ff2) at (-.5, 0.5) [] {$f$};
+
+        % s
+        \node[] (as1) at (1, 3) [] {$a$};
+        \node[] (bs1) at (1, 2.5) [] {$b$};
+        \node[] (cs1) at (1, 2) [] {$c$};
+        \node[] (ds1) at (1, 1.5) [] {$d$};
+        \node[] (es1) at (1, 1) [] {$e$};
+        \node[] (fs1) at (1, 0.5) [] {$f$};
+
+        \node[] (as2) at (2, 3) [] {$a$};
+        \node[] (bs2) at (2, 2.5) [] {$b$};
+        \node[] (cs2) at (2, 2) [] {$c$};
+        \node[] (ds2) at (2, 1.5) [] {$d$};
+        \node[] (es2) at (2, 1) [] {$e$};
+        \node[] (fs2) at (2, 0.5) [] {$f$};
+
+        % r
+        \node[] (ar1) at (3.5, 3) [] {$a$};
+        \node[] (br1) at (3.5, 2.5) [] {$b$};
+        \node[] (cr1) at (3.5, 2) [] {$c$};
+        \node[] (dr1) at (3.5, 1.5) [] {$d$};
+        \node[] (er1) at (3.5, 1) [] {$e$};
+        \node[] (fr1) at (3.5, 0.5) [] {$f$};
+
+        \node[] (ar2) at (4.5, 3) [] {$a$};
+        \node[] (br2) at (4.5, 2.5) [] {$b$};
+        \node[] (cr2) at (4.5, 2) [] {$c$};
+        \node[] (dr2) at (4.5, 1.5) [] {$d$};
+        \node[] (er2) at (4.5, 1) [] {$e$};
+        \node[] (fr2) at (4.5, 0.5) [] {$f$};
+
+       
+        % Edges
+        \draw
+            % Middle 
+            (af2) edge[dotted, c5, postaction={decorate}, line width=0.35mm] (as1)
+            (bf2) edge[dotted, c2, postaction={decorate}, line width=0.35mm] (bs1)
+            (cf2) edge[dotted, c1, postaction={decorate}, line width=0.35mm] (cs1)
+            (df2) edge[dotted, c3, postaction={decorate}, line width=0.35mm] (ds1)
+            (ef2) edge[dotted, c4, postaction={decorate}, line width=0.35mm] (es1)
+            (ff2) edge[dotted, c6, postaction={decorate}, line width=0.35mm] (fs1)
+
+            % Map f
+            (as1.east) edge[c5, ->, line width=0.25mm] (bs2.west)
+            (bs1.east) edge[c2, ->, line width=0.25mm] (ds2.west)
+            (cs1.east) edge[c1, ->, line width=0.25mm] (es2.west)
+            (ds1.east) edge[c3, ->, line width=0.25mm] (as2.west)
+            (es1.east) edge[c4, ->, line width=0.25mm] (cs2.west)
+            (fs1.east) edge[c6, ->, line width=0.25mm] (fs2.west)
+
+            % Map swap
+            (af1.east) edge[c1, ->, line width=0.25mm] (cf2.west)
+            (bf1.east) edge[c2, ->, line width=0.25mm] (bf2.west)
+            (cf1.east) edge[c5, ->, line width=0.25mm] (af2.west)
+            (df1.east) edge[c3, ->, line width=0.25mm] (df2.west)
+            (ef1.east) edge[c4, ->, line width=0.25mm] (ef2.west)
+            (ff1.east) edge[c6, ->, line width=0.25mm] (ff2.west)
+
+            % Result
+            (ar1.east) edge[c1, ->, line width=0.25mm] (er2.west)
+            (br1.east) edge[c2, ->, line width=0.25mm] (dr2.west)
+            (cr1.east) edge[c5, ->, line width=0.25mm] (br2.west)
+            (dr1.east) edge[c3, ->, line width=0.25mm] (ar2.west)
+            (er1.east) edge[c4, ->, line width=0.25mm] (cr2.west)
+            (fr1.east) edge[c6, ->, line width=0.25mm] (fr2.west);
+
+        % 
+        \draw (-1.7,0.2) rectangle (-0.3, 3.2);
+        \draw ( 0.8,0.2) rectangle ( 2.2, 3.2);
+        \draw ( 3.3,0.2) rectangle ( 4.7, 3.2);
+
+        % Write data
+        \node at ( -1,3.5) {$\mapFunc_{(a,c)}$};
+        \node at (1.5,3.5) {$\initMap$};
+        \node at (  4,3.5) {$\mapFunc_{1}$};
+
+        % Write equal
+        \node at (2.75,1.75) {$=$};
+
+    \end{tikzpicture}
+    \caption{Let $\initMap$ be the TS instance represented in Figure~\ref{img:ts-example},
+    $\mapFunc_{(a,c)}$ be the mapping function representation of swap $(a,c)$ 
+    and $\mapFunc_1$ be the resulting mapping of the operation $\initMap 
+    \groupOp \mapFunc_{(a,c)}$.
+    Each rectangle represents a function with domain on the left, codomain on the
+    right and color coded arrow mappings.
+    It is possible to observe the resulting operation by following each arrow from left to
+    right between $\mapFunc_{(a,c)}$ and $\initMap$.}
+    \label{img:applyswap}
+\end{figure}

@@ -1,0 +1,428 @@
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{1\textwidth}
+    \centering
+    \begin{tikzpicture}[every node/.style={minimum size=0.5cm},on grid]
+    
+    \begin{scope}[every node/.append style={yslant=0.5},yslant=0.5,local bounding box=s1]
+    
+        % ------------ Coloring
+        % Sixth row
+        \fill[fill=gray-node] (0.5,0) rectangle (1,0.5);
+        \fill[fill=gray-node] (1,0) rectangle (1.5,0.5);
+        \fill[fill=gray-node] (1.5,0) rectangle (2,0.5);
+        \fill[fill=gray-node] (2,0) rectangle (2.5,0.5);
+        \fill[fill=gray-node] (2.5,0) rectangle (3,0.5);
+        
+        % Fifth row
+        \fill[fill=gray-node] (0.5,0.5) rectangle (1,1);
+        \fill[fill=gray-node] (1,0.5) rectangle (1.5,1);
+        \fill[fill=gray-node] (1.5,0.5) rectangle (2,1);
+        \fill[fill=gray-node] (2,0.5) rectangle (2.5,1);
+        
+        % Fourth row
+        \fill[fill=gray-node] (0.5,1) rectangle (1,1.5);
+        \fill[fill=gray-node] (1,1) rectangle (1.5,1.5);
+        \fill[fill=gray-node] (1.5,1) rectangle (2,1.5);
+        
+        % Third row
+        \fill[fill=gray-node] (0.5,1.5) rectangle (1,2);
+        \fill[fill=gray-node] (1,1.5) rectangle (1.5,2);
+        
+        % Second row
+        \fill[fill=gray-node] (0.5,2) rectangle (1,2.5);
+        
+        % First row
+
+        % Swap
+        \fill[fill=green-chk] (1.5,2) rectangle (2,2.5);
+        
+        % ------------ Numbering
+        % First row
+        \node at (0.25,2.75) {$y$};
+        \node at (0.75,2.75) {1};
+        \node at (1.25,2.75) {2};
+        \node at (1.75,2.75) {3};
+        \node at (2.25,2.75) {4};
+        \node at (2.75,2.75) {5};
+        
+        % Second row
+        \node at (0.25,2.25) {1};
+        %\node at (0.75,2.25) {0};
+        \node at (1.25,2.25) {0};
+        \node at (1.75,2.25) {1};
+        \node at (2.25,2.25) {0};
+        \node at (2.75,2.25) {0};
+        
+        % Third row
+        \node at (0.25,1.75) {2};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        \node at (1.75,1.75) {0};
+        \node at (2.25,1.75) {0};
+        \node at (2.75,1.75) {0};
+        
+        % Fourth row
+        \node at (0.25,1.25) {3};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        \node at (2.25,1.25) {0};
+        \node at (2.75,1.25) {0};
+        
+        % Fifth row
+        \node at (0.25,0.75) {4};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        \node at (2.75,0.75) {0};
+        
+        % Sixth row
+        \node at (0.25,0.25) {5};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        %\node at (2.75,0.75) {0};
+        
+        % Step
+        \node at (0.6,3.3) {$t=1$};
+        
+        % Grid
+        \draw[step=0.5] (0,0) grid (3,3);
+        
+    \end{scope}
+    \begin{scope}[
+        every node/.append style={yslant=0.5},yslant=0.5,
+        shift={($(s1.east)+(-0.1,-2.2)$)},
+        local bounding box=s2
+    ]
+    
+        % ------------ Coloring
+        % Sixth row
+        \fill[fill=gray-node] (0.5,0) rectangle (1,0.5);
+        \fill[fill=gray-node] (1,0) rectangle (1.5,0.5);
+        \fill[fill=gray-node] (1.5,0) rectangle (2,0.5);
+        \fill[fill=gray-node] (2,0) rectangle (2.5,0.5);
+        \fill[fill=gray-node] (2.5,0) rectangle (3,0.5);
+        
+        % Fifth row
+        \fill[fill=gray-node] (0.5,0.5) rectangle (1,1);
+        \fill[fill=gray-node] (1,0.5) rectangle (1.5,1);
+        \fill[fill=gray-node] (1.5,0.5) rectangle (2,1);
+        \fill[fill=gray-node] (2,0.5) rectangle (2.5,1);
+        
+        % Fourth row
+        \fill[fill=gray-node] (0.5,1) rectangle (1,1.5);
+        \fill[fill=gray-node] (1,1) rectangle (1.5,1.5);
+        \fill[fill=gray-node] (1.5,1) rectangle (2,1.5);
+        
+        % Third row
+        \fill[fill=gray-node] (0.5,1.5) rectangle (1,2);
+        \fill[fill=gray-node] (1,1.5) rectangle (1.5,2);
+        
+        % Second row
+        \fill[fill=gray-node] (0.5,2) rectangle (1,2.5);
+        
+        % First row
+        \fill[fill=white] (0,0) rectangle (0.5,3);
+
+        % Swap
+        \fill[fill=green-chk] (2.5,1) rectangle (3,1.5);
+        
+        % ------------ Numbering
+        % First row
+        \node at (0.25,2.75) {$y$};
+        \node at (0.75,2.75) {1};
+        \node at (1.25,2.75) {2};
+        \node at (1.75,2.75) {3};
+        \node at (2.25,2.75) {4};
+        \node at (2.75,2.75) {5};
+        
+        % Second row
+        \node at (0.25,2.25) {1};
+        %\node at (0.75,2.25) {0};
+        \node at (1.25,2.25) {0};
+        \node at (1.75,2.25) {0};
+        \node at (2.25,2.25) {0};
+        \node at (2.75,2.25) {0};
+        
+        % Third row
+        \node at (0.25,1.75) {2};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        \node at (1.75,1.75) {0};
+        \node at (2.25,1.75) {0};
+        \node at (2.75,1.75) {0};
+        
+        % Fourth row
+        \node at (0.25,1.25) {3};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        \node at (2.25,1.25) {0};
+        \node at (2.75,1.25) {1};
+        
+        % Fifth row
+        \node at (0.25,0.75) {4};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        \node at (2.75,0.75) {0};
+        
+        % Sixth row
+        \node at (0.25,0.25) {5};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        %\node at (2.75,0.75) {0};
+        
+        % Step
+        \node at (0.6,3.3) {$t=2$};
+        
+        % Grid
+        \draw[step=0.5] (0,0) grid (3,3);
+        
+    \end{scope}
+    \begin{scope}[
+        every node/.append style={yslant=0.5},yslant=0.5,
+        shift={($(s2.east)+(-0.1,-2.2)$)},
+        local bounding box=s3
+    ]
+    
+        % ------------ Coloring
+        % Sixth row
+        \fill[fill=gray-node] (0.5,0) rectangle (1,0.5);
+        \fill[fill=gray-node] (1,0) rectangle (1.5,0.5);
+        \fill[fill=gray-node] (1.5,0) rectangle (2,0.5);
+        \fill[fill=gray-node] (2,0) rectangle (2.5,0.5);
+        \fill[fill=gray-node] (2.5,0) rectangle (3,0.5);
+        
+        % Fifth row
+        \fill[fill=gray-node] (0.5,0.5) rectangle (1,1);
+        \fill[fill=gray-node] (1,0.5) rectangle (1.5,1);
+        \fill[fill=gray-node] (1.5,0.5) rectangle (2,1);
+        \fill[fill=gray-node] (2,0.5) rectangle (2.5,1);
+        
+        % Fourth row
+        \fill[fill=gray-node] (0.5,1) rectangle (1,1.5);
+        \fill[fill=gray-node] (1,1) rectangle (1.5,1.5);
+        \fill[fill=gray-node] (1.5,1) rectangle (2,1.5);
+        
+        % Third row
+        \fill[fill=gray-node] (0.5,1.5) rectangle (1,2);
+        \fill[fill=gray-node] (1,1.5) rectangle (1.5,2);
+        
+        % Second row
+        \fill[fill=gray-node] (0.5,2) rectangle (1,2.5);
+        
+        % First row
+        \fill[fill=white] (0,0) rectangle (0.5,3);
+
+        % Swap
+        \fill[fill=green-chk] (1.5,2) rectangle (2,2.5);
+        
+        % ------------ Numbering
+        % First row
+        \node at (0.25,2.75) {$y$};
+        \node at (0.75,2.75) {1};
+        \node at (1.25,2.75) {2};
+        \node at (1.75,2.75) {3};
+        \node at (2.25,2.75) {4};
+        \node at (2.75,2.75) {5};
+        
+        % Second row
+        \node at (0.25,2.25) {1};
+        %\node at (0.75,2.25) {0};
+        \node at (1.25,2.25) {0};
+        \node at (1.75,2.25) {1};
+        \node at (2.25,2.25) {0};
+        \node at (2.75,2.25) {0};
+        
+        % Third row
+        \node at (0.25,1.75) {2};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        \node at (1.75,1.75) {0};
+        \node at (2.25,1.75) {0};
+        \node at (2.75,1.75) {0};
+        
+        % Fourth row
+        \node at (0.25,1.25) {3};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        \node at (2.25,1.25) {0};
+        \node at (2.75,1.25) {0};
+        
+        % Fifth row
+        \node at (0.25,0.75) {4};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        \node at (2.75,0.75) {0};
+        
+        % Sixth row
+        \node at (0.25,0.25) {5};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        %\node at (2.75,0.75) {0};
+        
+        % Step
+        \node at (0.6,3.3) {$t=3$};
+        
+        % Grid
+        \draw[step=0.5] (0,0) grid (3,3);
+        
+    \end{scope}
+    \begin{scope}[
+        every node/.append style={yslant=0.5},yslant=0.5,
+        shift={($(s3.east)+(-0.1,-2.2)$)}
+    ]
+    
+        % ------------ Coloring
+        % Sixth row
+        \fill[fill=gray-node] (0.5,0) rectangle (1,0.5);
+        \fill[fill=gray-node] (1,0) rectangle (1.5,0.5);
+        \fill[fill=gray-node] (1.5,0) rectangle (2,0.5);
+        \fill[fill=gray-node] (2,0) rectangle (2.5,0.5);
+        \fill[fill=gray-node] (2.5,0) rectangle (3,0.5);
+        
+        % Fifth row
+        \fill[fill=gray-node] (0.5,0.5) rectangle (1,1);
+        \fill[fill=gray-node] (1,0.5) rectangle (1.5,1);
+        \fill[fill=gray-node] (1.5,0.5) rectangle (2,1);
+        \fill[fill=gray-node] (2,0.5) rectangle (2.5,1);
+        
+        % Fourth row
+        \fill[fill=gray-node] (0.5,1) rectangle (1,1.5);
+        \fill[fill=gray-node] (1,1) rectangle (1.5,1.5);
+        \fill[fill=gray-node] (1.5,1) rectangle (2,1.5);
+        
+        % Third row
+        \fill[fill=gray-node] (0.5,1.5) rectangle (1,2);
+        \fill[fill=gray-node] (1,1.5) rectangle (1.5,2);
+        
+        % Second row
+        \fill[fill=gray-node] (0.5,2) rectangle (1,2.5);
+        
+        % First row
+        \fill[fill=white] (0,0) rectangle (0.5,3);
+        
+        % ------------ Numbering
+        % First row
+        \node at (0.25,2.75) {$y$};
+        \node at (0.75,2.75) {1};
+        \node at (1.25,2.75) {2};
+        \node at (1.75,2.75) {3};
+        \node at (2.25,2.75) {4};
+        \node at (2.75,2.75) {5};
+        
+        % Second row
+        \node at (0.25,2.25) {1};
+        %\node at (0.75,2.25) {0};
+        \node at (1.25,2.25) {0};
+        \node at (1.75,2.25) {0};
+        \node at (2.25,2.25) {0};
+        \node at (2.75,2.25) {0};
+        
+        % Third row
+        \node at (0.25,1.75) {2};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        \node at (1.75,1.75) {0};
+        \node at (2.25,1.75) {0};
+        \node at (2.75,1.75) {0};
+        
+        % Fourth row
+        \node at (0.25,1.25) {3};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        \node at (2.25,1.25) {0};
+        \node at (2.75,1.25) {0};
+        
+        % Fifth row
+        \node at (0.25,0.75) {4};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        \node at (2.75,0.75) {0};
+        
+        % Sixth row
+        \node at (0.25,0.25) {5};
+        %\node at (0.75,2.25) {0};
+        %\node at (1.25,2.25) {0};
+        %\node at (1.75,1.75) {0};
+        %\node at (2.25,1.25) {0};
+        %\node at (2.75,0.75) {0};
+        
+        % Step
+        \node at (0.6,3.3) {$t=4$};
+        
+        % Grid
+        \draw[step=0.5] (0,0) grid (3,3);
+        
+    \end{scope}
+    
+    % Lower Line
+    \draw [dashed,color=gray-line] (0,0) -- (8.74,0);
+    
+    % Upper Line
+    \draw [dashed,color=gray-line] (3,4.5) -- (11.74,4.5);
+    
+    \end{tikzpicture}
+    \caption{}
+    \label{img:form1-example:a}
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+    \centering
+    \begin{tikzpicture}[node distance=2cm, 
+        outer/.style={circle,draw,inner sep=1pt, minimum size=5mm}, 
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}
+    ]
+        \node[outer] (a) at ( -1, 3) [] {$1$};
+        \node[outer] (b) at ( -1.5, 2) [] {$2$};
+        \node[outer] (c) at ( 0, 3.4) [] {$3$};
+        \node[outer] (e) at (  1.5, 2) [] {$4$};
+        \node[outer] (f) at (  1, 3) [] {$5$};
+        
+        % Edges
+        \draw
+            % Inner Edges
+            (a) edge (b)
+            (a) edge (c)
+            (f) edge (c)
+            (f) edge (e)
+            (a) edge (e)
+            (f) edge (b)
+            
+            
+            % Conflict Graph Loops
+            (a) edge[dotted, c2, postaction={decorate}, line width=0.35mm] (f)
+            (f) edge[bend left=90, dotted, c4, postaction={decorate}, line width=0.35mm] (a)
+            (b) edge[loop below, dotted, c1, line width=0.35mm] (b)
+            (e) edge[loop below, dotted, c1, line width=0.35mm] (e)
+            (c) edge[loop above, dotted, c1, line width=0.35mm] (c);
+
+    \end{tikzpicture}
+    \caption{}
+    \label{img:form1-example:b}
+    \end{subfigure}
+    \caption{Here is an example of how the variable $\swapVar$ can model a sequence of swaps. Let $\swapBound 
+    = 4$ and the TS instance presented at Figure~\ref{img:form1-example:b}. The minimum number of swaps needed 
+    to bring all tokens to its correct positions is three, more precisely $(1,3), (3,5), (3,1)$. 
+    At Figure~\ref{img:form1-example:a} it is shown how these swaps are represented (in green) with the fourth 
+    panel having no swaps. 
+    Note that the swap symmetry is being used to represent swaps using the upper diagonal of the matrix.}
+    \label{img:form1-example}
+\end{figure}

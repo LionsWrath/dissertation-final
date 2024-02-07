@@ -1,0 +1,18 @@
+\begin{align}
+\text{minimize}   \qquad & \sum\nolimits_{\forall \vertexuv \in \edgeSet,\uvComp,\forallt} \swapVar & \label{equ:model-ts:m}\\
+\text{subject to} \qquad & \sum\nolimits_{\forallu} \posVar = 1 & &\forallt, \foralli \label{equ:model-ts:1}\\
+                  & \sum\nolimits_{\foralli} \posVar = 1 & &\forallt, \forallu \label{equ:model-ts:2}\\
+                  & \posVar + \posVarPlus{\vertexv} \leq \swapVar + 1 \qquad & &\foralli, \foralltm, \nonumber\\
+                  & & &\forall \vertexuv \in \edgeSet, \uvComp \label{equ:model-ts:3} \\
+                  & \basePosVar{\tokeni}{\vertexv}{\stept} + \posVarPlus{\vertexu} \leq \swapVar + 1 \qquad & &\foralli, \foralltm, \nonumber\\ 
+                  & & &\forall \vertexuv \in \edgeSet, \uvComp \label{equ:model-ts:4}\\
+                  & \posVar + \posVarPlus{\vertexv} \leq 1 & &\foralli, \foralltm, \nonumber\\
+                  & & &\forall \vertexuv \notin \edgeSet \label{equ:model-ts:5} \\
+                  & \sum\nolimits_{\forall \vertexu,\vertexv \in \vertexSet, \vertexu\lessVOrder\vertexv} \swapVar \leq 1 & &\forallt \label{equ:model-ts:6} \\
+                  & \sum\nolimits_{\forall \vertexuv \in \edgeSet,\uvComp} \swapVar \ge \sum\nolimits_{\forall \vertexuv \in \edgeSet,\uvComp} \swapVarPlus & & \foralltm \label{equ:model-ts:sym}\\
+                  & x_{i, \applyFunc{\initMap}{i}, 0} = 1 & & \foralli \label{equ:model-ts:ini}\\
+                  & \basePosVar{\tokeni}{\tokeni}{\swapBound} = 1 & &\foralli \label{equ:model-ts:7}\\
+                  & \swapVar \in \{0,1\} & &\forallt, \forall \vertexu\vertexv \in \edgeSet \label{equ:model-ts:8}\\
+                  & \posVar  \in \{0,1\} & &\foralli, \forallu, \nonumber\\
+                  & & &\forallt \label{equ:model-ts:9}
+\end{align}

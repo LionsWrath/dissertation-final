@@ -1,0 +1,56 @@
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[node distance=2cm, 
+        baseline={(bs.base)},
+        outer/.style={circle,draw,inner sep=1pt, minimum size=5mm}, 
+        inner/.style={rectangle,draw,fill=white,minimum size=4.5mm,font=\scriptsize},
+        decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}
+    ]
+        \node[outer] (a) at ( -1.5,   1.5) [] {$1$};
+        \node[outer] (b) at ( -1.5, 0) [] {$2$};
+        \node[outer] (c) at (  0, 1.9) [] {$3$};
+        \node[outer] (e) at (  1.5,   0) [] {$4$};
+        \node[outer] (f) at (  1.5,   1.5) [] {$5$};
+
+        \node (bs) at (0, 1) {}; % baseline reference
+        
+        % Edges
+        \draw
+            % Inner Edges
+            (a) edge[] node[inner] {c} (b)
+            (a) edge[] node[inner] {a} (c)
+            (f) edge[] node[inner] {b} (c)
+            (f) edge[] node[inner] {d} (e)
+            (a) edge[] node[inner,below right = 0.1cm and 0.5cm] {e} (e)
+            (f) edge[] node[inner,below  left = 0.1cm and 0.5cm] {f} (b);
+            
+    \end{tikzpicture}
+    \caption{}
+    \label{img:form2-example:a}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+    \centering
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        \multicolumn{5}{|c|}{Edge Pairings}   \\ \hline
+        {\cellcolor{red-negat}}$a,b$ & {\cellcolor{green-chk}}$b,c$ & {\cellcolor{green-chk}}$c,d$ & {\cellcolor{red-negat}}$d,e$ & {\cellcolor{green-chk}}$e,f$ \\ \hline
+        {\cellcolor{red-negat}}$a,c$ & {\cellcolor{red-negat}}$b,d$ & {\cellcolor{red-negat}}$c,e$ & {\cellcolor{red-negat}}$d,f$ & {\cellcolor{gray-node}} \\ \hline
+        {\cellcolor{green-chk}}$a,d$ & {\cellcolor{red-negat}}$b,e$ & {\cellcolor{red-negat}}$c,f$ & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} \\ \hline
+        {\cellcolor{red-negat}}$a,e$ & {\cellcolor{red-negat}}$b,f$ & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} \\ \hline
+        {\cellcolor{green-chk}}$a,f$ & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} & {\cellcolor{gray-node}} \\ \hline
+        \end{tabular}
+    \caption{}
+    \label{img:form2-example:b}
+    \end{subfigure}
+    \caption{Let Figure~\ref{img:form2-example:a} be a graph with vertice set $\vertexSet = \createSet{1,2,3,4,5}$
+    and edge set $\edgeSet = \createSet{a,b,c,d,e,f}$.
+    Table~\ref{img:form2-example:b} lists all unordered \textit{pairs} of edges that can be swapped in a token 
+    placement at the same step with green and red otherwise.
+    The reader can check each pairing by taking the vertice triple of any red pairing and checking in the model.
+    All green edge pairings are vertice disjoint and there is no three edge parallel partition in this graph.}
+    \label{img:form2-example}
+\end{figure}
