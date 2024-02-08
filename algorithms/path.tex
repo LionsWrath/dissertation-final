@@ -1,23 +1,25 @@
-\begin{algorithm}[H]
-    \SetAlgoLined
-    \KwIn{$\graphG, \initMap$}
-    \KwOut{Swap Sequence $\swapSeq$}
-    $M = getOrder(\graphG)$\;
-    $bound = \sizeof{\applyFunc{\vertexSet}{\graphG}}$\;
-    $\mapFunc = \initMap$\;
-    $\swapSeq = \createOrd{}$\;
-    \Do{$t \neq 0$}{
-        $t = 0$\;
-        \For{$i=1$ \textbf{to} $bound-1$}{
-            \If{$\applyFunc{\mapFunc}{M^{-1}[j]} > 
-              \applyFunc{\mapFunc}{M^{-1}[j]}$}{
-                $applySwap(\graphG, \mapFunc, \createOrd{j, j+1})$\;
-                $addToSequence(\swapSeq, \createOrd{j, j+1})$\;
-                $t = j$\;
+%\begin{algoritmo}
+    \begin{algorithm}[H]
+        \SetAlgoLined
+        \KwIn{$\graphG, \initMap$}
+        \KwOut{Swap Sequence $\swapSeq$}
+        $M = getOrder(\graphG)$\;
+        $bound = \sizeof{\applyFunc{\vertexSet}{\graphG}}$\;
+        $\mapFunc = \initMap$\;
+        $\swapSeq = \createOrd{}$\;
+        \Do{$t \neq 0$}{
+            $t = 0$\;
+            \For{$i=1$ \textbf{to} $bound-1$}{
+                \If{$\applyFunc{\mapFunc}{M^{-1}[j]} > 
+                  \applyFunc{\mapFunc}{M^{-1}[j]}$}{
+                    $applySwap(\graphG, \mapFunc, \createOrd{j, j+1})$\;
+                    $addToSequence(\swapSeq, \createOrd{j, j+1})$\;
+                    $t = j$\;
+                }
             }
         }
-    }
-    \Return{$\swapSeq$}\;
-\caption{Solving TS on path graphs}
-\label{alg:path}
-\end{algorithm}
+        \Return{$\swapSeq$}\;
+    \caption{Solving TS on path graphs}
+    \label{alg:path}
+    \end{algorithm}
+%\end{algoritmo}

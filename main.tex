@@ -1,33 +1,25 @@
-\documentclass[msc]{ppgccufmg}    % ou [msc] para dissertações
-                                  % de mestrado. Para propostas ou
-                                  % projetos, usar [phd,project],
-                                  % [msc,proposal], etc.
+\documentclass[msc,english,table,xcdraw]{ppgccufmg} 
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{type1ec}
 \usepackage{graphicx}
-\usepackage[%a4paper,
-  portuguese,
-  bookmarks=true,
-  bookmarksnumbered=true,
-  linktocpage,
-  colorlinks,
-  citecolor=black,
-  urlcolor=black,
-  linkcolor=black,
-  filecolor=black,
-  ]{hyperref}
-\usepackage[square]{natbib}
+\usepackage[
+	colorlinks=true,
+	linkcolor=blue, %% Cor dos links do sumário
+	citecolor=red, %% Cor dos links das citações      
+	urlcolor=magenta, %% Cor das urls
+]{hyperref}
+\usepackage{natbib}
 
 % Added
-\usepackage[table,xcdraw]{xcolor}
+\usepackage{xcolor}
 \usepackage{float}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{positioning}
-\usetikzlibrary{calc}
+    \usetikzlibrary{decorations.markings}
+    \usetikzlibrary{positioning}
+    \usetikzlibrary{calc}
 \usepackage{subcaption}
 
 \usepackage{multirow}
@@ -43,55 +35,37 @@
 \usepackage{colors}
 \usepackage{macros}
 
+%\newfloat[chapter]{algoritmo}{lol}{Algoritmo}
+\newcommand{\listaalgoritmosname}{Lista de Algoritmos} %% Título da lista
+\newlistof{listadealgoritmos}{lol}{\listaalgoritmosname}
+\newlistentry{algoritmo}{lol}{0} %% Nome do ambiente de cada algoritmo, e.g., \begin{algoritmo} ... \end{algoritmo}
+
+%% **** Caso não haja nenhuma lista adicional, os comandos acima podem ser apagados. ****
+%% ===============================================
+
 \begin{document}
 
-% O comando a seguir, \ppgccufmg, provê todas as informações relevantes para a
-% classe ppgccufmg. Por favor, consulte a documentação para a descrição de
-% cada chave.
 \ppgccufmg{
-    title={The Token Swap Problem: Polynomial Time Algorithms for Graph Classes and Integer Linear Programming Formulations},
-    authorrev={Segawa Tonetti, Caio Henrique},
-    cutter={},
-    cdu={},
-    keywords={Graph Theory, Reconfiguration, Integer Programming},
-    university={Federal University of Minas Gerais},
-    course={Computer Science},
-    portuguesetitle={O Problema de Reconfiguração de Fichas: Algoritmos de Tempo Polinomial para Classes de Grafos e Formulações de Programação Linear Inteira},
-    portugueseuniversity={Universidade Federal de Minas Gerais},
-    portuguesecourse={Ciência da Computação},
-    address={Belo Horizonte},
-    date={2022-02},
-    advisor={Vinicius Fernandes dos Santos},
-    coadvisor={Sebastián Urrutia},
-    %approval={img/approvalsheet.eps},
-    abstract=[brazil]{Resumo}{resumo},
-    abstract={Abstract}{abstract},
-    dedication={dedicatoria},
-    ack={agradecimentos},
-    epigraphtext={For nothing is self-sufficient, neither in us ourselves nor in things; and if our soul has trembled with happiness and sounded like a harp string just once, all eternity was needed to produce this one event—and in this single moment of affirmation all eternity was called good, redeemed, justified, and affirmed.}{Friedrich Nietzsche},
-}
-
-\ppgccufmg{
-	autor={Segawa Tonetti, Caio Henrique},
-	titulo={The Token Swap Problem: Polynomial Time Algorithms for Graph Classes and Integer Linear Programming Formulations},
-	cidade={Belo Horizonte},
-	ano={2024},
-	versao={Final},
-	orientador={Vinicius Fernandes dos Santos}, 
-	coorientador={Sebastián Urrutia}, 
-	fichacatalografica={fichacatalografica.pdf},
-	folhadeaprovacao={folhadeaprovacao.pdf},
-	resumo={resumo.tex}, %% Resumo em português
-	abstracten={abstract.tex}, %% Abstract em inglês
-	palavraschave={Matemática. Computação.}, %% Palavras-chave do resumo
-	keywords={Graph Theory, Reconfiguration, Integer Programming}, %% Palavras-chave do abstract
-	dedicatoria={dedicatoria.tex}, %% Arquivo .tex contendo a dedicatória
-	agradecimentos={agradecimentos.tex},
-	epigrafe={For nothing is self-sufficient, neither in us ourselves nor in things; and if our soul has trembled with happiness and sounded like a harp string just once, all eternity was needed to produce this one event—and in this single moment of affirmation all eternity was called good, redeemed, justified, and affirmed},
-	epigrafeautor={Friedrich Nietzsche},
-	listadefiguras={sim}, %% Remova (ou comente) este parâmetro para remover a lista de figuras
-	listadetabelas={sim}, %% Remova (ou comente) este parâmetro para remover a lista de tabelas
-	listascustomizadas={\listadealgoritmos} %% Lista customizada (e.g., lista de algoritmos). 
+    autor={Caio Henrique Segawa Tonetti}, 
+    titulo={The Token Swap Problem: Polynomial Time Algorithms for Graph Classes and Integer Linear Programming Formulations},
+    cidade={Belo Horizonte},
+    ano={2024},
+    versao={Final}, %% Versão do documento
+    orientador={Vinicius Fernandes dos Santos},
+    coorientador={Sebastián Urrutia}, 
+    %fichacatalografica={fichacatalografica.pdf},
+    %folhadeaprovacao={folhadeaprovacao.pdf},
+    resumo={resumo.tex},
+    abstracten={abstract.tex},
+    palavraschave={Teoria dos Grafos, Reconfiguração, Programação Inteira}, 
+    keywords={Graph Theory, Reconfiguration, Integer Programming}, 
+    dedicatoria={dedicatoria.tex}, %% Arquivo .tex contendo a dedicatória
+    agradecimentos={agradecimentos.tex},
+    epigrafe={For nothing is self-sufficient, neither in us ourselves nor in things; and if our soul has trembled with happiness and sounded like a harp string just once, all eternity was needed to produce this one event—and in this single moment of affirmation all eternity was called good, redeemed, justified, and affirmed.},
+    epigrafeautor={Friedrich Nietzsche},
+    listadefiguras={sim}, %% Remova (ou comente) este parâmetro para remover a lista de figuras
+    listadetabelas={sim}, %% Remova (ou comente) este parâmetro para remover a lista de tabelas
+    listascustomizadas={\listadealgoritmos} %% Lista customizada (e.g., lista de algoritmos). 
 }
 
 % Os três comandos seguintes são apenas para gerar texto para ocupar espaço nas
@@ -2224,9 +2198,9 @@ Another route would be the creation of specialty models focused in some useful
 and hard classes of graphs like trees, as more specific constraints could be 
 helpful in getting faster answers.
 
-% Aqui vem a parte da bibliografia: use o comando \ppgccbibliography indicando
-% apenas o nome do arquivo .bib (sem a extensão).
-\ppgccbibliography{bibfile}
+\renewcommand\bibname{References} %% Trabalhos em inglês
+\bibliographystyle{plain}
+\bibliography{bibfile}
 
 
 % Este comando encapsula o conjunto de apêndices. A sua função é fazer com que
@@ -2234,13 +2208,6 @@ helpful in getting faster answers.
 % a palavra "Apêndice" anteceda as entradas no Sumário.
 \begin{appendices}
 \end{appendices}
-
-
-% Este comando encapsula o conjunto de anexos. A sua função é fazer com que a
-% numeração dos anexos seja feita com letras maiúsculas (A, B, C, etc.) e a
-% palavra "Anexo" anteceda as entradas no Sumário.
-\begin{attachments}
-\end{attachments}
 
 
 \end{document}
