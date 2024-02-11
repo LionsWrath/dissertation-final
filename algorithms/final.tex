@@ -1,0 +1,20 @@
+\begin{algorithm}[H]
+    \vspace{10pt}
+
+    \KwIn{$\graphG, \mapFunc$}
+    \KwOut{Swap Sequence $\swapSeq$}
+
+    \vspace{10pt}
+    \begin{enumerate}
+        \item Compute the cotree of $\graphG$.
+        \item Compute the conflict graph  $CG_\mapFunc$.
+        \item For each cycle in $CG_\mapFunc$ determine if it is a zero-cycle or a one-cycle.
+        \item Compute $\cycleMatchingGraph$ using the zero-cycles from $CG_\mapFunc$.
+        \item Compute a maximum matching in $\cycleMatchingGraph$.
+        \item For each pair of zero-cycles matched in the computed maximum matching, perform a cutback swap using any edge between vertices of both cycles.
+        \item Solve the remaining zero-cycles with the procedure implied by the proof of  Lemma~\ref{lem:s_zerocycle} and the remaining one-cycles with the procedure implied by the proof of Lemma~\ref{lem:s_onecycle}.
+        \item Return resulting swap sequence as $\swapSeq$.
+    \end{enumerate}
+    \caption{Solving TS on cographs}
+    \label{alg:final}
+\end{algorithm}
